@@ -42,3 +42,4 @@ Source:
 Settiing up users- 
 https://docs.djangoproject.com/en/4.2/topics/auth/default/
 https://docs.djangoproject.com/en/4.2/ref/contrib/auth/#django.contrib.auth.models.User
+Datepicker = https://bootstrap-datepicker.readthedocs.io/en/latest/
