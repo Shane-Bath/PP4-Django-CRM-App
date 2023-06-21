@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-shane-bath-pp4-django-cr-9npjexddw8.us2.codeanyapp.com', 'pp4-crm-app.herokuapp',
+    '8000-shane-bath-pp4-django-cr-9npjexddw8.us2.codeanyapp.com', 'pp4_crm_app.herokuapp',
     'localhost']
 
 
