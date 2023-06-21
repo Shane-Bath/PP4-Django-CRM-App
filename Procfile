@@ -1,1 +1,1 @@
-web : gunicorn pp4_crm_app.wsgi
+web: gunicorn pp4_crm_app.wsgi
