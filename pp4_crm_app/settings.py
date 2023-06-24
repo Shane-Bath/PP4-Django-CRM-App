@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-shane-bath-pp4-django-cr-9npjexddw8.us2.codeanyapp.com', 'pp4-crm-app-133e9d6a024c.herokuapp.com',
+    '8000-shane-bath-pp4-crm-app-gz6ye0xeex.us2.codeanyapp.com', 'pp4-crm-app-133e9d6a024c.herokuapp.com',
     'localhost']
 
 
@@ -139,8 +139,6 @@ STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-
 
 
 # Default primary key field type
