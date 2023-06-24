@@ -10,20 +10,27 @@
 </style>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">CRM</a>
+        <a class="navbar-brand" href="#">ClientFlow</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
+
+                {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Login</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
                 </li>
+                {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="#">Register</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'account_login' %}">Login</a>
+                </li>
             </ul>
+            {% endif %}
         </div>
     </div>
 </nav>
@@ -32,7 +39,7 @@
     <div class="row align-self-center">
         <div class="col">
             <h1>ClientFlow</h1>
-            <h3>Client management for Small business</h3>
+            <h3>Client Management Made Easy for Small Businesses</h3>
         </div>
     </div>
 </div>
