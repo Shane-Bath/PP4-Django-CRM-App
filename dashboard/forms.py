@@ -1,15 +1,9 @@
-from allauth.account.forms import SignupForm
+from django import forms
+from .models import Client
+# from allauth.account.forms import SignupForm
 
 
-# class PendingAprrovalForm(SignupForm):
-#     # To approve user in the admin panel
-#     approval_status = forms.BooleanField(required=False)
-
-
-# class CustomSignupForm(SignupForm):
-#     def save(self, request)
-#     user = super().save(request)
-#     user.is_active = False
-#     user.approval_status = self.cleaned_data['approval_status']
-#     user.save()
-#     return user
+class ClientForm(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = '__all__'
