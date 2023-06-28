@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', views.index, name='index'),
-    path('new_client/', views.create_client, name='create_client'),
-    path('call_log_form/', views.phone_log, name='phone_log')
+    # path('new_client/', views.create_client, name='create_client'),
+    path('', include('dashboard.urls'), name='new-client'),
+    path('call-log-form/', views.phone_log, name='phone_log')
 ]
