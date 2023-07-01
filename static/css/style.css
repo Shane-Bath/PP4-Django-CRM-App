@@ -9,3 +9,7 @@
 h1 {
     color: red;
 }
+
+.footer-bar {
+    z-index: 1;
+}

@@ -23,5 +23,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     # path('new_client/', views.create_client, name='create_client'),
     path('', include('dashboard.urls'), name='new-client'),
-    path('call-log-form/', views.phone_log, name='phone_log')
+    path('', include('dashboard.urls'), name='call-log-form'),
+    # path('call-log-form/', views.phone_log, name='phone_log'),
+    path('dashboard/', views.dashboard, name='dashboard'),
 ]
