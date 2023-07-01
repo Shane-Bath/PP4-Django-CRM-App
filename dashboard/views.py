@@ -5,6 +5,7 @@ from django.views.generic.edit import CreateView, View
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib import messages
+from django.db.models import Q
 # Create your views here.
 
 # homepage index
@@ -17,21 +18,8 @@ def index(request):
 def dashboard(request):
     return render(request, 'dashboard.html')
 
-# New client form
 
-# def create_client(request):
-#     if request.method == 'POST':
-#         form = ClientForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, 'New clients created')
-#             return redirect('index')
-#     else:
-#         form = ClientForm()
-
-#     return render(request, 'new_client.html', {'form': form})
-
-
+# New Client
 class CreateClient(CreateView):
     model = Client
     form_class = ClientForm
@@ -57,3 +45,20 @@ class CallLog(CreateView):
             return redirect('dashboard')
         else:
             return render(request, 'call-log-form.html', {'form': form, })
+
+# Search clinets
+
+
+def client_search(request):
+    query = request.GET.get('query')
+
+    if query:
+        clients = Client.objects.filter(
+            Q(first_name__icontains=query) |
+            Q(middle_name__icontains=query) |
+            Q(last_name__icontains=query)
+        )
+    else:
+        clients = Client.objects.none()
+
+    return render(request, 'client-folder.html', {'clients': clients})

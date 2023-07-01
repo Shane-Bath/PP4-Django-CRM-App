@@ -1,16 +1,26 @@
 {% extends 'base.html' %}
 
 <head>
-    <title>{%  %}</title>
+    <title>{{ client.first_name }} - {{ client.last_name }}</title>
 </head>
 
 <body>
     {% block content %}
 
+    <h2>Search Results:</h2>
+    {% if clients %}
+    <ul>
+        {% for client in clients %}
+        <li>{{ client.first_name }} - {{ client.last_name }}</li>
+        {% empty %}
+        <li>No results found.</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No results found.</p>
+    {% endif %}
 
-    <h1>{CLIENTS NAME}</h1>
-    
-    </form>
+
     {% endblock %}
 
 </body>
