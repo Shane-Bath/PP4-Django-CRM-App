@@ -11,7 +11,7 @@
     {% if clients %}
     <ul>
         {% for client in clients %}
-        <li>{{ client.first_name }} - {{ client.last_name }}</li>
+        <li>{{ client.first_name }} {{ client.last_name }}</li>
         {% empty %}
         <li>No results found.</li>
         {% endfor %}
