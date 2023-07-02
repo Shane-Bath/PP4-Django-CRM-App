@@ -13,7 +13,10 @@ class Client(models.Model):
     # our_ref = models.UUIDField(max_length=20, default= uuid.uuid4, editable=False)
     phone_number = models.CharField(max_length=12)
     email_address = models.EmailField()
-    address = models.TextField(max_length=500, blank=True, null=True)
+    address = models.CharField(max_length=50, blank=True, null=True)
+    address_line_2 = models.CharField(max_length=50, blank=True, null=True)
+    city = models.CharField(max_length=50, blank=True, null=True)
+    county = models.CharField(max_length=50, blank=True, null=True)
     eircode = models.CharField(max_length=7, blank=True, null=True)
     created_on = models.DateTimeField(auto_now=True)
 

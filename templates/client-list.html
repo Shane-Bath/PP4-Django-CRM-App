@@ -1,8 +1,5 @@
 {% extends 'base.html' %}
 
-<head>
-    <title>List of Clients</title>
-</head>
 
 <body>
     {% block content %}
@@ -10,7 +7,7 @@
     <h2 class="client-list">List of Clients</h2>
 
     <div>
-        <table class="table">
+        <table class="table" style="width: 25rem;">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -31,9 +28,5 @@
                 {% endfor %}
             </tbody>
         </table>
-
     </div>
-
-
     {% endblock %}
-</body>

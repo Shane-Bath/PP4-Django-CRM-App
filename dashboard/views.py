@@ -61,6 +61,9 @@ def display_clients(request):
     return render(request, 'client-list.html', {'clients_list': clients_list})
 
 
+def client_list(request):
+    dash_client = Client.objects.all()
+    return render(request, 'dashboard.html', {'dash_client': dash_client})
 # Individual client
 
 

@@ -29,5 +29,6 @@ urlpatterns = [
     path('client-search/', views.client_search, name='client_search'),
     # path('', include('dashboard.urls'), name='client-list'),
     path('client-list/', views.display_clients, name='client-list'),
+    path('dashboard/', views.client_list, name='client-record'),
     path('<int:id>/', views.clients_file, name='details'),
 ]
