@@ -61,7 +61,17 @@ def display_clients(request):
     return render(request, 'client-list.html', {'clients_list': clients_list})
 
 
+# Individual client
+
+
+def clients_file(request, id):
+    details = get_object_or_404(Client,
+                                id=id,)
+
+    return render(request, 'clients-folder.html', {'details': details})
+
 # Search Clients
+
 
 def client_search(request):
     query = request.GET.get('query')

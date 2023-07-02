@@ -22,8 +22,9 @@
             <tbody>
                 {% for client in clients_list %}
                 <tr>
-                    <th scope="row">{{ forloop.counter }}</th>
-                    <td>{{ client.last_name }}</td>
+                    <th scope="row"><a href="{% url 'details' client.id %}">
+                            {{ forloop.counter }}</a></th>
+                    <td><a href="{% url 'details' client.id %}">{{ client.last_name }}</a></td>
                     <td>{{ client.first_name }}</td>
                     <td>{{ client.email_address }}</td>
                 </tr>

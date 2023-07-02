@@ -11,7 +11,13 @@
     {% if clients %}
     <ul>
         {% for client in clients %}
-        <li>{{ client.first_name }} {{ client.last_name }}</li>
+        <li>
+            <a href="{% url 'details' client.id %}">
+                {{ client.first_name }} {{ client.last_name }}
+            </a>
+
+        </li>
+
         {% empty %}
         <li>No results found.</li>
         {% endfor %}
