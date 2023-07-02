@@ -26,6 +26,7 @@ urlpatterns = [
     path('', include('dashboard.urls'), name='call-log-form'),
     # path('call-log-form/', views.phone_log, name='phone_log'),
     path('dashboard/', views.dashboard, name='dashboard'),
-    path('client-folder/', views.client_search, name='client_search'),
     path('client-search/', views.client_search, name='client_search'),
+    # path('', include('dashboard.urls'), name='client-list'),
+    path('client-list/', views.display_clients, name='client-list'),
 ]

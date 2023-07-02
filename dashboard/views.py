@@ -46,8 +46,22 @@ class CallLog(CreateView):
         else:
             return render(request, 'call-log-form.html', {'form': form, })
 
-# Search clinets
+# Display clients
 
+
+# class DisplayClients(CreateView):
+#     model = Client
+#     queryset = Client.objects.all()
+#     template_name = 'client-list.html'
+#     paginate_by = 10
+
+
+def display_clients(request):
+    clients_list = Client.objects.all()
+    return render(request, 'client-list.html', {'clients_list': clients_list})
+
+
+# Search Clients
 
 def client_search(request):
     query = request.GET.get('query')
@@ -61,4 +75,4 @@ def client_search(request):
     else:
         clients = Client.objects.none()
 
-    return render(request, 'client-folder.html', {'clients': clients})
+    return render(request, 'client-search-results.html', {'clients': clients})
