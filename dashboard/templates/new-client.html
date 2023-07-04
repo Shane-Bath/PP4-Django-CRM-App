@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 
-<head>
-    <title>Create New Client</title>
-</head>
+
+{% if user.is_authenticated %}
+<p>Authenticated user</p>
+
+{% else %}
+
+<p>PLease login</p>
+{% url 'account_login' %}
+{% endif %}
 
 <body>
     {% block content %}

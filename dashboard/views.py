@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ClientForm, CallLogForm
 from .models import Client, PhoneLog
-from django.views.generic.edit import CreateView, View
+from django.views.generic import CreateView, View
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 # Create your views here.
 
 # homepage index
@@ -14,12 +16,16 @@ from django.db.models import Q
 def index(request):
     return render(request, 'index.html')
 
-
+@login_required
 def dashboard(request):
     return render(request, 'dashboard.html')
 
+    
+
 
 # New Client
+
+@method_decorator(login_required, name='dispatch')
 class CreateClient(CreateView):
     model = Client
     form_class = ClientForm
@@ -28,6 +34,7 @@ class CreateClient(CreateView):
 
 
 # call log
+@method_decorator(login_required, name='dispatch')
 class CallLog(CreateView):
     def get(self, request):
         form = CallLogForm()
@@ -55,18 +62,20 @@ class CallLog(CreateView):
 #     template_name = 'client-list.html'
 #     paginate_by = 10
 
-
+@login_required
 def display_clients(request):
     clients_list = Client.objects.all()
     return render(request, 'client-list.html', {'clients_list': clients_list})
 
 
+@login_required
 def client_list(request):
     dash_client = Client.objects.all()
     return render(request, 'dashboard.html', {'dash_client': dash_client})
 # Individual client
 
 
+@login_required
 def clients_file(request, id):
     details = get_object_or_404(Client,
                                 id=id,)
@@ -74,6 +83,7 @@ def clients_file(request, id):
     return render(request, 'clients-folder.html', {'details': details})
 
 # Search Clients
+
 
 
 def client_search(request):

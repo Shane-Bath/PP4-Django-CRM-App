@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 
+{% if user.is_authenticated %}
+<p>Authenticated user</p>
+
+{% else %}
+
+<p>PLease login</p>
+{% url 'account_login' %}
+{% endif %}
 
 {% block content %}
 
-{% for client in client_list %}
-{{ client }}
-{% endfor %}
+
 
 <h2>Dashboard</h2>
 

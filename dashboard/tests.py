@@ -1,14 +1,7 @@
-from django.test import TestCase
+from django.contrib.auth.models import User
+from django.test import TestCase, Client
 from .models import Client, PhoneLog
-
+from django.urls import reverse
+import unittest
 # Create your tests here.
 
-
-def test_client(self):
-    client = Client.objects.get(id=1)
-    self.assertEqual(client.first_name, 'Shane')
-    self.assertEqual(client.email_address, 'Shane')
-
-
-def test_phone_log(self):
-    self.assertEqual(PhoneLog.first_name, ' ')
