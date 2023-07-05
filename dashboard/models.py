@@ -36,3 +36,19 @@ class PhoneLog(models.Model):
 
     def __str__(self):
         return f'Client {self.first_name} {self.last_name}'
+
+
+class ClientNote(models.Model):
+    title = models.CharField(max_length=200, unique=True)
+    client = models.ForeignKey(
+        Client, on_delete=models.CASCADE, blank=True, null=True)
+    employee = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="blog_posts")
+    Content = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_on"]
+
+    def __str__(self):
+        return self.title

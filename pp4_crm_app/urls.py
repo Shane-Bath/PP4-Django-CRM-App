@@ -31,4 +31,6 @@ urlpatterns = [
     path('client-list/', views.display_clients, name='client-list'),
     path('dashboard/', views.client_list, name='client-record'),
     path('<int:id>/', views.clients_file, name='details'),
+    # path('clients-folder/', views.dashboard, name='note'),
+    # path('<int:id>/', views.display_note, name='notes'),
 ]

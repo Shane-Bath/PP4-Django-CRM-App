@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ClientForm, CallLogForm
-from .models import Client, PhoneLog
+from .models import Client, PhoneLog, ClientNote
 from django.views.generic import CreateView, View
 from django.views import generic
 from django.urls import reverse_lazy
@@ -16,11 +16,10 @@ from django.utils.decorators import method_decorator
 def index(request):
     return render(request, 'index.html')
 
+
 @login_required
 def dashboard(request):
     return render(request, 'dashboard.html')
-
-    
 
 
 # New Client
@@ -65,6 +64,7 @@ class CallLog(CreateView):
 @login_required
 def display_clients(request):
     clients_list = Client.objects.all()
+
     return render(request, 'client-list.html', {'clients_list': clients_list})
 
 
@@ -79,13 +79,13 @@ def client_list(request):
 def clients_file(request, id):
     details = get_object_or_404(Client,
                                 id=id,)
-
+    
     return render(request, 'clients-folder.html', {'details': details})
 
 # Search Clients
 
 
-
+@login_required
 def client_search(request):
     query = request.GET.get('query')
 
@@ -99,3 +99,15 @@ def client_search(request):
         clients = Client.objects.none()
 
     return render(request, 'client-search-results.html', {'clients': clients})
+
+# Client note
+
+
+# @method_decorator(login_required, name='dispatch')
+# class DisplayNote(View):
+
+# def display_note(request, Client):
+#     client = get_object_or_404(Client, id=id)
+#     notes = client.clientnote_set.all()
+    
+#     return render(request, 'clients-folder.html', {'client': client, 'notes': notes})
