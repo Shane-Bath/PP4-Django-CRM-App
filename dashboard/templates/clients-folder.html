@@ -90,26 +90,7 @@
             </div>
         </div>
         <div class="container">
-            <div class="col-md-auto">
-            <h2>Add Note</h2>
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Add Note</button>
-            </form>
-            
-            <hr>
-            
-            <h2>Client Notes</h2>
-            {% for note in notes %}
-            <h3>{{ note.created_at }}</h3>
-            <p>{{ note.content }}</p>
-            <hr>
-            {% empty %}
-            <p>No notes available.</p>
-            {% endfor %}
-
-            </div>
+            {% include 'note.html' %}
         </div>
         <div class="container">
             <div class="col-6">

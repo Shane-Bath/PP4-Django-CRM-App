@@ -1,0 +1,38 @@
+{% if user.is_authenticated %}
+
+
+{% else %}
+
+<p>PLease login</p>
+{% url 'account_login' %}
+{% endif %}
+
+<body>
+    {% block content %}
+
+    <h2 class="client-list">List of Clients</h2>
+
+    <div class="container">
+        <table class="table" style="width: 25rem;">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">first Name</th>
+                    <th scope="col">Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for client in clients_list %}
+                <tr>
+                    <th scope="row"><a href="{% url 'details' client.id %}">
+                            {{ forloop.counter }}</a></th>
+                    <td><a href="{% url 'details' client.id %}">{{ client.last_name }}</a></td>
+                    <td>{{ client.first_name }}</td>
+                    <td>{{ client.email_address }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endblock %}

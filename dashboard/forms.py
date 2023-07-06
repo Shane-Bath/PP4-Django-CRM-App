@@ -24,6 +24,6 @@ class CallLogForm(forms.ModelForm):
 
 
 class ClientNoteForm(forms.ModelForm):
-    class meta:
+    class Meta:
         model = ClientNote
-        fields = ('tile', 'client', 'employee', 'content')
+        fields = '__all__'

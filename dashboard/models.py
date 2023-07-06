@@ -44,7 +44,7 @@ class ClientNote(models.Model):
         Client, on_delete=models.CASCADE, related_name='notes', blank=True, null=True)
     employee = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="blog_posts")
-    Content = models.TextField()
+    content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:

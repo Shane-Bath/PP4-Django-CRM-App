@@ -19,7 +19,8 @@ def index(request):
 
 @login_required
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    clients_list = Client.objects.all()
+    return render(request, 'dashboard.html', {'clients_list': clients_list})
 
 
 # New Client
@@ -69,9 +70,11 @@ def display_clients(request):
 
 
 @login_required
-def client_list(request):
-    dash_client = Client.objects.all()
-    return render(request, 'dashboard.html', {'dash_client': dash_client})
+def client_list(request,):
+    # dash_client = Client.objects.all()
+    dash_client = get_object_or_404(Client)
+    return render(request, 'dash-client-list.html', {'dash_client': dash_client})
+
 # Individual client
 
 
@@ -79,8 +82,10 @@ def client_list(request):
 def clients_file(request, id):
     details = get_object_or_404(Client,
                                 id=id,)
+    notes = ClientNote.objects.all()
+    form = ClientNoteForm(request.POST)
 
-    return render(request, 'clients-folder.html', {'details': details})
+    return render(request, 'clients-folder.html', {'details': details, 'notes': notes, 'form': form})
 
 # Search Clients
 
@@ -106,28 +111,24 @@ def client_search(request):
 # @method_decorator(login_required, name='dispatch')
 # class DisplayNote(View):
 
-# def display_note(request, Client):
-#     client = get_object_or_404(Client, id=id)
-#     notes = client.clientnote_set.all()
 
-#     return render(request, 'clients-folder.html', {'client': client, 'notes': notes})
+def display_note(request, id):
+    notes = ClientNote.objects.all()
+    client = get_object_or_404(Client, id=id)
+    form = None
 
-# def client_detail(request, client_id):
-#     client = get_object_or_404(Client, id=id)
-#     notes = client.notes.all()
-#     form = ClientNoteForm()
+    if request.method == 'POST':
+        form = ClientNoteForm(request.POST)
+        if form.is_valid():
+            note = form.save(commit=False)
+            note.client = client
+            note.save()
+            form = ClientNoteForm()
 
-#     if request.method == 'POST':
-#         form = ClientNoteForm(request.POST)
-#         if form.is_valid():
-#             note = form.save(commit=False)
-#             note.client = client
-#             note.save()
-#             form = ClientNoteForm()
+    context = {
+        'client': client,
+        'notes': notes,
+        'form': form,
+    }
 
-#     context = {
-#         'client': client,
-#         'notes': notes,
-#         'form': form,
-#     }
-#     return render(request, 'clients-folder.html', context)
+    return render(request, 'note.html', context)

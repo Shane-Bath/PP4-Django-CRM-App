@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="col-md-auto">
+        <h2>Add Note</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add Note</button>
+        </form>
+
+        <hr>
+
+        <h2>Client Notes</h2>
+        {% for note in notes %}
+        <h3>{{ note.title }} {{ note.created_on }}</h3>
+        <p>{{ note.content }}</p>
+        <hr>
+        {% empty %}
+        <p>No notes available.</p>
+        {% endfor %}
+
+    </div>
+</div>
