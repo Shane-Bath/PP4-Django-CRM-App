@@ -1,5 +1,5 @@
 from django import forms
-from .models import Client, PhoneLog
+from .models import Client, PhoneLog, ClientNote
 # from allauth.account.forms import SignupForm
 
 
@@ -21,3 +21,9 @@ class CallLogForm(forms.ModelForm):
     #     required=True,
     #     widget=forms.Select(attrs={'class': 'form-control'})
     # )
+
+
+class ClientNoteForm(forms.ModelForm):
+    class meta:
+        model = ClientNote
+        fields = ('tile', 'client', 'employee', 'content')

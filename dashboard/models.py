@@ -41,7 +41,7 @@ class PhoneLog(models.Model):
 class ClientNote(models.Model):
     title = models.CharField(max_length=200, unique=True)
     client = models.ForeignKey(
-        Client, on_delete=models.CASCADE, blank=True, null=True)
+        Client, on_delete=models.CASCADE, related_name='notes', blank=True, null=True)
     employee = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="blog_posts")
     Content = models.TextField()

@@ -32,5 +32,5 @@ urlpatterns = [
     path('dashboard/', views.client_list, name='client-record'),
     path('<int:id>/', views.clients_file, name='details'),
     # path('clients-folder/', views.dashboard, name='note'),
-    # path('<int:id>/', views.display_note, name='notes'),
+    path('<int:id>/', views.client_detail, name='client_detail'),
 ]

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ClientForm, CallLogForm
+from .forms import ClientForm, CallLogForm, ClientNoteForm
 from .models import Client, PhoneLog, ClientNote
 from django.views.generic import CreateView, View
 from django.views import generic
@@ -79,7 +79,7 @@ def client_list(request):
 def clients_file(request, id):
     details = get_object_or_404(Client,
                                 id=id,)
-    
+
     return render(request, 'clients-folder.html', {'details': details})
 
 # Search Clients
@@ -109,5 +109,25 @@ def client_search(request):
 # def display_note(request, Client):
 #     client = get_object_or_404(Client, id=id)
 #     notes = client.clientnote_set.all()
-    
+
 #     return render(request, 'clients-folder.html', {'client': client, 'notes': notes})
+
+# def client_detail(request, client_id):
+#     client = get_object_or_404(Client, id=id)
+#     notes = client.notes.all()
+#     form = ClientNoteForm()
+
+#     if request.method == 'POST':
+#         form = ClientNoteForm(request.POST)
+#         if form.is_valid():
+#             note = form.save(commit=False)
+#             note.client = client
+#             note.save()
+#             form = ClientNoteForm()
+
+#     context = {
+#         'client': client,
+#         'notes': notes,
+#         'form': form,
+#     }
+#     return render(request, 'clients-folder.html', context)
