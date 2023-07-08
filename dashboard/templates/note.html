@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="col-md-auto">
+    <!-- <div class="col-md-auto">
         <h2>Add Note</h2>
         <form method="post">
             {% csrf_token %}
@@ -7,16 +7,19 @@
             <button type="submit">Add Note</button>
         </form>
 
-        <hr>
+        <hr> -->
 
-        <h2>Client Notes</h2>
-        {% for note in notes %}
-        <h3>{{ note.title }} {{ note.created_on }}</h3>
-        <p>{{ note.content }}</p>
-        <hr>
-        {% empty %}
-        <p>No notes available.</p>
-        {% endfor %}
+    <h2>Client: {{ client.name }}</h2>
+    {% for note in notes %}
+    {% if note.client == client %}
 
-    </div>
+    <h3>{{ note.title }} {{ note.created_on }}</h3>
+    <p>{{ note.content }}</p>
+    {% endif %}
+    <hr>
+    {% empty %}
+    <p>No notes available.</p>
+    {% endfor %}
+
+    <!-- </div> -->
 </div>

@@ -132,3 +132,12 @@ def display_note(request, id):
     }
 
     return render(request, 'note.html', context)
+
+# render the note assoicated with the client
+
+
+def display_client_note (request, id):
+    client = get_object_or_404(Client, id=id)
+    notes = ClientNote.objects.filter(client=client)
+
+    return render(request, 'note.html', {'client': client, 'notes': notes})
