@@ -82,10 +82,12 @@ def client_list(request,):
 def clients_file(request, id):
     details = get_object_or_404(Client,
                                 id=id,)
-    notes = ClientNote.objects.all()
-    form = ClientNoteForm(request.POST)
+    # notes = ClientNote.objects.all()
+    # form = ClientNoteForm(request.POST)
+    client = get_object_or_404(Client, id=id)
+    notes = ClientNote.objects.filter(client=client)
 
-    return render(request, 'clients-folder.html', {'details': details, 'notes': notes, 'form': form})
+    return render(request, 'clients-folder.html', {'details': details, 'notes': notes, 'client': client})
 
 # Search Clients
 
@@ -136,7 +138,7 @@ def display_note(request, id):
 # render the note assoicated with the client
 
 
-def display_client_note (request, id):
+def display_client_note(request, id):
     client = get_object_or_404(Client, id=id)
     notes = ClientNote.objects.filter(client=client)
 
