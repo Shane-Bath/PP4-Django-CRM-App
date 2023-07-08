@@ -1,16 +1,11 @@
+<h2>Client: {{ client.name }}</h2>
+{% for note in notes %}
+{% if note.client == client %}
 
+<h3>{{ note.title }} {{ note.created_on }}</h3>
+<p>{{ note.content }}</p>
+{% endif %}
 
-        <h2>Client: {{ client.name }}</h2>
-        {% for note in notes %}
-        {% if note.client == client %}
-
-        <h3>{{ note.title }} {{ note.created_on }}</h3>
-        <p>{{ note.content }}</p>
-        {% endif %}
-        <hr>
-        {% empty %}
-        <p>No notes available.</p>
-        {% endfor %}
-
-        <!-- </div> -->
-    </div>
+{% empty %}
+<p>No notes available.</p>
+{% endfor %}
