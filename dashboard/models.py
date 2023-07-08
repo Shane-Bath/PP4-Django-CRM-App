@@ -51,4 +51,4 @@ class ClientNote(models.Model):
         ordering = ["-created_on"]
 
     def __str__(self):
-        return self.title
+        return f'Client note {self.title}'

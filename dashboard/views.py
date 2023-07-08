@@ -87,6 +87,7 @@ def clients_file(request, id):
     client = get_object_or_404(Client, id=id)
     notes_display = ClientNote.objects.filter(client=client)
     edit_client = get_object_or_404(Client, id=id,)
+    edit_form = ClientForm(request.POST or None)
 
     context = {
         'details': details,
@@ -95,7 +96,7 @@ def clients_file(request, id):
         'form': form,
         'notes_display': notes_display,
         'edit_client': edit_client,
-
+        'edit_form': edit_form,
     }
 
     return render(request, 'clients-folder.html',  context)
@@ -105,10 +106,15 @@ def clients_file(request, id):
 
 
 def update_client(request, id):
-    edit_client = get_object_or_404(Client, id=id,)
+    edit_client = get_object_or_404(Client, id=id)
+    edit_form = ClientForm(request.POST or None, instance=edit_client)
 
-    return render(request, 'edit-client.html', {'edit_client': edit_client})
+    if request.method == 'POST':
+        if edit_form.is_valid():
+            edit_form.save()
+            return redirect('details', id=id)
 
+    return render(request, 'edit-client.html', {'edit_form': edit_form, 'edit_client': edit_client})
 # Search Clients
 
 
