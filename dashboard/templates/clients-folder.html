@@ -91,7 +91,11 @@
         </div>
         <div class="container">
             {% include 'note.html' %}
+
+            <a href="{% url 'edit-note' client.id %}"><button>Add note</button></a>
+
         </div>
+
         <div class="container">
             <div class="col-6">
                 <h4>Todo</h4>
