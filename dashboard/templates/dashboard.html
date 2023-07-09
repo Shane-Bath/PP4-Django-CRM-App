@@ -13,10 +13,22 @@
 
 
 
-<h2>Dashboard</h2>
+<!-- <h2>Dashboard</h2> -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            {% include 'dash-client-list.html' %}
+        </div>
+        <div class="col">
+            {% include 'display-call.html' %}
+        </div>
+        <div class="col">
+            {% include 'task.html' %}
+        </div>
+    </div>
+</div>
 
-
-<div class="container">
+<!-- <div class="container">
 
     {% include 'dash-client-list.html' %}
 
@@ -33,6 +45,6 @@
     {% include 'task.html' %}
 
 
-</div>
+</div> -->
 
 {% endblock %}

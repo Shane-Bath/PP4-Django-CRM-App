@@ -34,5 +34,6 @@ urlpatterns = [
     path('edit-client/<int:id>/', views.update_client, name='edit-client'),
     path('display-call/', views.display_call_log, name='display-call'),
     path('', include('dashboard.urls'), name='task-list'),
-    path('task/', views.display_task, name='task')
+    path('task/', views.display_task, name='task'),
+    path('task/update/<int:id>', views.update_task, name='update-task')
 ]
