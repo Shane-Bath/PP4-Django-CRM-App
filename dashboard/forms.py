@@ -1,5 +1,5 @@
 from django import forms
-from .models import Client, PhoneLog, ClientNote
+from .models import Client, PhoneLog, ClientNote, ToDoList
 # from allauth.account.forms import SignupForm
 
 
@@ -27,3 +27,9 @@ class ClientNoteForm(forms.ModelForm):
     class Meta:
         model = ClientNote
         fields = ('title', 'employee', 'content')
+
+
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = ToDoList
+        fields = '__all__'

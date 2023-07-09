@@ -1,0 +1,10 @@
+{% block content %}
+<h3>To Do List</h3>
+
+<h1>Log Call</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+{% endblock %}

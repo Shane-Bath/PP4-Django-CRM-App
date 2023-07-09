@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ClientForm, CallLogForm, ClientNoteForm
-from .models import Client, PhoneLog, ClientNote
+from .forms import ClientForm, CallLogForm, ClientNoteForm, TaskForm
+from .models import Client, PhoneLog, ClientNote, ToDoList
 from django.views.generic import CreateView, View
 from django.views import generic
 from django.urls import reverse_lazy
@@ -21,10 +21,12 @@ def index(request):
 def dashboard(request):
     clients_list = Client.objects.all()
     call_logs = PhoneLog.objects.all().order_by('-created_on')
+    tasks = ToDoList.objects.all().order_by('-created_on')
 
     context = {
         'clients_list': clients_list,
         'call_logs': call_logs,
+        'tasks': tasks,
     }
     return render(request, 'dashboard.html', context)
 
@@ -179,3 +181,23 @@ def display_client_note(request, id):
     notes_display = ClientNote.objects.filter(client=id)
 
     return render(request, 'note.html', {'client_id': client, 'notes_display': notes_display})
+
+
+# To do list
+
+# @method_decorator(login_required, name='dispatch')
+class TaskList(CreateView):
+    model = ToDoList
+    form_class = TaskForm
+    template_name = 'task-list.html'
+    success_url = reverse_lazy('dashboard')
+
+
+# Display to do list
+
+
+def display_task(request):
+    tasks = ToDoList.objects.all().order_by('-created_on')
+    # breakpoint()
+
+    return render(request, 'task.html', {'tasks': tasks})

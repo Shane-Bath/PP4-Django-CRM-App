@@ -52,3 +52,15 @@ class ClientNote(models.Model):
 
     def __str__(self):
         return f'Client note {self.title}'
+
+
+class ToDoList(models.Model):
+    task = models.CharField(max_length=60, unique=True)
+    complete = models.BooleanField()
+    created_on = models.DateField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_on"]
+
+    def __str__(self):
+        return f'To-do-list'
