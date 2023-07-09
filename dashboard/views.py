@@ -20,7 +20,13 @@ def index(request):
 @login_required
 def dashboard(request):
     clients_list = Client.objects.all()
-    return render(request, 'dashboard.html', {'clients_list': clients_list})
+    call_logs = PhoneLog.objects.all().order_by('-created_on')
+
+    context = {
+        'clients_list': clients_list,
+        'call_logs': call_logs,
+    }
+    return render(request, 'dashboard.html', context)
 
 
 # New Client
@@ -43,24 +49,27 @@ class CallLog(CreateView):
     def post(self, request):
         form = CallLogForm(request.POST)
         if form.is_valid():
-            first_name = form.cleaned_data.get('first_name')
-            client = get_object_or_404(Client, first_name=first_name)
+            # first_name = form.cleaned_data.get('first_name')
+            # client = get_object_or_404(Client, first_name=first_name)
             call_log = form.save(commit=False)
-            call_log.Client = Client
+            # call_log.Client = Client
             call_log.save()
             messages.success(request, 'Call logged')
             return redirect('dashboard')
         else:
             return render(request, 'call-log-form.html', {'form': form, })
 
-# Display clients
+
+# Display call log
+
+def display_call_log(request):
+    call_logs = PhoneLog.objects.all().order_by('-created_on')
+    # breakpoint()
+
+    return render(request, 'display-call.html', {'call_logs': call_logs})
 
 
-# class DisplayClients(CreateView):
-#     model = Client
-#     queryset = Client.objects.all()
-#     template_name = 'client-list.html'
-#     paginate_by = 10
+# display all clients
 
 @login_required
 def display_clients(request):
@@ -70,8 +79,7 @@ def display_clients(request):
 
 
 @login_required
-def client_list(request,):
-    # dash_client = Client.objects.all()
+def client_list(request):
     dash_client = get_object_or_404(Client)
     return render(request, 'dash-client-list.html', {'dash_client': dash_client})
 
