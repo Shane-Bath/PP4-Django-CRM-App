@@ -224,14 +224,3 @@ class DeleteTask(DeleteView):
     fields = ["task"]
     template_name = 'delete-task.html'
     success_url = reverse_lazy('dashboard')
-
-
-# def update_task(request, id):
-#     update = request.POST.ToDoList(id=id)
-#     if request.method == 'post':
-#         complete = request.POST.get('complete', False)
-#         update.complete = bool(complete)
-#         update.save()
-#         return redirect('dashboard')
-
-#     return render(request, 'update-task.html', {'update':update})
