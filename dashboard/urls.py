@@ -6,4 +6,5 @@ urlpatterns = [
     path('call-log-form/', views.CallLog.as_view(), name='call-log-form'),
     path('task-list/', views.TaskList.as_view(), name='task-list'),
     path('task-update/<int:pk>', views.UpdateTask.as_view(), name='task-update'),
+    path('delete-task/<int:pk>', views.DeleteTask.as_view(), name='delete-task'),
 ]

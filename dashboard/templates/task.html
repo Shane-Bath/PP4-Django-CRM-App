@@ -16,7 +16,9 @@
         <tr class="table-success">
             <td>{{ task.created_on }}</td>
             <td>{{ task.task }}</td>
-            <td><a href="{% url 'task-update' task.id %}"><button>Update</button></a></td>
+            <td><a href="{% url 'task-update' task.id %}"><button>Update</button></a>
+                <a href="{% url 'delete-task' task.id %}"><button>delete</button></a>
+            </td>
             {% endfor %}
         </tr>
     </tbody>

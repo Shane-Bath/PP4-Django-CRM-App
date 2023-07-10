@@ -36,4 +36,5 @@ urlpatterns = [
     path('', include('dashboard.urls'), name='task-list'),
     path('task/', views.display_task, name='task'),
     path('', include('dashboard.urls'), name='task-update'),
+    path('', include('dashboard.urls'), name='delete-task'),
 ]
