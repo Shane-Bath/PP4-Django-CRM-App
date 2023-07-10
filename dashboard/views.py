@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ClientForm, CallLogForm, ClientNoteForm, TaskForm
 from .models import Client, PhoneLog, ClientNote, ToDoList
-from django.views.generic import CreateView, View
+from django.views.generic import CreateView, View, UpdateView
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -22,11 +22,13 @@ def dashboard(request):
     clients_list = Client.objects.all()
     call_logs = PhoneLog.objects.all().order_by('-created_on')
     tasks = ToDoList.objects.all().order_by('-created_on')
+    task_update = UpdateTask()
 
     context = {
         'clients_list': clients_list,
         'call_logs': call_logs,
         'tasks': tasks,
+        'task_update': task_update,
     }
     return render(request, 'dashboard.html', context)
 
@@ -205,12 +207,20 @@ def display_task(request):
 # Task marked complete
 
 
-def update_task(request, id):
-    update = request.POST.ToDoList(id=id)
-    if request.method == 'post':
-        complete = request.POST.get('complete', False)
-        update.complete = bool(complete)
-        update.save()
-        return redirect('dashboard')
+class UpdateTask(UpdateView):
+    model = ToDoList
+    fields = ["task"]
+    template_name = 'task-update.html'
+    success_url = reverse_lazy('dashboard')
+
+
+
+# def update_task(request, id):
+#     update = request.POST.ToDoList(id=id)
+#     if request.method == 'post':
+#         complete = request.POST.get('complete', False)
+#         update.complete = bool(complete)
+#         update.save()
+#         return redirect('dashboard')
     
-    return render(request, 'update-task.html', {'update':update})
+#     return render(request, 'update-task.html', {'update':update})

@@ -33,3 +33,9 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = ToDoList
         fields = '__all__'
+
+
+# class UpdateTaskForm(forms.ModelForm):
+#     class Meta:
+#         model = ToDoList
+#         fields = '__all__'

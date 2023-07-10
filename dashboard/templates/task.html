@@ -16,14 +16,7 @@
         <tr class="table-success">
             <td>{{ task.created_on }}</td>
             <td>{{ task.task }}</td>
-            <td>
-                <!-- prettier-ignore -->
-                <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="complete" {% if
-                    task.complete %} checked {% endif %}>
-                <input type="submit" value="Update">
-                <label class="form-check-label" for="flexCheckDefault">
-
-            </td>
+            <td><a href="{% url 'task-update' task.id %}"><button>Update</button></a></td>
             {% endfor %}
         </tr>
     </tbody>
