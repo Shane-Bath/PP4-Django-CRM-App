@@ -15,13 +15,6 @@ class CallLogForm(forms.ModelForm):
         model = PhoneLog
         fields = ('first_name', 'last_name', 'phone_number', 'message')
 
-    # check_client = forms.ModelChoiceField(
-    #     queryset=Client.objects.all(),
-    #     to_field_name='first_name',
-    #     required=True,
-    #     widget=forms.Select(attrs={'class': 'form-control'})
-    # )
-
 
 class ClientNoteForm(forms.ModelForm):
     class Meta:
@@ -32,10 +25,6 @@ class ClientNoteForm(forms.ModelForm):
 class TaskForm(forms.ModelForm):
     class Meta:
         model = ToDoList
-        fields = '__all__'
+        fields = ('task',)
 
 
-# class UpdateTaskForm(forms.ModelForm):
-#     class Meta:
-#         model = ToDoList
-#         fields = '__all__'
