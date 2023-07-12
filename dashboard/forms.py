@@ -14,6 +14,12 @@ class CallLogForm(forms.ModelForm):
     class Meta:
         model = PhoneLog
         fields = ('first_name', 'last_name', 'phone_number', 'message')
+        widgets = {
+            'first_name': forms.TextInput(attrs={'placeholder': 'First Name'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Last Name'}),
+            'phone_number': forms.TextInput(attrs={'placeholder': 'phone Number'}),
+            'message': forms.Textarea(attrs={'placeholder': 'Message'}),
+        }
 
 
 class ClientNoteForm(forms.ModelForm):
@@ -26,5 +32,3 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = ToDoList
         fields = ('task',)
-
-

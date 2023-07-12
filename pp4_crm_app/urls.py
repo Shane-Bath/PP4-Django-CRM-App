@@ -28,7 +28,6 @@ urlpatterns = [
     path('client-list/', views.display_clients, name='client-list'),
     path('dash-client-list/', views.client_list, name='dash_client'),
     path('<int:id>/', views.clients_file, name='details'),
-    # path('note/', views.display_note, name='notes'),
     path('edit-note/<int:id>/', views.display_note, name='edit-note'),
     path('<int:id>/note/', views.display_client_note, name='client-note'),
     path('edit-client/<int:id>/', views.update_client, name='edit-client'),
@@ -37,4 +36,5 @@ urlpatterns = [
     path('task/', views.display_task, name='task'),
     path('', include('dashboard.urls'), name='task-update'),
     path('', include('dashboard.urls'), name='delete-task'),
+    path('dashboard/', views.CallLog.as_view(), name='dashboard'),
 ]

@@ -2,12 +2,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ClientForm, CallLogForm, ClientNoteForm, TaskForm
 from .models import Client, PhoneLog, ClientNote, ToDoList
 from django.views.generic import CreateView, View, UpdateView, DeleteView
-from django.views import generic
+from django.views import generic, View
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.http import JsonResponse
 # Create your views here.
 
 # homepage index
@@ -47,10 +48,10 @@ class CreateClient(CreateView):
 
 # call log
 @method_decorator(login_required, name='dispatch')
-class CallLog(CreateView):
+class CallLog(View):
     def get(self, request):
         form = CallLogForm()
-        return render(request, 'call-log-form.html', {'form': form, })
+        return render(request, 'call-log-form.html', {'form': form})
 
     def post(self, request):
         form = CallLogForm(request.POST)
@@ -62,9 +63,13 @@ class CallLog(CreateView):
             call_log.save()
             messages.success(request, 'Call logged')
             return redirect('dashboard')
+            # return JsonResponse({'message': 'Call logged'})
         else:
+            # return JsonResponse({'error': form.errors}, status=400)
             return render(request, 'call-log-form.html', {'form': form, })
 
+
+# call log modal
 
 # Display call log
 
