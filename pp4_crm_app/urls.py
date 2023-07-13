@@ -36,5 +36,7 @@ urlpatterns = [
     path('task/', views.display_task, name='task'),
     path('', include('dashboard.urls'), name='task-update'),
     path('', include('dashboard.urls'), name='delete-task'),
-    path('dashboard/', views.CallLog.as_view(), name='dashboard'),
+    # path('dashboard/', views.CallLog.as_view(), name='dashboard'),
+    # path('delete-call/<int:pk>', views.delete_call, name='delete-call'),
+    path('', include('dashboard.urls'), name='delete-call'),
 ]

@@ -12,6 +12,7 @@
                 <th scope="col">Last Name</th>
                 <th scope="col">Phone</th>
                 <th scope="col">Message</th>
+                <th scope="col">Complete</th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +23,8 @@
                 <td>{{ call_log.last_name }}</td>
                 <td>{{ call_log.phone_number}}</td>
                 <td>{{ call_log.message}}</td>
+                <td><a href="{% url 'delete-call' call_log.pk %}"><button type="button"
+                            class="btn btn-danger">Danger</button></a></td>
             </tr>
             {% endfor %}
         </tbody>

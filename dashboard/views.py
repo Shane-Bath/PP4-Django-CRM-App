@@ -25,6 +25,7 @@ def dashboard(request):
     tasks = ToDoList.objects.all().order_by('-created_on')
     task_update = UpdateTask()
     delete_task = DeleteTask()
+    call_delete = DeleteCall()
 
     context = {
         'clients_list': clients_list,
@@ -32,6 +33,7 @@ def dashboard(request):
         'tasks': tasks,
         'task_update': task_update,
         'delete_task': delete_task,
+        'call_delete': call_delete,
     }
     return render(request, 'dashboard.html', context)
 
@@ -61,7 +63,7 @@ class CallLog(View):
             call_log = form.save(commit=False)
             # call_log.Client = Client
             call_log.save()
-            messages.success(request, 'Call logged')
+            messages.success(self.request, 'Call logged')
             return redirect('dashboard')
             # return JsonResponse({'message': 'Call logged'})
         else:
@@ -70,9 +72,29 @@ class CallLog(View):
 
 
 # call log modal
+# Delete call from html list but not database
+
+class DeleteCall(DeleteView):
+    model = PhoneLog
+    fields = ["pk"]
+    template_name = 'delete-call.html'
+
+    def delete(self, request, *args, **kwargs):
+        return redirect('dashboard')
+    # fields = ["pk"]
+    # template_name = 'delete-call.html'
+    # success_url = reverse_lazy('dashboard')
+
+# def delete_call(request, pk):
+#     call = get_object_or_404(PhoneLog, pk=pk)
+#     call.is_deleted = True
+#     call.save()
+#     return redirect('dashboard')
 
 # Display call log
 
+
+@login_required
 def display_call_log(request):
     call_logs = PhoneLog.objects.all().order_by('-created_on')
     # breakpoint()
