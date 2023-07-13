@@ -26,6 +26,7 @@ def dashboard(request):
     task_update = UpdateTask()
     delete_task = DeleteTask()
     call_delete = DeleteCall()
+    # call_delete = call = get_object_or_404(PhoneLog, pk=pk)
 
     context = {
         'clients_list': clients_list,
@@ -72,15 +73,28 @@ class CallLog(View):
 
 
 # call log modal
-# Delete call from html list but not database
 
+# Delete calls 
 class DeleteCall(DeleteView):
     model = PhoneLog
     fields = ["pk"]
     template_name = 'delete-call.html'
+    success_url = reverse_lazy('dashboard')
 
-    def delete(self, request, *args, **kwargs):
-        return redirect('dashboard')
+# Delete call from html list but not database- soft delete I will continue to
+# work on this 
+
+# class DeleteCall(DeleteView):
+#     model = PhoneLog
+#     template_name = 'delete-call.html'
+
+#     def delete(self, request, *args, **kwargs):
+#         self.object = self.get_object()
+#         self.object.is_deleted = True
+#         self.object.save()
+
+#         return redirect('dashboard')
+
     # fields = ["pk"]
     # template_name = 'delete-call.html'
     # success_url = reverse_lazy('dashboard')

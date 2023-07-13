@@ -33,6 +33,7 @@ class PhoneLog(models.Model):
     email_address = models.EmailField(blank=True, null=True)
     message = models.TextField(max_length=300)
     created_on = models.DateTimeField(auto_now=True)
+    is_deleted = models.BooleanField(default=False)
 
     def __str__(self):
         return f'Client {self.first_name} {self.last_name}'
@@ -56,7 +57,7 @@ class ClientNote(models.Model):
 
 class ToDoList(models.Model):
     task = models.CharField(max_length=60, unique=True)
-    complete = models.BooleanField()
+    complete = models.BooleanField(default=False)
     created_on = models.DateField(auto_now_add=True)
 
     class Meta:

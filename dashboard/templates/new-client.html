@@ -14,12 +14,31 @@
     {% block content %}
 
 
-    <h1>Create New Client</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
+    <!-- <h1>Create New Client</h1> -->
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                {% load crispy_forms_tags %}
+                <h5>New Client</h5>
+                <!-- <br> -->
+                <form method="post" class="my-class">
+                    {% csrf_token %}
+                    {% crispy form %}
+                    <!-- {{ form|crispy}} -->
+
+                    <!-- <button type="submit">Submit</button> -->
+
+                    <!-- {% if messages %}
+                    <div class="alert alert-success" role="alert">
+                        {% for message in messages %}
+                        <P> {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }}</P>
+                        {% endfor %}
+                    </div>
+                    {% endif %} -->
+                </form>
+            </div>
+        </div>
+    </div>
     {% endblock %}
 
 </body>

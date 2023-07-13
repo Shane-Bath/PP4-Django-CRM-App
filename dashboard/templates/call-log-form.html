@@ -20,7 +20,11 @@
                 <h3>Call log</h3>
                 <br>
                 <form method="post" class="my-class">
+                    {% csrf_token %}
                     {% crispy form %}
+                    <!-- {{ form|crispy}} -->
+
+                    <!-- <button type="submit">Submit</button> -->
 
                     <!-- {% if messages %}
                     <div class="alert alert-success" role="alert">
