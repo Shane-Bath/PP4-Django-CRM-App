@@ -17,26 +17,25 @@ from django.contrib import admin
 from django.urls import path, include
 from dashboard import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', views.index, name='index'),
-    path('', include('dashboard.urls'), name='new-client'),
-    path('', include('dashboard.urls'), name='call-log-form'),
+    path('new-client', include('dashboard.urls'), name='new-client'),
+    path('call-log-form', include('dashboard.urls'), name='call-log-form'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('client-search/', views.client_search, name='client_search'),
     path('client-list/', views.display_clients, name='client-list'),
     path('dash-client-list/', views.client_list, name='dash_client'),
     path('<int:id>/', views.clients_file, name='details'),
     path('edit-note/<int:id>/', views.display_note, name='edit-note'),
-    path('<int:id>/note/', views.display_client_note, name='client-note'),
     path('edit-client/<int:id>/', views.update_client, name='edit-client'),
     path('display-call/', views.display_call_log, name='display-call'),
-    path('', include('dashboard.urls'), name='task-list'),
+    path('task-list', include('dashboard.urls'), name='task-list'),
     path('task/', views.display_task, name='task'),
-    path('', include('dashboard.urls'), name='task-update'),
-    path('', include('dashboard.urls'), name='delete-task'),
-    # path('dashboard/', views.CallLog.as_view(), name='dashboard'),
-    # path('delete-call/<int:pk>', views.delete_call, name='delete-call'),
-    path('', include('dashboard.urls'), name='delete-call'),
+    path('task-update', include('dashboard.urls'), name='task-update'),
+    path('delete-task', include('dashboard.urls'), name='delete-task'),
+    path('delete-call', include('dashboard.urls'), name='delete-call'),
+    path('delete-note', include('dashboard.urls'), name='delete-note'),
 ]

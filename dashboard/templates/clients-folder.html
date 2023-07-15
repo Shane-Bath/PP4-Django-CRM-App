@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
-<body>
 
+<body>
     {% block content %}
+
 
     <!-- Cleint details -->
 
@@ -94,10 +95,23 @@
             </div>
         </div>
         <div class="container">
-            {% include 'note.html' %}
+            <div class="row">
+                <div class="col card mb-4 mt-3">
+                    {% for note in notes_display %}
 
-            <a href="{% url 'edit-note' client.id %}"><button>Add note</button></a>
+                    <h4>{{ note.title }}</h4>
+                    <p>{{ note.content }}</p>
+                    {% endfor %}
 
+
+                    <!-- {% include 'note.html' %} -->
+
+                    <a href="{% url 'edit-note' client.id %}"><button>Add note</button></a>
+
+                    <a href="{% url 'delete-note' client.id %}"><button type="button"
+                            class="btn btn-danger">Danger</button></a>
+                </div>
+            </div>
         </div>
 
         <div class="container">
@@ -124,6 +138,6 @@
         </div>
     </div>
 
-
     {% endblock %}
+
 </body>

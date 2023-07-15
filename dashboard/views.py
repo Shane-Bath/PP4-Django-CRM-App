@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ClientForm, CallLogForm, ClientNoteForm, TaskForm
 from .models import Client, PhoneLog, ClientNote, ToDoList
 from django.views.generic import CreateView, View, UpdateView, DeleteView
+from django.views.generic.edit import FormView
 from django.views import generic, View
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.contrib import messages
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
@@ -75,7 +76,7 @@ class CallLog(View):
 
 # call log modal
 
-# Delete calls 
+# Delete calls
 class DeleteCall(DeleteView):
     model = PhoneLog
     fields = ["pk"]
@@ -83,7 +84,7 @@ class DeleteCall(DeleteView):
     success_url = reverse_lazy('dashboard')
 
 # Delete call from html list but not database- soft delete I will continue to
-# work on this 
+# work on this
 
 # class DeleteCall(DeleteView):
 #     model = PhoneLog
@@ -190,15 +191,11 @@ def client_search(request):
     return render(request, 'client-search-results.html', {'clients': clients})
 
 # Client note
-
-
 # @method_decorator(login_required, name='dispatch')
-# class DisplayNote(View):
-
 
 def display_note(request, id):
-    notes = ClientNote.objects.all()
     client = get_object_or_404(Client, id=id)
+    notes = ClientNote.objects.filter(client=client)
     form = None
 
     if request.method == 'POST':
@@ -228,6 +225,14 @@ def display_client_note(request, id):
 
     return render(request, 'note.html', {'client_id': client, 'notes_display': notes_display})
 
+#  Delete note
+
+class DeleteNote(DeleteView):
+    model = ClientNote
+    fields = ['title', 'employee', 'content']
+    template_name = 'delete-task.html'
+    success_url = reverse_lazy('details')
+
 
 # To do list
 
@@ -236,7 +241,7 @@ class TaskList(CreateView):
     model = ToDoList
     form_class = TaskForm
     template_name = 'task-list.html'
-    success_url = reverse_lazy('dashboard')
+    success_url = reverse_lazy('')
 
 
 # Display to do list
@@ -270,5 +275,5 @@ class DeleteTask(DeleteView):
 
 # Custom login
 
-class CustomLogin(Loginform):
-    def login(self, *args, **kwargs):
+# class CustomLogin(Loginform):
+#     def login(self, *args, **kwargs):

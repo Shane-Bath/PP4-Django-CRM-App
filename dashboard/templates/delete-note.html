@@ -1,10 +1,10 @@
 {% block content %}
-<h3>Delete</h3>
+<h3>Delete Note</h3>
 
 <form method="post">
     {% csrf_token %}
 
-    <p>Are you sure you want to delete this call? </p>
+    <p>Are you sure you want to delete this note? </p>
 
     {{ form }}
     <input type="submit" value="Confirm">
