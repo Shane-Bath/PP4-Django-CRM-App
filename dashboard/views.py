@@ -9,6 +9,7 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.http import JsonResponse
+from allauth.account.forms import LoginForm
 # Create your views here.
 
 # homepage index
@@ -265,3 +266,9 @@ class DeleteTask(DeleteView):
     fields = ["task"]
     template_name = 'delete-task.html'
     success_url = reverse_lazy('dashboard')
+
+
+# Custom login
+
+class CustomLogin(Loginform):
+    def login(self, *args, **kwargs):
