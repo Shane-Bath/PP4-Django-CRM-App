@@ -2,20 +2,7 @@ from django import forms
 from .models import Client, PhoneLog, ClientNote, ToDoList
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, Submit, Row, Field
-
-# from allauth.account.forms import SignupForm
-
-
-# class ClientForm(forms.ModelForm):
-#     def __init__(self, *args, **kwargs):
-#         super(ClientForm, self).__init__(*args, **kwargs)
-#         self.helper = FormHelper(self)
-#         self.helper.layout.append(Submit('save', 'Save'))
-
-#     class Meta:
-#         model = Client
-#         fields = ('first_name', 'middle_name', 'last_name',
-#                   'phone_number', 'email_address', 'address', 'address_line_2', 'city', 'county', 'eircode')
+from allauth.account.forms import LoginForm
 
 
 class ClientForm(forms.ModelForm):
@@ -39,7 +26,7 @@ class ClientForm(forms.ModelForm):
                 Field('address', wrapper_class='form-group col-md-6 mb-0'),
                 Field('address_line_2',
                       wrapper_class='form-group col-md-6 mb-0'),
-                
+
             ),
             Row(
                 Field('city', wrapper_class='form-group col-md-4 mb-0'),

@@ -10,13 +10,14 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.http import JsonResponse
-from allauth.account.forms import LoginForm
+
 # Create your views here.
 
 # homepage index
 
 
 def index(request):
+
     return render(request, 'index.html')
 
 
@@ -28,7 +29,6 @@ def dashboard(request):
     task_update = UpdateTask()
     delete_task = DeleteTask()
     call_delete = DeleteCall()
-    # call_delete = call = get_object_or_404(PhoneLog, pk=pk)
 
     context = {
         'clients_list': clients_list,
@@ -193,6 +193,7 @@ def client_search(request):
 # Client note
 # @method_decorator(login_required, name='dispatch')
 
+
 def display_note(request, id):
     client = get_object_or_404(Client, id=id)
     notes = ClientNote.objects.filter(client=client)
@@ -226,6 +227,7 @@ def display_client_note(request, id):
     return render(request, 'note.html', {'client_id': client, 'notes_display': notes_display})
 
 #  Delete note
+
 
 class DeleteNote(DeleteView):
     model = ClientNote

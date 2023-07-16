@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from dashboard import views
+# from dashboard.views import CustomLoginView, SignupView, LogoutView, PasswordChangeView, PasswordResetView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
+    path('accounts/', include('allauth.urls'), name='account_signup'),
     path('', views.index, name='index'),
     path('new-client', include('dashboard.urls'), name='new-client'),
     path('call-log-form', include('dashboard.urls'), name='call-log-form'),
