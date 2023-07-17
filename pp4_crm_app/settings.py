@@ -32,7 +32,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '8000-shane-bath-pp4-crm-app-gz6ye0xeex.us2.codeanyapp.com', 'pp4-crm-app-133e9d6a024c.herokuapp.com',
-    'localhost']
+    'localhost', '8000-shane-bath-pp4-crm-app-cysmkva040.us2.codeanyapp.com']
 
 
 # Application definition

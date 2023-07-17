@@ -29,6 +29,7 @@
 <body class="d-flex flex-column h-100 main-bg">
 
     <!-- Main navigation bar -->
+    {% block navbar %}
     <div class="main-nav ">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
@@ -68,6 +69,7 @@
         </nav>
     </div>
     <!-- End Main navigation bar -->
+    {% endblock %}
 
     {% block content %}
     {% load crispy_forms_tags %}
