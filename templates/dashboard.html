@@ -11,72 +11,16 @@
 
 {% block content %}
 
-
-
-<!-- <h2>Dashboard</h2> -->
-<div class="container-fluid">
-    <div class="row">
-        <div class="col">
-            {% include 'dash-client-list.html' %}
-        </div>
-        <div class="col">
-            {% include 'display-call.html' %}
-
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logCallModal"
-                id="logCallBtn">
-                Log Call
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="logCallModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Call log</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-
-                            <h1>Log Call</h1>
-                            <form method="POST" action="{% url 'call-log-form' %}" id="logCallForm">
-                                {% csrf_token %}
-                                {{ form.as_p }}
-
-                                <button type="submit" class="btn btn-primary">Save changes</button>
-                            </form>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            {% include 'task.html' %}
-        </div>
-    </div>
-</div>
-
-<!-- <div class="container">
-
-    {% include 'dash-client-list.html' %}
-
-</div>
-
-
-<div class="container">
+<div class="col">
     {% include 'display-call.html' %}
 
-
 </div>
 
-<div class="container">
+
+<div class="col">
     {% include 'task.html' %}
+</div>
 
-
-</div> -->
 
 
 

@@ -21,10 +21,10 @@ from dashboard import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls'), name='account_signup'),
+    path('accounts/', include('allauth.urls')),
     path('', views.index, name='index'),
     path('new-client', include('dashboard.urls'), name='new-client'),
-    path('call-log-form', include('dashboard.urls'), name='call-log-form'),
+    path('dashboard/call-log-form/', views.CallLog.as_view(), name='call-log-form'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('client-search/', views.client_search, name='client_search'),
     path('client-list/', views.display_clients, name='client-list'),
@@ -32,11 +32,11 @@ urlpatterns = [
     path('<int:id>/', views.clients_file, name='details'),
     path('edit-note/<int:id>/', views.display_note, name='edit-note'),
     path('edit-client/<int:id>/', views.update_client, name='edit-client'),
-    path('display-call/', views.display_call_log, name='display-call'),
-    path('task-list', include('dashboard.urls'), name='task-list'),
     path('task/', views.display_task, name='task'),
     path('task-update', include('dashboard.urls'), name='task-update'),
     path('delete-task', include('dashboard.urls'), name='delete-task'),
     path('delete-call', include('dashboard.urls'), name='delete-call'),
     path('delete-note', include('dashboard.urls'), name='delete-note'),
+    path('display-call/', views.DisplayCallLog.as_view(), name='display-call'),
+    path('task-list/', views.TaskList.as_view(), name='task-list'),
 ]

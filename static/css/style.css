@@ -65,3 +65,7 @@ p {
 .footer-bar {
     z-index: 1000;
 }
+
+.th-lg {
+    width: 8rem;
+}

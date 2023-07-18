@@ -110,24 +110,46 @@ class DeleteCall(DeleteView):
 # Display call log
 
 
-@login_required
-def display_call_log(request):
-    call_logs = PhoneLog.objects.all().order_by('-created_on')
-    # breakpoint()
+# @login_required
+# def display_call_log(request):
+#     call_logs = PhoneLog.objects.all().order_by('-created_on')
+#     paginate_by = 3
 
-    return render(request, 'display-call.html', {'call_logs': call_logs})
+#     context = {
+#         'call_logs': call_logs,
+
+#     }
+
+#     return render(request, 'display-call.html', context)
+
+
+class DisplayCallLog(CreateView):
+    model = PhoneLog
+    form_class = CallLogForm
+    template_name = 'display-call.html'
+    paginate_by = 2
+    success_url = reverse_lazy('dashboard')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        call_logs = PhoneLog.objects.all().order_by('-created_on')
+
+        context['call_logs'] = call_logs
+
+        return context
 
 
 # display all clients
 
-@login_required
+
+@ login_required
 def display_clients(request):
     clients_list = Client.objects.all()
 
     return render(request, 'client-list.html', {'clients_list': clients_list})
 
 
-@login_required
+@ login_required
 def client_list(request):
     dash_client = get_object_or_404(Client)
     return render(request, 'dash-client-list.html', {'dash_client': dash_client})
@@ -135,7 +157,7 @@ def client_list(request):
 # Individual client
 
 
-@login_required
+@ login_required
 def clients_file(request, id):
     details = get_object_or_404(Client,
                                 id=id,)
@@ -175,7 +197,7 @@ def update_client(request, id):
 # Search Clients
 
 
-@login_required
+@ login_required
 def client_search(request):
     query = request.GET.get('query')
 
@@ -219,7 +241,7 @@ def display_note(request, id):
 # render the note assoicated with the client
 
 
-@login_required
+@ login_required
 def display_client_note(request, id):
     client = get_object_or_404(Client, id=id)
     notes_display = ClientNote.objects.filter(client=id)
