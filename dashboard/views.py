@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ClientForm, CallLogForm, ClientNoteForm, TaskForm
 from .models import Client, PhoneLog, ClientNote, ToDoList
-from django.views.generic import CreateView, View, UpdateView, DeleteView
+from django.views.generic import CreateView, View, UpdateView, DeleteView, ListView
 from django.views.generic.edit import FormView
 from django.views import generic, View
 from django.urls import reverse_lazy, reverse
@@ -10,6 +10,7 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.http import JsonResponse
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -122,21 +123,24 @@ class DeleteCall(DeleteView):
 
 #     return render(request, 'display-call.html', context)
 
+# Call log now with pagination!
 
-class DisplayCallLog(CreateView):
+
+class DisplayCallLog(ListView):
     model = PhoneLog
     form_class = CallLogForm
     template_name = 'display-call.html'
-    paginate_by = 2
+    paginate_by = 4
     success_url = reverse_lazy('dashboard')
+    context_object_name = 'call_logs'
+    extra_context = {'is_paginated': True}
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        call_logs = PhoneLog.objects.all().order_by('-created_on')
-
-        context['call_logs'] = call_logs
-
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     paginator = context['paginator']
+    #     page = context['page_obj']
+    #     context['is_paginated'] = paginator.num_pages > 1
+    #     return context
 
 
 # display all clients
