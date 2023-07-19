@@ -96,18 +96,26 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col card mb-4 mt-3">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header"
+                            style="color: #0c63e4; background-color: #e7f1ff; box-shadow:inset 0 -1px 0 rgba(0,0,0,.125) ;">
+                            <h4>Client Notes</h4>
+                        </div>
+                        {% for note in notes %}
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h6>{{ note.title }}</h6>
+                            </li>
+                            <li class="list-group-item">{{ note.content }}</li>
+                        </ul>
+                        {% endfor %}
+                    </div>
 
-                    {% for note in notes %}
-                    <h4>{{ note.title }}</h4>
-                    <p>{{ note.content }}</p>
-                    {% endfor %}
-
-                    <!-- {% include 'note.html' %} -->
-                    <a href="{% url 'edit-note' client.id %}"><button>Add note</button></a>
-                    <a href="{% url 'delete-note' client.id %}"><button type="button"
-                            class="btn btn-danger">Danger</button></a>
-                    <a href="{% url 'note' client.id %}"><button>View note</button></a>
+                    <div class="card-footer">
+                        <a href="{% url 'edit-note' client.id %}"><button class="btn btn-primary">Add note</button></a>
+                        <a href="{% url 'note' client.id %}"><button class="btn btn-info">View note</button></a>
+                    </div>
                 </div>
             </div>
         </div>
