@@ -1,11 +1,24 @@
-<h2>Client: {{ client.name }}</h2>
-{% for note in notes %}
-{% if note.client == client %}
+<h2>Client: {{ client.first_name }} {% if client.middle_name %} {{client.middle_name }} {% else %}
+    {% endif %} {{ client.last_name }}</h2>
 
-<h3>{{ note.title }} {{ note.created_on }}</h3>
-<p>{{ note.content }}</p>
-{% endif %}
+<div class="col card mb-4 mt-3">
+    {% for note in page_obj %}
+    {% if note.client.id == client.id %}
 
-{% empty %}
-<p>No notes available.</p>
-{% endfor %}
+    <h3>{{ note.title }} {{ note.created_on }}</h3>
+    <p>{{ note.content }}</p>
+    {% endif %}
+
+    {% empty %}
+    <p>No notes available.</p>
+    {% endfor %}
+</div>
+<div class="pagination">
+    {% for page in page_obj.paginator.page_range %}
+    {% if page == page_number %}
+    <span class="active">{{ page }}</span>
+    {% else %}
+    <a href="?page={{ page }}">{{ page }}</a>
+    {% endif %}
+    {% endfor %}
+</div>

@@ -135,6 +135,15 @@ class DisplayCallLog(ListView):
     context_object_name = 'call_logs'
     extra_context = {'is_paginated': True}
 
+
+class DashCallLog(ListView):
+    model = PhoneLog
+    form_class = CallLogForm
+    template_name = 'dashboard.html'
+    paginate_by = 4
+    context_object_name = 'call_logs'
+    extra_context = {'is_paginated': True}
+
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)
     #     paginator = context['paginator']
@@ -165,9 +174,10 @@ def client_list(request):
 def clients_file(request, id):
     details = get_object_or_404(Client,
                                 id=id,)
-    notes = ClientNote.objects.all()
     form = ClientNoteForm(request.POST)
     client = get_object_or_404(Client, id=id)
+    notes = ClientNote.objects.filter(
+        client=client).order_by('-created_on')[:5]
     notes_display = ClientNote.objects.filter(client=client)
     edit_client = get_object_or_404(Client, id=id,)
     edit_form = ClientForm(request.POST or None)
@@ -180,6 +190,7 @@ def clients_file(request, id):
         'notes_display': notes_display,
         'edit_client': edit_client,
         'edit_form': edit_form,
+        'form': form,
     }
 
     return render(request, 'clients-folder.html',  context)
@@ -222,7 +233,8 @@ def client_search(request):
 
 def display_note(request, id):
     client = get_object_or_404(Client, id=id)
-    notes = ClientNote.objects.filter(client=client)
+    notes = ClientNote.objects.filter(
+        client=client).order_by('-created_on')[:5]
     form = None
 
     if request.method == 'POST':
@@ -240,7 +252,7 @@ def display_note(request, id):
         'form': form,
     }
 
-    return render(request, 'note-edit.html', context)
+    return render(request, 'edit-note.html', context)
 
 # render the note assoicated with the client
 
@@ -248,9 +260,19 @@ def display_note(request, id):
 @ login_required
 def display_client_note(request, id):
     client = get_object_or_404(Client, id=id)
-    notes_display = ClientNote.objects.filter(client=id)
+    notes_display = ClientNote.objects.filter(client_id=id)
+    paginator = Paginator(notes_display, 5)
+    page_number = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_number)
 
-    return render(request, 'note.html', {'client_id': client, 'notes_display': notes_display})
+    context = {
+        'client': client,
+        'notes_display': notes_display,
+        'page_obj': page_obj,
+        'page_number': int(page_number),
+    }
+
+    return render(request, 'note.html', context)
 
 #  Delete note
 

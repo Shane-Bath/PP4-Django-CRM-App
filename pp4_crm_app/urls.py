@@ -39,4 +39,5 @@ urlpatterns = [
     path('delete-note', include('dashboard.urls'), name='delete-note'),
     path('display-call/', views.DisplayCallLog.as_view(), name='display-call'),
     path('task-list/', views.TaskList.as_view(), name='task-list'),
+    path('<int:id>/note/', views.display_client_note, name='note')
 ]
