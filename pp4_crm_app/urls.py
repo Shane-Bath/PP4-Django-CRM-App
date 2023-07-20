@@ -36,8 +36,8 @@ urlpatterns = [
     path('task-update', include('dashboard.urls'), name='task-update'),
     path('delete-task', include('dashboard.urls'), name='delete-task'),
     path('delete-call', include('dashboard.urls'), name='delete-call'),
-    path('delete-note', include('dashboard.urls'), name='delete-note'),
     path('display-call/', views.DisplayCallLog.as_view(), name='display-call'),
     path('task-list/', views.TaskList.as_view(), name='task-list'),
-    path('<int:id>/note/', views.display_client_note, name='note')
+    path('<int:id>/note/', views.display_client_note, name='note'),
+    path('note/<int:pk>/delete', views.DeleteNote.as_view(), name='delete-note'),
 ]

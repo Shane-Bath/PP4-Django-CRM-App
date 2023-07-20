@@ -1,3 +1,9 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+{% endblock navbar %}
+
+{% block content %}
 <h2>Client: {{ client.first_name }} {% if client.middle_name %} {{client.middle_name }} {% else %}
     {% endif %} {{ client.last_name }}</h2>
 
@@ -7,6 +13,7 @@
 
     <h3>{{ note.title }} {{ note.created_on }}</h3>
     <p>{{ note.content }}</p>
+    <a href="{% url 'delete-note' note.pk %}"><button class="btn btn-danger">Delete</button></a>
     {% endif %}
 
     {% empty %}
@@ -22,3 +29,7 @@
     {% endif %}
     {% endfor %}
 </div>
+
+<a href="{% url 'details' client.id %}"><button class="btn btn-success">Back</button></a>
+
+{% endblock content %}

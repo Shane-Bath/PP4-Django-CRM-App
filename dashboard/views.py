@@ -62,16 +62,11 @@ class CallLog(View):
     def post(self, request):
         form = CallLogForm(request.POST)
         if form.is_valid():
-            # first_name = form.cleaned_data.get('first_name')
-            # client = get_object_or_404(Client, first_name=first_name)
             call_log = form.save(commit=False)
-            # call_log.Client = Client
             call_log.save()
             messages.success(self.request, 'Call logged')
             return redirect('dashboard')
-            # return JsonResponse({'message': 'Call logged'})
         else:
-            # return JsonResponse({'error': form.errors}, status=400)
             return render(request, 'call-log-form.html', {'form': form, })
 
 
@@ -80,57 +75,15 @@ class CallLog(View):
 # Delete calls
 class DeleteCall(DeleteView):
     model = PhoneLog
-    fields = ["pk"]
     template_name = 'delete-call.html'
     success_url = reverse_lazy('dashboard')
-
-# Delete call from html list but not database- soft delete I will continue to
-# work on this
-
-# class DeleteCall(DeleteView):
-#     model = PhoneLog
-#     template_name = 'delete-call.html'
-
-#     def delete(self, request, *args, **kwargs):
-#         self.object = self.get_object()
-#         self.object.is_deleted = True
-#         self.object.save()
-
-#         return redirect('dashboard')
-
-    # fields = ["pk"]
-    # template_name = 'delete-call.html'
-    # success_url = reverse_lazy('dashboard')
-
-# def delete_call(request, pk):
-#     call = get_object_or_404(PhoneLog, pk=pk)
-#     call.is_deleted = True
-#     call.save()
-#     return redirect('dashboard')
-
-# Display call log
-
-
-# @login_required
-# def display_call_log(request):
-#     call_logs = PhoneLog.objects.all().order_by('-created_on')
-#     paginate_by = 3
-
-#     context = {
-#         'call_logs': call_logs,
-
-#     }
-
-#     return render(request, 'display-call.html', context)
-
-# Call log now with pagination!
 
 
 class DisplayCallLog(ListView):
     model = PhoneLog
     form_class = CallLogForm
     template_name = 'display-call.html'
-    paginate_by = 4
+    paginate_by = 10
     success_url = reverse_lazy('dashboard')
     context_object_name = 'call_logs'
     extra_context = {'is_paginated': True}
@@ -140,16 +93,8 @@ class DashCallLog(ListView):
     model = PhoneLog
     form_class = CallLogForm
     template_name = 'dashboard.html'
-    paginate_by = 4
+    calls = PhoneLog.objects.filter().order_by('-created_on')[:10]
     context_object_name = 'call_logs'
-    extra_context = {'is_paginated': True}
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     paginator = context['paginator']
-    #     page = context['page_obj']
-    #     context['is_paginated'] = paginator.num_pages > 1
-    #     return context
 
 
 # display all clients
@@ -279,9 +224,10 @@ def display_client_note(request, id):
 
 class DeleteNote(DeleteView):
     model = ClientNote
-    fields = ['title', 'employee', 'content']
-    template_name = 'delete-task.html'
-    success_url = reverse_lazy('details')
+    template_name = 'delete-note.html'
+
+    def get_success_url(self):
+        return reverse_lazy('note', kwargs={'id': self.object.client.id})
 
 
 # To do list
