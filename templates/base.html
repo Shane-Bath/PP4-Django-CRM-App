@@ -51,6 +51,9 @@
                             <a class="nav-link" href="{% url 'call-log-form' %}">log Call</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{% url 'display-call' %}">Call list</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{% url 'client-list' %}">Clients</a>
                         </li>
                         <li class="nav-item">
@@ -60,12 +63,8 @@
                     </ul>
 
                     {% include 'search-nav.html' %}
-                    <!-- <form class="d-flex" method="GET" action="{% url 'client_search' %}">
-                        <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form> -->
+
                 </div>
-            </div>
         </nav>
     </div>
     <!-- End Main navigation bar -->
@@ -90,38 +89,6 @@
     </footer>
 
     <!-- </div> -->
-
-
-    <!-- <script>
-    $('#logCallBtn').click(function () {
-        $('#logCallModal').modal('show');
-    });
-</script> -->
-
-    <script>
-        $(document).ready(function () {
-            $('#logCallModal').modal({
-                show: false
-            });
-
-            $('#logCallForm').submit(function (e) {
-                e.preventDefault();
-
-                $.ajax({
-                    type: 'POST',
-                    url: $(this).attr('action'),
-                    data: $(this).serialize(),
-                    success: function (response) {
-                        $('#logCallModal').modal('hide');
-                    },
-                    error: function (xhr, errmsg, err) {
-                        console.log(xhr.responseText);
-                        alert('Error: Call log failed');
-                    }
-                });
-            });
-        });
-    </script>
 
 
 </body>
