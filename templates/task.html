@@ -2,7 +2,7 @@
 
 <div>
     <H3>To to list</H3>
-    <a href="{% url 'task-list'  %}"><button>Add</button></a>
+    <a href="{% url 'task-list'  %}"><button class="btn btn-primary">Add Task</button></a>
 </div>
 
 <table class="table table-bordered border-primary" style="width: 35rem;">
@@ -19,8 +19,8 @@
         <tr class="table-success">
             <td>{{ task.created_on }}</td>
             <td>{{ task.task }}</td>
-            <td><a href="{% url 'task-update' task.id %}"><button>Update</button></a>
-                <a href="{% url 'delete-task' task.id %}"><button>delete</button></a>
+            <td><a href="{% url 'task-update' task.id %}"><button class="btn btn-success">Update</button></a>
+                <a href="{% url 'delete-task' task.id %}"><button class="btn btn-danger">Delete</button></a>
             </td>
             {% endfor %}
         </tr>

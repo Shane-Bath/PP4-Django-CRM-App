@@ -1,5 +1,5 @@
 from django import forms
-from .models import Client, PhoneLog, ClientNote, ToDoList
+from .models import Client, PhoneLog, ClientNote, ToDoList, Appointment
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, Submit, Row, Field
 from allauth.account.forms import LoginForm
@@ -82,3 +82,21 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = ToDoList
         fields = ('task',)
+
+
+# Appointment
+
+
+class AppointmentForm(forms.ModelForm):
+    class Meta:
+        model = Appointment
+        fields = ('first_name', 'last_name', 'is_a_client',
+                  'phone_number', 'email_address', 'app_note')
+        widgets = {
+            'first_name': forms.TextInput(attrs={'placeholder': 'First Name'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Last Name'}),
+            'is_a_client': forms.CheckboxInput(attrs={'class': 'custom-checkbox'}),
+            'phone_number': forms.TextInput(attrs={'placeholder': 'Phone Number'}),
+            'email_address': forms.EmailInput(attrs={'placeholder': 'Email Address'}),
+            'app_note': forms.Textarea(attrs={'placeholder': 'Description'}),
+        }

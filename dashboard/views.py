@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ClientForm, CallLogForm, ClientNoteForm, TaskForm
-from .models import Client, PhoneLog, ClientNote, ToDoList
+from .forms import ClientForm, CallLogForm, ClientNoteForm, TaskForm, AppointmentForm
+from .models import Client, PhoneLog, ClientNote, ToDoList, Appointment
 from django.views.generic import CreateView, View, UpdateView, DeleteView, ListView
 from django.views.generic.edit import FormView
 from django.views import generic, View
@@ -30,6 +30,7 @@ def dashboard(request):
     task_update = UpdateTask()
     delete_task = DeleteTask()
     call_delete = DeleteCall()
+    appointment = CreateAppointment()
 
     context = {
         'clients_list': clients_list,
@@ -38,6 +39,7 @@ def dashboard(request):
         'task_update': task_update,
         'delete_task': delete_task,
         'call_delete': call_delete,
+        'appointment': appointment,
     }
     return render(request, 'dashboard.html', context)
 
@@ -269,7 +271,17 @@ class DeleteTask(DeleteView):
     success_url = reverse_lazy('dashboard')
 
 
-# Custom login
+# appointment
 
-# class CustomLogin(Loginform):
-#     def login(self, *args, **kwargs):
+
+class CreateAppointment(CreateView):
+    model = Appointment
+    form_class = AppointmentForm
+    template_name = 'create-appointment.html'
+    success_url = reverse_lazy('view-appointments')
+
+
+def display_appointments(request):
+    appointment = Appointment.objects.all().order_by('-created_on')
+
+    return render(request, 'view-appoitments.html', {'appointment': appointment})

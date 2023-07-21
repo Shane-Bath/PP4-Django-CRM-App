@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table class="table">
+    <thead>
+        <!-- It should inpute date here- this should be directed here by an unique url. All the appointments
+        under the date should be displayed on the page -->
+        <h5>Input date</h5>
+        <tr>
+            <th scope="col">Time</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone number</th>
+            <th scope="col">Email</th>
+            <th scope="col">Note</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- The table list the time in 30 min increments. and the linked appointment is rendered 
+        with the correct time.  -->
+        <tr>
+            <!-- Will need to be a loop  -->
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+        </tr>
+    </tbody>
+</table>
+
+
+{% endblock %}

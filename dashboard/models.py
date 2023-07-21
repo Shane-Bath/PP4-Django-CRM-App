@@ -56,7 +56,7 @@ class ClientNote(models.Model):
 
 
 class ToDoList(models.Model):
-    task = models.CharField(max_length=60, unique=True)
+    task = models.CharField(max_length=60, unique=False)
     complete = models.BooleanField(default=False)
     created_on = models.DateField(auto_now_add=True)
 
@@ -65,3 +65,22 @@ class ToDoList(models.Model):
 
     def __str__(self):
         return f'To-do-list'
+
+
+# Appointment booking form
+
+
+class Appointment(models.Model):
+    first_name = first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    is_a_client = models.BooleanField(default=False)
+    client = models.ForeignKey(
+        Client, on_delete=models.CASCADE, related_name='appointments', blank=True, null=True)
+    app_start = models.DateTimeField(auto_now_add=True)
+    app_end = models.DateTimeField(auto_now_add=True)
+    phone_number = models.CharField(max_length=12)
+    email_address = models.EmailField(blank=True, null=True)
+    app_note = models.TextField()
+
+    def __str__(self):
+        return f'Appointments {self.title}'
