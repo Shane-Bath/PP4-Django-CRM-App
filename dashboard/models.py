@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 import uuid
 from django.urls import reverse
+from datetime import datetime
 
 # Create your models here.
 
@@ -69,6 +70,16 @@ class ToDoList(models.Model):
 
 # Appointment booking form
 
+TIME_PERIODS = (
+    ("10 AM", "10AM"),
+    ("11 AM", "11 AM"),
+    ("12 PM", "12PM"),
+    ("2 PM", "2 PM"),
+    ("3 PM", "3PM"),
+    ("4 PM", "4 PM"),
+    ("5 PM", "5 PM"),
+)
+
 
 class Appointment(models.Model):
     first_name = first_name = models.CharField(max_length=50)
@@ -76,8 +87,8 @@ class Appointment(models.Model):
     is_a_client = models.BooleanField(default=False)
     client = models.ForeignKey(
         Client, on_delete=models.CASCADE, related_name='appointments', blank=True, null=True)
-    app_start = models.DateTimeField(auto_now_add=True)
-    app_end = models.DateTimeField(auto_now_add=True)
+    day = models.DateField(default=datetime.now)
+    time = models.CharField(max_length=5, choices=TIME_PERIODS, default="")
     phone_number = models.CharField(max_length=12)
     email_address = models.EmailField(blank=True, null=True)
     app_note = models.TextField()
