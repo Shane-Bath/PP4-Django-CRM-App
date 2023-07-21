@@ -237,7 +237,7 @@ class TaskList(CreateView):
     model = ToDoList
     form_class = TaskForm
     template_name = 'task-list.html'
-    success_url = reverse_lazy('')
+    success_url = reverse_lazy('dashboard')
 
 
 # Display to do list
