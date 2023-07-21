@@ -80,7 +80,6 @@ TIME_PERIODS = (
     ("5 PM", "5 PM"),
 )
 
-
 class Appointment(models.Model):
     first_name = first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)

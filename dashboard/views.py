@@ -9,10 +9,11 @@ from django.contrib import messages
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.core.paginator import Paginator
 import calendar
 from calendar import HTMLCalendar
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 # Create your views here.
 
@@ -268,54 +269,63 @@ class UpdateTask(UpdateView):
 # task delete
 
 
-class DeleteTask(DeleteView):
+class DeleteTask(UserPassesTestMixin, DeleteView):
     model = ToDoList
     fields = ["task"]
     template_name = 'delete-task.html'
     success_url = reverse_lazy('dashboard')
 
+    def test_func(self):
+        return self.request.user.is_superuser
+
 
 # appointment and calander
 
 
-class CreateAppointment(CreateView):
-    model = Appointment
-    form_class = AppointmentForm
-    template_name = 'create-appointment.html'
-    success_url = reverse_lazy('view-appointments')
+# class CreateAppointment(CreateView):
+#     model = Appointment
+#     form_class = AppointmentForm
+#     template_name = 'create-appointment.html'
+#     success_url = reverse_lazy('view-appointments')
 
 
-def display_appointments(request, year, month, day):
-    appointment = Appointment.objects.all()
+# def display_appointments(request, year, month, day):
+#     appointment = Appointment.objects.all()
 
-    calendar = HTMLCalendar().formatmonth(
-        year,
-        month,
-        day,
-    )
+#     calendar = HTMLCalendar().formatmonth(
+#         year,
+#         month,
+#         day,
+#     )
 
-    context = {
-        'appointment': appointment,
-        'year': year,
-        'month': month,
-        'day': day,
-        'calendar': calendar
-    }
+#     context = {
+#         'appointment': appointment,
+#         'year': year,
+#         'month': month,
+#         'day': day,
+#         'calendar': calendar
+#     }
 
-    return render(request, 'view-appointments.html', context)
+#     return render(request, 'view-appointments.html', context)
 
 
-def calander():
-    current_calendar = HTMLCalendar().formatmonth(
-        year,
-        month,
-        day,
-    )
+# def current_calander(request):
+#     name = 'shane'
 
-    context = {
-        'current_calendar': current_calendar,
-    }
-    return render(request, 'calendar.html', context)
+#     return render(request, 'calendar.html', {'name': name})
+
+    # name = 'shane'
+    # current_calendar = HTMLCalendar().formatmonth(
+    #     year,
+    #     month,
+    #     day,
+    # )
+
+    # context = {
+    # 'current_calendar': current_calendar,
+    #     'name': name,
+    # }
+    # return render(request, 'calendar.html', context)
 
 
 # def calender_view():
