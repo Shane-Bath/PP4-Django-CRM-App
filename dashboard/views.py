@@ -33,8 +33,6 @@ def dashboard(request):
     task_update = UpdateTask()
     delete_task = DeleteTask()
     call_delete = DeleteCall()
-    appointment = CreateAppointment()
-    view_appoint = display_appointments(request, year, month, day)
 
     context = {
         'clients_list': clients_list,
@@ -43,8 +41,7 @@ def dashboard(request):
         'task_update': task_update,
         'delete_task': delete_task,
         'call_delete': call_delete,
-        'appointment': appointment,
-        'view_appoint': view_appoint,
+    
     }
     return render(request, 'dashboard.html', context)
 
