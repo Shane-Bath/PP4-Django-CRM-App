@@ -11,6 +11,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.http import JsonResponse
 from django.core.paginator import Paginator
+import calendar
+from calendar import HTMLCalendar
 
 # Create your views here.
 
@@ -31,6 +33,7 @@ def dashboard(request):
     delete_task = DeleteTask()
     call_delete = DeleteCall()
     appointment = CreateAppointment()
+    view_appoint = display_appointments(request, year, month, day)
 
     context = {
         'clients_list': clients_list,
@@ -40,6 +43,7 @@ def dashboard(request):
         'delete_task': delete_task,
         'call_delete': call_delete,
         'appointment': appointment,
+        'view_appoint': view_appoint,
     }
     return render(request, 'dashboard.html', context)
 
@@ -271,7 +275,7 @@ class DeleteTask(DeleteView):
     success_url = reverse_lazy('dashboard')
 
 
-# appointment
+# appointment and calander
 
 
 class CreateAppointment(CreateView):
@@ -281,7 +285,49 @@ class CreateAppointment(CreateView):
     success_url = reverse_lazy('view-appointments')
 
 
-def display_appointments(request):
-    appointment = Appointment.objects.all().order_by('-created_on')
+def display_appointments(request, year, month, day):
+    appointment = Appointment.objects.all()
 
-    return render(request, 'view-appoitments.html', {'appointment': appointment})
+    calendar = HTMLCalendar().formatmonth(
+        year,
+        month,
+        day,
+    )
+
+    context = {
+        'appointment': appointment,
+        'year': year,
+        'month': month,
+        'day': day,
+        'calendar': calendar
+    }
+
+    return render(request, 'view-appointments.html', context)
+
+
+def calander():
+    current_calendar = HTMLCalendar().formatmonth(
+        year,
+        month,
+        day,
+    )
+
+    context = {
+        'current_calendar': current_calendar,
+    }
+    return render(request, 'calendar.html', context)
+
+
+# def calender_view():
+#     name = 'shane'
+#     year = datetime.now().year
+#     month = datetime.now().month
+#     cal_display = get.current_month_year(year, month)
+
+#     context = {
+#         'calendar': cal_display,
+#         'year': year,
+#         'month': month
+#     }
+
+#     return render(request, 'calendar.html', context)

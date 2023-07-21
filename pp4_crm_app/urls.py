@@ -42,6 +42,7 @@ urlpatterns = [
     path('note/<int:pk>/delete', views.DeleteNote.as_view(), name='delete-note'),
     path('create-appointment/', views.CreateAppointment.as_view(),
          name='create-appointment'),
-    path('view-appointments/', views.display_appointments,
+    path('view-appointments/<int:year>/<int:month>/<int:day>/', views.display_appointments,
          name='view-appointments'),
+    # path('calendar/', views.calendar, name='calendar'),
 ]

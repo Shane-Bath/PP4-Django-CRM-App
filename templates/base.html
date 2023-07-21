@@ -69,14 +69,14 @@
     </div>
     <!-- End Main navigation bar -->
     {% endblock %}
+    <div class="container">
+        {% block content %}
+        {% load crispy_forms_tags %}
 
-    {% block content %}
-    {% load crispy_forms_tags %}
+        <!-- Content -->
 
-    <!-- Content -->
-
-    {% endblock %}
-
+        {% endblock %}
+    </div>
     <!-- <div class="position-absolute bottom-0 start-50 translate-middle-x border border-primary"> -->
 
     <footer class="footer-bar footer mt-auto py-3 dark-bg fixed-bottom">
