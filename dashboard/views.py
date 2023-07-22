@@ -41,7 +41,6 @@ def dashboard(request):
         'task_update': task_update,
         'delete_task': delete_task,
         'call_delete': call_delete,
-    
     }
     return render(request, 'dashboard.html', context)
 
@@ -91,14 +90,6 @@ class DisplayCallLog(ListView):
     success_url = reverse_lazy('dashboard')
     context_object_name = 'call_logs'
     extra_context = {'is_paginated': True}
-
-
-class DashCallLog(ListView):
-    model = PhoneLog
-    form_class = CallLogForm
-    template_name = 'dashboard.html'
-    calls = PhoneLog.objects.filter().order_by('-created_on')[:10]
-    context_object_name = 'call_logs'
 
 
 # display all clients
@@ -274,67 +265,3 @@ class DeleteTask(UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         return self.request.user.is_superuser
-
-
-# appointment and calander
-
-
-# class CreateAppointment(CreateView):
-#     model = Appointment
-#     form_class = AppointmentForm
-#     template_name = 'create-appointment.html'
-#     success_url = reverse_lazy('view-appointments')
-
-
-# def display_appointments(request, year, month, day):
-#     appointment = Appointment.objects.all()
-
-#     calendar = HTMLCalendar().formatmonth(
-#         year,
-#         month,
-#         day,
-#     )
-
-#     context = {
-#         'appointment': appointment,
-#         'year': year,
-#         'month': month,
-#         'day': day,
-#         'calendar': calendar
-#     }
-
-#     return render(request, 'view-appointments.html', context)
-
-
-# def current_calander(request):
-#     name = 'shane'
-
-#     return render(request, 'calendar.html', {'name': name})
-
-    # name = 'shane'
-    # current_calendar = HTMLCalendar().formatmonth(
-    #     year,
-    #     month,
-    #     day,
-    # )
-
-    # context = {
-    # 'current_calendar': current_calendar,
-    #     'name': name,
-    # }
-    # return render(request, 'calendar.html', context)
-
-
-# def calender_view():
-#     name = 'shane'
-#     year = datetime.now().year
-#     month = datetime.now().month
-#     cal_display = get.current_month_year(year, month)
-
-#     context = {
-#         'calendar': cal_display,
-#         'year': year,
-#         'month': month
-#     }
-
-#     return render(request, 'calendar.html', context)

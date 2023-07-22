@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+
+{% block navbar %}
+
+{% endblock navbar %}
 {% if user.is_authenticated %}
 <p>Authenticated user</p>
 
@@ -10,23 +14,13 @@
 {% endif %}
 
 {% block content %}
+<div class="row align-items-start">
+    <div class="col">
+        {% include 'display-call.html' %}
+    </div>
 
-<div class="col">
-    {% block navbar %}
-    {% endblock navbar %}
-    {% include 'display-call.html' %}
+    <div class="col">
+        {% include 'task.html' %}
+    </div>
 </div>
-
-<div class="col">
-
-    {{ calendar }}
-</div>
-
-<br>
-<br>
-
-<div class="col">
-    {% include 'task.html' %}
-</div>
-
 {% endblock %}
