@@ -17,6 +17,10 @@ p {
     line-height: 1.5;
 }
 
+.dash-bg {
+    background-color: #00b7ff;
+}
+
 .allauth {
     filter: drop-shadow(2px 4px 6px #c1bfbf);
     background-color: #e9e8e840;
