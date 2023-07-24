@@ -8,16 +8,37 @@
 {% endif %}
 
 {% block content %}
-{% block navbar %}
-{% endblock %}
-<div class="row align-items-start">
-    <div class="col">
-        {% include 'display-call.html' %}
-    </div>
 
-    <div class="col">
-        {% include 'task.html' %}
+<div class="col">
+    <div class="card" style="width: 18rem; margin-top: 2rem; margin-left: 2rem;">
+        <img src="/static/card-header.png" alt="" style="position: relative;">
+        <i class="fa-solid fa-phone-volume fa-lg" style="position: absolute;top: 25%;
+    left: 50%;"></i>
+
+        <div class="card-body">
+
+            <h5 class="card-title">Call Log</h5>
+            <p class="card-text">Click below to log calls</p>
+            <a href="{% url 'call-log-form' %}" class="btn btn-primary">LOG CALL</a>
+        </div>
     </div>
 </div>
 
+<div class="col">
+    <div class="card" style="width: 18rem; margin-top: 2rem; margin-left: 2rem;">
+        <img src="/static/card-header.png" alt="" style="position: relative;">
+        <i class="fa-solid fa-phone-volume fa-lg" style="position: absolute;top: 25%;
+        left: 50%;"></i>
+
+        <div class="card-body">
+
+            <h5 class="card-title">Call Log</h5>
+            <p class="card-text">Click below to log calls</p>
+            <a href="{% url 'call-log-form' %}" class="btn btn-primary">LOG CALL</a>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://kit.fontawesome.com/ed160d90da.js" crossorigin="anonymous"></script>
 {% endblock %}

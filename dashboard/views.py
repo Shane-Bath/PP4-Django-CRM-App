@@ -90,6 +90,7 @@ class DisplayCallLog(ListView):
     success_url = reverse_lazy('dashboard')
     context_object_name = 'call_logs'
     extra_context = {'is_paginated': True}
+    ordering = ['-created_on']
 
 
 # display all clients
