@@ -17,7 +17,16 @@ p {
     line-height: 1.5;
 }
 
-/*  Card header logo */
+/*  Card */
+
+.card-shadow {
+    box-shadow: 5px 5px #add8e6;
+}
+
+.card-bg {
+    background-color: #E3F2C1;
+    padding-bottom: 1rem;
+}
 
 .card {
     width: 18rem;
@@ -25,9 +34,38 @@ p {
     /* margin-left: 2rem; */
 }
 
+.img {
+    object-fit: cover;
+
+}
+
+.dash-btn {
+    justify-content: center;
+    align-items: center;
+}
+
+
 .margin-top {
     margin-top: 10rem;
 }
+
+/* main Search bar */
+
+.search {
+    /* margin-top: 1rem; */
+    justify-content: center;
+    align-items: center;
+}
+
+.search-bg {
+    background-color: #C9DBB2;
+    padding-bottom: 4rem;
+}
+
+.search-btn {
+    margin-left: 3px;
+}
+
 
 /* Frosted background */
 
@@ -63,6 +101,13 @@ p {
 .landing-header {
     color: #ffffff;
 
+}
+
+/* Footer */
+
+
+.foot-bg {
+    background-color: #AAC8A7;
 }
 
 .footer-bar {
