@@ -18,7 +18,10 @@
                     <img src="{% static 'images/phone.png' %}" class="card-img-top" alt="orange telephone">
 
                     <div class="card-body">
-                        <h5 class="card-title">Call Log <i class="fa-solid fa-phone-volume"></i></h5>
+                        <h5 class="card-title">
+                            <i class="fa-solid fa-phone-volume"></i>
+                            Call Log :
+                        </h5>
                         <p class="card-text">Click below to log calls</p>
                         <a href="{% url 'call-log-form' %}" class="btn btn-primary d-flex dash-btn">LOG CALL</a>
                     </div>
@@ -28,7 +31,7 @@
                 <div class="card card-shadow">
                     <img src="{% static 'images/todo.png' %}" class="card-img-top" alt="orange telephone">
                     <div class="card-body">
-                        <h5 class="card-title">Add Task <i class="fa-solid fa-phone-volume"></i></h5>
+                        <h5 class="card-title"><i class="fa-solid fa-list-check"></i> Add Task :</h5>
                         <p class="card-text">Add task to todo list</p>
                         <a href="{% url 'task-list' %}" class="btn btn-primary d-flex dash-btn">ADD TASK</a>
                     </div>
@@ -39,7 +42,7 @@
                     <img src="{% static 'images/client.png' %}" class="card-img-top" alt="orange telephone">
 
                     <div class="card-body">
-                        <h5 class="card-title">New Client <i class="fa-solid fa-phone-volume"></i></h5>
+                        <h5 class="card-title"><i class="fa-solid fa-person"></i> New Client :</h5>
                         <p class="card-text">Click to add new Client.</p>
                         <a href="{% url 'new-client' %}" class="btn btn-primary d-flex dash-btn">ADD CLIENT</a>
                     </div>
@@ -52,7 +55,7 @@
     <div class="d-flex search">
         <div class="card card-shadow" style="width: 18rem;">
             <div class="card-header">
-                <h5>Search for a client</h5>
+                <h5><i class="fa-solid fa-magnifying-glass"></i> Search for a client :</h5>
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">{% include 'search-nav.html' %}</li>
