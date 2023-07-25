@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% if user.is_authenticated %}
+<p>Authenticated user</p>
+{% else %}
+<p>PLease login</p>
+{% url 'account_login' %}
+{% endif %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col md-4">
+            <div class="card">
+                <img src="{% static 'images/phone-retro.png' %}" class="card-img-top" alt="orange telephone">
+                <div class="card-body">
+                    <h5 class="card-title">Call Log <i class="fa-solid fa-phone-volume"></i></h5>
+                    <p class="card-text">Click below to log calls</p>
+                    <a href="{% url 'call-log-form' %}" class="btn btn-primary">LOG CALL</a>
+                </div>
+            </div>
+        </div>
+        <div class="col md-4">
+            <div class="card">
+                <img src="{% static 'images/phone-retro.png' %}" class="card-img-top" alt="orange telephone">
+                <div class="card-body">
+                    <h5 class="card-title">Add Task <i class="fa-solid fa-phone-volume"></i></h5>
+                    <p class="card-text">Add task to todo list</p>
+                    <a href="{% url 'task-list' %}" class="btn btn-primary">Add Task</a>
+                </div>
+            </div>
+        </div>
+        <div class="col md-4">
+            <div class="card">
+                <img src="{% static 'images/phone-retro.png' %}" class="card-img-top" alt="orange telephone">
+                <div class="card-body">
+                    <h5 class="card-title">New Client <i class="fa-solid fa-phone-volume"></i></h5>
+                    <p class="card-text">Click to add new Client.</p>
+                    <a href="{% url 'new-client' %}" class="btn btn-primary">Add Client</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
