@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
-<body class="d-flex flex-column h-100 main-bg">
+<body>
 
     <!-- Main navigation bar -->
     <nav>
@@ -76,17 +76,27 @@
     </main>
     <!-- Fix this footer -->
 
-    <footer class="footer-bar footer mt-auto py-3 dark-bg fixed-bottom foot-bg">
-        {% block footer %}
-        <p class="m-0 text-center text-grey">CRM</p>
-        <p class="m-0 text-center text-grey">Follow us: <i class="fab fa-facebook-square ms-3"></i>
-            <i class="fab fa-twitter-square ms-3"></i>
-            <i class="fab fa-instagram-square ms-3"></i>
-            <i class="fab fa-youtube-square ms-3"></i>
-        </p>
-        {% endblock %}
+    <footer class="foot-bg">
+        <a href="https://linkedin.com/" target="_blank" rel="noopener" aria-label="Linked - Opens in a new tab">
+            <i class="fa-brands fa-linkedin fa-lg footer-i"></i>
+        </a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram - Opens in new tab">
+            <i class="fa-brands fa-instagram fa-lg footer-i"></i>
+        </a>
+        </a>
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook - Opens in new tab">
+            <i class="fa-brands fa-square-facebook fa-lg footer-i"></i>
+        </a>
+        <a href="https://github.com/" target="_blank" rel="noopener" aria-label="Github - Opens in new tab">
+            <i class="fa-brands fa-square-github fa-lg footer-i"></i>
+        </a>
+        <a href="https://twitter.com/" target="_blank" rel="noopener" aria-label="Twitter - Opens in new tab">
+            <i class="fa-brands fa-square-twitter fa-lg footer-i"></i>
+        </a>
+        <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube - Opens in new tab">
+            <i class="fa-brands fa-youtube fa-lg footer-i"></i>
+        </a>
     </footer>
-
 </body>
 
 </html>
