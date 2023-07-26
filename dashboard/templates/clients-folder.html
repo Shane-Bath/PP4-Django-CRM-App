@@ -6,13 +6,15 @@
 
 
     <!-- Cleint details -->
-
-    <h2 class="clent_name">{{ details.first_name }} {% if details.middle_name %} {{details.middle_name }} {% else %}
-        {% endif %} {{ details.last_name }}</h2>
-    <hr>
-
-
-    <div class="parent-container d-flex">
+    <div style="background-color: #E3F2C1; padding-bottom: 10px; padding-top: 4px;">
+        <h2 class="clent_name" style="padding-left: 20px;">{{ details.first_name }}
+            {% if details.middle_name %}
+            {{details.middle_name }}
+            {% else %}
+            {% endif %}
+            {{ details.last_name }}</h2>
+    </div>
+    <div class="parent-container d-flex content-2">
         <div class="container">
             <div class="row">
                 <div class="col-4">
@@ -97,7 +99,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <div class="card">
+                    <div class="card" style="width:fit-content;">
                         <div class="card-header"
                             style="color: #0c63e4; background-color: #e7f1ff; box-shadow:inset 0 -1px 0 rgba(0,0,0,.125) ;">
                             <h4>Client Notes</h4>
@@ -119,20 +121,6 @@
                 </div>
             </div>
         </div>
-
-
-        <div class="container">
-            <div class="col-6">
-                <h4>Todo</h4>
-                <ul>
-                    <li>one</li>
-                    <li>two</li>
-                    <li>three</li>
-                </ul>
-
-            </div>
-        </div>
-
     </div>
     {% endblock %}
 

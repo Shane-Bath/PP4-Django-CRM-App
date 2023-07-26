@@ -11,8 +11,6 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.http import JsonResponse, HttpResponse
 from django.core.paginator import Paginator
-import calendar
-from calendar import HTMLCalendar
 from django.contrib.auth.mixins import UserPassesTestMixin
 
 # Create your views here.
@@ -94,13 +92,27 @@ class DisplayCallLog(ListView):
 
 
 # display all clients
+'''
+Display all clients in the client model and paginate the page
+by 10
+'''
 
 
 @ login_required
 def display_clients(request):
     clients_list = Client.objects.all()
+    paginator = Paginator(clients_list, 10)
 
-    return render(request, 'client-list.html', {'clients_list': clients_list})
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    entries = page_obj.object_list
+
+    context = {
+        'page_obj': page_obj,
+        'entries': entries,
+    }
+
+    return render(request, 'client-list.html', context)
 
 
 @ login_required
@@ -206,7 +218,7 @@ def display_note(request, id):
 def display_client_note(request, id):
     client = get_object_or_404(Client, id=id)
     notes_display = ClientNote.objects.filter(client_id=id)
-    paginator = Paginator(notes_display, 5)
+    paginator = Paginator(display_note, 5)
     page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
 
@@ -214,7 +226,7 @@ def display_client_note(request, id):
         'client': client,
         'notes_display': notes_display,
         'page_obj': page_obj,
-        'page_number': int(page_number),
+        'page_number': (page_number),
     }
 
     return render(request, 'note.html', context)
