@@ -186,6 +186,10 @@ def display_note(request, id):
             note.save()
             form = ClientNoteForm()
             return redirect('details', id=id)
+        else:
+            print(form.errors)
+    else:
+        form = ClientNoteForm()
 
     context = {
         'client': client,
