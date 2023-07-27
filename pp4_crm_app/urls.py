@@ -12,7 +12,6 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('client-search/', views.client_search, name='client_search'),
     path('client-list/', views.display_clients, name='display-clients'),
-    # path('client-list/', views.DiplayClients.as_view(), name='display-clients'),
     path('<int:id>/', views.clients_file, name='details'),
     path('edit-note/<int:id>/', views.display_note, name='edit-note'),
     path('edit-client/<int:id>/', views.update_client, name='edit-client'),

@@ -13,14 +13,24 @@ from django.http import JsonResponse, HttpResponse
 from django.core.paginator import Paginator
 from django.contrib.auth.mixins import UserPassesTestMixin
 
-# Create your views here.
 
 # homepage index
+
+'''
+Main landing page with login and signup links
+'''
 
 
 def index(request):
 
     return render(request, 'index.html')
+
+# Dashboard
+
+
+'''
+The Dashbord the user can navigate to different apps. Center page of the project
+'''
 
 
 @login_required
@@ -43,7 +53,11 @@ def dashboard(request):
     return render(request, 'dashboard.html', context)
 
 
-# New Client
+# Clients
+'''
+Create a new Client form
+'''
+
 
 @method_decorator(login_required, name='dispatch')
 class CreateClient(CreateView):
@@ -53,74 +67,9 @@ class CreateClient(CreateView):
     success_url = reverse_lazy('dashboard')
 
 
-# call log
-@method_decorator(login_required, name='dispatch')
-class CallLog(View):
-    def get(self, request):
-        form = CallLogForm()
-        return render(request, 'call-log-form.html', {'form': form})
-
-    def post(self, request):
-        form = CallLogForm(request.POST)
-        if form.is_valid():
-            call_log = form.save(commit=False)
-            call_log.save()
-            messages.success(self.request, 'Call logged')
-            return redirect('dashboard')
-        else:
-            return render(request, 'call-log-form.html', {'form': form, })
-
-
-# call log modal
-
-# Delete calls
-class DeleteCall(DeleteView):
-    model = PhoneLog
-    template_name = 'delete-call.html'
-    success_url = reverse_lazy('dashboard')
-
-
-class DisplayCallLog(ListView):
-    model = PhoneLog
-    form_class = CallLogForm
-    template_name = 'display-call.html'
-    paginate_by = 10
-    success_url = reverse_lazy('dashboard')
-    context_object_name = 'call_logs'
-    extra_context = {'is_paginated': True}
-    ordering = ['-created_on']
-
-
-# display all clients
 '''
-Display all clients in the client model and paginate the page
-by 10
+Create a client folder with with client details and associated note
 '''
-
-
-@ login_required
-def display_clients(request):
-    clients_list = Client.objects.all()
-    paginator = Paginator(clients_list, 10)
-
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    entries = page_obj.object_list
-
-    context = {
-        'page_obj': page_obj,
-        'entries': entries,
-    }
-
-    return render(request, 'client-list.html', context)
-
-
-@ login_required
-def client_list(request):
-    dash_client = get_object_or_404(Client)
-    return render(request, 'dash-client-list.html', {'dash_client': dash_client})
-
-# Individual client
 
 
 @ login_required
@@ -149,7 +98,34 @@ def clients_file(request, id):
     return render(request, 'clients-folder.html',  context)
 
 
+# display all clients
+'''
+Display all clients in the client model and paginate the page
+by 10
+'''
+
+
+@ login_required
+def display_clients(request):
+    clients_list = Client.objects.all()
+    paginator = Paginator(clients_list, 10)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    entries = page_obj.object_list
+
+    context = {
+        'page_obj': page_obj,
+        'entries': entries,
+    }
+
+    return render(request, 'client-list.html', context)
+
+
 # Edit client details
+'''
+Update Client details
+'''
 
 
 def update_client(request, id):
@@ -162,7 +138,13 @@ def update_client(request, id):
             return redirect('details', id=id)
 
     return render(request, 'edit-client.html', {'edit_form': edit_form, 'edit_client': edit_client})
+
+
 # Search Clients
+'''
+Search client data base, with the Q Objects, by name, phone number, email and
+address.
+'''
 
 
 @ login_required
@@ -173,7 +155,10 @@ def client_search(request):
         clients = Client.objects.filter(
             Q(first_name__icontains=query) |
             Q(middle_name__icontains=query) |
-            Q(last_name__icontains=query)
+            Q(last_name__icontains=query) |
+            Q(phone_number__icontains=query) |
+            Q(email_address__icontains=query) |
+            Q(address__icontains=query)
         )
     else:
         clients = Client.objects.none()
@@ -198,8 +183,6 @@ def display_note(request, id):
             note.save()
             form = ClientNoteForm()
             return redirect('details', id=id)
-        else:
-            print(form.errors)
     else:
         form = ClientNoteForm()
 
@@ -218,15 +201,15 @@ def display_note(request, id):
 def display_client_note(request, id):
     client = get_object_or_404(Client, id=id)
     notes_display = ClientNote.objects.filter(client_id=id)
-    paginator = Paginator(display_note, 5)
-    page_number = request.GET.get('page', 1)
+    paginator = Paginator(notes_display, 5)
+    page_number = request.GET.get('page',)
     page_obj = paginator.get_page(page_number)
 
     context = {
         'client': client,
         'notes_display': notes_display,
         'page_obj': page_obj,
-        'page_number': (page_number),
+        'page_number': page_number,
     }
 
     return render(request, 'note.html', context)
@@ -240,6 +223,61 @@ class DeleteNote(DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('note', kwargs={'id': self.object.client.id})
+
+# call log
+
+
+'''
+To record phone calls.
+'''
+
+
+@method_decorator(login_required, name='dispatch')
+class CallLog(View):
+    def get(self, request):
+        form = CallLogForm()
+        return render(request, 'call-log-form.html', {'form': form})
+
+    def post(self, request):
+        form = CallLogForm(request.POST)
+        if form.is_valid():
+            call_log = form.save(commit=False)
+            call_log.save()
+            messages.success(self.request, 'Call logged')
+            return redirect('dashboard')
+        else:
+            return render(request, 'call-log-form.html', {'form': form, })
+
+
+# call log modal
+
+# Delete calls
+
+'''
+Delete calls from the call log
+'''
+
+
+class DeleteCall(DeleteView):
+    model = PhoneLog
+    template_name = 'delete-call.html'
+    success_url = reverse_lazy('dashboard')
+
+
+'''
+Display a list of the phone calls with pagination
+'''
+
+
+class DisplayCallLog(ListView):
+    model = PhoneLog
+    form_class = CallLogForm
+    template_name = 'display-call.html'
+    paginate_by = 10
+    success_url = reverse_lazy('dashboard')
+    context_object_name = 'call_logs'
+    extra_context = {'is_paginated': True}
+    ordering = ['-created_on']
 
 
 # To do list

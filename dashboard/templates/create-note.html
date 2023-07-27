@@ -14,12 +14,11 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             {% load crispy_forms_tags %}
-            <h3>Edit Client Note</h3>
+            <h3>Client Note</h3>
             <br>
             <form method="post" class="">
                 {% csrf_token %}
 
-                <!-- Render the form fields using crispy_forms_tags -->
                 {% crispy form %}
             </form>
         </div>

@@ -11,7 +11,6 @@ class Client(models.Model):
     first_name = models.CharField(max_length=50)
     middle_name = models.CharField(max_length=50, blank=True, null=True)
     last_name = models.CharField(max_length=50)
-    # our_ref = models.UUIDField(max_length=20, default= uuid.uuid4, editable=False)
     phone_number = models.CharField(max_length=12)
     email_address = models.EmailField()
     address = models.CharField(max_length=50, blank=True, null=True)
