@@ -100,4 +100,4 @@ class EditClientNoteForm(forms.ModelForm):
 class TaskForm(forms.ModelForm):
     class Meta:
         model = ToDoList
-        fields = ('task')
+        fields = ('task',)
