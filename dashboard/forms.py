@@ -43,6 +43,17 @@ class ClientForm(forms.ModelForm):
 
 # Cripy versions
 
+
+class EditClientForm(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = fields = ('__all__')
+
+    def __init__(self, *args, **kwargs):
+        super(EditClientForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.layout.append(Submit('update', 'Update'))
+
 #  Logging calls
 
 
@@ -89,22 +100,4 @@ class EditClientNoteForm(forms.ModelForm):
 class TaskForm(forms.ModelForm):
     class Meta:
         model = ToDoList
-        fields = ('task',)
-
-
-# Appointment
-
-
-class AppointmentForm(forms.ModelForm):
-    class Meta:
-        model = Appointment
-        fields = ('first_name', 'last_name', 'is_a_client',
-                  'phone_number', 'email_address', 'app_note')
-        widgets = {
-            'first_name': forms.TextInput(attrs={'placeholder': 'First Name'}),
-            'last_name': forms.TextInput(attrs={'placeholder': 'Last Name'}),
-            'is_a_client': forms.CheckboxInput(attrs={'class': 'custom-checkbox'}),
-            'phone_number': forms.TextInput(attrs={'placeholder': 'Phone Number'}),
-            'email_address': forms.EmailInput(attrs={'placeholder': 'Email Address'}),
-            'app_note': forms.Textarea(attrs={'placeholder': 'Description'}),
-        }
+        fields = ('task')

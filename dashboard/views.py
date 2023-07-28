@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ClientForm, CallLogForm, ClientNoteForm, TaskForm, AppointmentForm, EditClientNoteForm
+from .forms import ClientForm, CallLogForm, ClientNoteForm, TaskForm, EditClientForm, EditClientNoteForm
 from .models import Client, PhoneLog, ClientNote, ToDoList, Appointment
 from django.views.generic import CreateView, View, UpdateView, DeleteView, ListView
 from django.views.generic.edit import FormView
@@ -124,20 +124,18 @@ def display_clients(request):
 
 # Edit client details
 '''
-Update Client details
+Update Client details using updateview and crispy forms 
 '''
 
 
-def update_client(request, id):
-    edit_client = get_object_or_404(Client, id=id)
-    edit_form = ClientForm(request.POST or None, instance=edit_client)
+class EditClientDetails(UpdateView):
+    model = Client
+    form_class = EditClientForm
+    template_name = 'edit-client.html'
+    template_name_suffix = "_update_form"
 
-    if request.method == 'POST':
-        if edit_form.is_valid():
-            edit_form.save()
-            return redirect('details', id=id)
-
-    return render(request, 'edit-client.html', {'edit_form': edit_form, 'edit_client': edit_client})
+    def get_success_url(self):
+        return reverse_lazy('details', kwargs={'id': self.object.id})
 
 
 # Search Clients
@@ -342,7 +340,7 @@ class DeleteTask(UserPassesTestMixin, DeleteView):
     model = ToDoList
     fields = ["task"]
     template_name = 'delete-task.html'
-    success_url = reverse_lazy('dashboard')
+    success_url = reverse_lazy('task')
 
     def test_func(self):
         return self.request.user.is_superuser
