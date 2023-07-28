@@ -107,7 +107,7 @@ by 10
 
 @ login_required
 def display_clients(request):
-    clients_list = Client.objects.all()
+    clients_list = Client.objects.all().order_by('last_name')
     paginator = Paginator(clients_list, 10)
 
     page_number = request.GET.get('page')

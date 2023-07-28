@@ -170,3 +170,9 @@ footer {
     height: 4rem;
     height: 5rem;
 }
+
+/* pagination */
+
+.pagination-links {
+    padding: 3px;
+}

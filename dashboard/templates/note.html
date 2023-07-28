@@ -1,38 +1,50 @@
 {% extends "base.html" %}
 
-{% block navbar %}
-{% endblock navbar %}
-
 {% block content %}
-<p>Hello</p>
 
-<h2>Client: {{ client.first_name }} {% if client.middle_name %} {{client.middle_name }} {% else %}
-    {% endif %} {{ client.last_name }}</h2>
+<main class="content-1">
+    <h4>{{ client.first_name }} {% if client.middle_name %} {{client.middle_name }} {% else %}
+        {% endif %} {{ client.last_name }}</h4>
 
-<div class="col card mb-4 mt-3">
-    {% for note in page_obj %}
-    {% if note.client.id == client.id %}
+    <div class="card" style="width: 20rem;">
+        <div class="card-body">
+            {% for note in page_obj %}
+            {% if note.client.id == client.id %}
+            <h5 class="card-title">{{ note.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ note.created_on }}</h6>
+            <p class="card-text">{{ note.content }}</p>
+            <a class="card-link" href="{% url 'delete-note' note.pk %}"><button
+                    class="btn btn-danger">Delete</button></a>
+            <a class="card-link" href="{% url 'edit-note' note.pk %}"><button class="btn btn-success">Edit</button></a>
+            {% endif %}
 
-    <h5>{{ note.title }} {{ note.created_on }}</h5>
-    <p>{{ note.content }}</p>
-    <a href="{% url 'delete-note' note.pk %}"><button class="btn btn-danger">Delete</button></a>
-    <a href="{% url 'edit-note' note.pk %}"><button class="btn btn-success">Edit</button></a>
-    {% endif %}
+            {% empty %}
+            <p>No notes available.</p>
+            {% endfor %}
+        </div>
 
-    {% empty %}
-    <p>No notes available.</p>
-    {% endfor %}
-</div>
-<div class="pagination">
-    {% for page in page_obj.paginator.page_range %}
-    {% if page == page_number %}
-    <span class="active">{{ page }}</span>
-    {% else %}
-    <a href="?page={{ page }}">{{ page }}</a>
-    {% endif %}
-    {% endfor %}
-</div>
+    </div>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
 
-<a href="{% url 'details' client.id %}"><button class="btn btn-success">Back</button></a>
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
 
+            {% if page_obj.has_next %}
+            <a class="pagination-links" href="?page={{ page_obj.next_page_number }}">next</a>
+            <a class="pagination-links" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+
+        </span>
+    </div>
+    </div>
+    <br>
+
+    <a href="{% url 'details' client.id %}"><button class="btn btn-primary">Back</button></a>
+</main>
 {% endblock content %}

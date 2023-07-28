@@ -17,11 +17,10 @@
                 <div class="col md-4">
                     <div class="card card-shadow">
                         <img src="{% static 'images/phone.png' %}" class="card-img-top" alt="orange telephone">
-
                         <div class="card-body">
                             <h5 class="card-title">
                                 <i class="fa-solid fa-phone-volume"></i>
-                                Call Log :
+                                Log call :
                             </h5>
                             <p class="card-text">Click below to log calls</p>
                             <a href="{% url 'call-log-form' %}" class="btn btn-primary d-flex dash-btn">LOG CALL</a>
@@ -52,18 +51,47 @@
             </div>
         </div>
     </div>
-
     <div class="content-2">
         <div class="container">
-            <div class="d-flex search">
-                <div class="card card-shadow" style="width: 18rem;">
-                    <div class="card-header">
-                        <h5><i class="fa-solid fa-magnifying-glass"></i> Search for a client :</h5>
+            <div class="row">
+                <div class="col md-4">
+                    <div class="d-flex search">
+                        <div class="card card-shadow">
+                            <div class="card-header">
+                                <h5><i class="fa-solid fa-phone-volume"></i> Call log :</h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><a href="{% url 'display-call' %}"
+                                        class="btn btn-primary d-flex dash-btn">Call Log</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{% include 'search-nav.html' %}</li>
-
-                    </ul>
+                </div>
+                <div class="col md-4">
+                    <div class="d-flex search">
+                        <div class="card card-shadow">
+                            <div class="card-header">
+                                <h5><i class="fa-solid fa-list-check"></i> Task List :</h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><a href="{% url 'task' %}"
+                                        class="btn btn-primary d-flex dash-btn">Tasks</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col md-4">
+                    <div class="d-flex search">
+                        <div class="card card-shadow">
+                            <div class="card-header">
+                                <h5><i class="fa-solid fa-magnifying-glass"></i> Search for a client :</h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">{% include 'search-nav.html' %}</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
