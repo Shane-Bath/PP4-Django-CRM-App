@@ -311,7 +311,7 @@ class TaskList(CreateView):
     model = ToDoList
     form_class = TaskForm
     template_name = 'task-list.html'
-    success_url = reverse_lazy('dashboard')
+    success_url = reverse_lazy('task')
 
 
 # Display to do list
@@ -319,9 +319,11 @@ class TaskList(CreateView):
 
 def display_task(request):
     tasks = ToDoList.objects.all().order_by('-created_on')
-    # breakpoint()
+    paginator = Paginator(tasks, 5)
+    page_number = request.GET.get('page',)
+    page_obj = paginator.get_page(page_number)
 
-    return render(request, 'task.html', {'tasks': tasks})
+    return render(request, 'task.html', {'page_obj': page_obj})
 
 # Task Update
 
@@ -330,7 +332,7 @@ class UpdateTask(UpdateView):
     model = ToDoList
     fields = ["task"]
     template_name = 'task-update.html'
-    success_url = reverse_lazy('dashboard')
+    success_url = reverse_lazy('task')
 
 
 # task delete

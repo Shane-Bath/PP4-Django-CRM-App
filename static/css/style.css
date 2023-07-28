@@ -80,6 +80,10 @@ p {
     padding: 20px;
 }
 
+.top-container {
+    padding-left: 2rem;
+}
+
 .card {
     width: 18rem;
 }
