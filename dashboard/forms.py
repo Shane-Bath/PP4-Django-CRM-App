@@ -75,6 +75,17 @@ class ClientNoteForm(forms.ModelForm):
         self.helper.layout.append(Submit('save', 'Save'))
 
 
+class EditClientNoteForm(forms.ModelForm):
+    class Meta:
+        model = ClientNote
+        fields = ('title', 'content')
+
+    def __init__(self, *args, **kwargs):
+        super(EditClientNoteForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.layout.append(Submit('update', 'Update'))
+
+
 class TaskForm(forms.ModelForm):
     class Meta:
         model = ToDoList

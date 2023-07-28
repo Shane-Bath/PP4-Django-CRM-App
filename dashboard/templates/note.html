@@ -16,7 +16,7 @@
     <h5>{{ note.title }} {{ note.created_on }}</h5>
     <p>{{ note.content }}</p>
     <a href="{% url 'delete-note' note.pk %}"><button class="btn btn-danger">Delete</button></a>
-    <a href="{% url 'edit-note' note.pk }"><button class="btn btn-success">Edit</button></a>
+    <a href="{% url 'edit-note' note.pk %}"><button class="btn btn-success">Edit</button></a>
     {% endif %}
 
     {% empty %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ClientForm, CallLogForm, ClientNoteForm, TaskForm, AppointmentForm
+from .forms import ClientForm, CallLogForm, ClientNoteForm, TaskForm, AppointmentForm, EditClientNoteForm
 from .models import Client, PhoneLog, ClientNote, ToDoList, Appointment
 from django.views.generic import CreateView, View, UpdateView, DeleteView, ListView
 from django.views.generic.edit import FormView
@@ -165,8 +165,13 @@ def client_search(request):
 
     return render(request, 'client-search-results.html', {'clients': clients})
 
+
 # Client note
 # @method_decorator(login_required, name='dispatch')
+'''
+Create note and add to the clients folder. limit the number of notes displayed on the
+clientfile to 5. 
+'''
 
 
 def display_note(request, id):
@@ -192,9 +197,14 @@ def display_note(request, id):
         'form': form,
     }
 
-    return render(request, 'edit-note.html', context)
+    return render(request, 'create-note.html', context)
+
 
 # render the note assoicated with the client
+'''
+Show all the note associatd with the client, as the clientfolder itself is limited to 5. 
+This page will be paginated to 5. 
+'''
 
 
 @ login_required
@@ -214,7 +224,11 @@ def display_client_note(request, id):
 
     return render(request, 'note.html', context)
 
+
 #  Delete note
+'''
+Delete note all users can delete a note. Not restricted. 
+'''
 
 
 class DeleteNote(DeleteView):
@@ -224,9 +238,19 @@ class DeleteNote(DeleteView):
     def get_success_url(self):
         return reverse_lazy('note', kwargs={'id': self.object.client.id})
 
+
+# Edit Note
+class EditNote(UpdateView):
+    model = ClientNote
+    form_class = EditClientNoteForm
+    template_name = 'edit-note.html'
+    template_name_suffix = "_update_form"
+
+    def get_success_url(self):
+        return reverse_lazy('note', kwargs={'id': self.object.client.id})
+
+
 # call log
-
-
 '''
 To record phone calls.
 '''
