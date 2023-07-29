@@ -129,6 +129,7 @@ Update Client details using updateview and crispy forms
 '''
 
 
+@method_decorator(login_required, name='dispatch')
 class EditClientDetails(SuccessMessageMixin, UpdateView):
     model = Client
     form_class = EditClientForm
@@ -174,6 +175,7 @@ clientfile to 5.
 '''
 
 
+@ login_required
 def display_note(request, id):
     client = get_object_or_404(Client, id=id)
     notes = ClientNote.objects.filter(
@@ -231,7 +233,7 @@ def display_client_note(request, id):
 Delete note all users can delete a note. Not restricted. 
 '''
 
-
+@method_decorator(login_required, name='dispatch')
 class DeleteNote(SuccessMessageMixin, DeleteView):
     model = ClientNote
     template_name = 'delete-note.html'
@@ -246,6 +248,7 @@ class DeleteNote(SuccessMessageMixin, DeleteView):
 
 
 # Edit Note
+@method_decorator(login_required, name='dispatch')
 class EditNote(SuccessMessageMixin, UpdateView):
     model = ClientNote
     form_class = EditClientNoteForm
@@ -289,6 +292,7 @@ Delete calls from the call log
 '''
 
 
+@method_decorator(login_required, name='dispatch')
 class DeleteCall(SuccessMessageMixin, DeleteView):
     model = PhoneLog
     template_name = 'delete-call.html'
@@ -305,6 +309,7 @@ Display a list of the phone calls with pagination
 '''
 
 
+@method_decorator(login_required, name='dispatch')
 class DisplayCallLog(ListView):
     model = PhoneLog
     form_class = CallLogForm
@@ -315,9 +320,7 @@ class DisplayCallLog(ListView):
 
 # To do list
 
-# @method_decorator(login_required, name='dispatch')
-
-
+@method_decorator(login_required, name='dispatch')
 class TaskList(SuccessMessageMixin, CreateView):
     model = ToDoList
     form_class = TaskForm
@@ -327,7 +330,7 @@ class TaskList(SuccessMessageMixin, CreateView):
 
 
 # Display to do list
-
+@method_decorator(login_required, name='dispatch')
 class DisplayTask(ListView):
     '''
     List all the task from the To do list model. List from lastest to oldest and
@@ -344,6 +347,7 @@ class DisplayTask(ListView):
 # Task Update
 
 
+@method_decorator(login_required, name='dispatch')
 class UpdateTask(SuccessMessageMixin, UpdateView):
     '''
     Update task item and add a success message.
@@ -357,7 +361,7 @@ class UpdateTask(SuccessMessageMixin, UpdateView):
 
 # task delete
 
-
+@method_decorator(login_required, name='dispatch')
 class DeleteTask(SuccessMessageMixin, DeleteView):
     '''
     Delete Task item with warning. SuccessMessageMixin does work with DeleteView.

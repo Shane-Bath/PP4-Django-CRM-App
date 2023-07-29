@@ -29,12 +29,10 @@
             <h5 class="card-title">{{ note.title }}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{ note.created_on }}</h6>
             <p class="card-text">{{ note.content }}</p>
-            <a href="{% url 'create-note' client.id %}"><button class="btn btn-primary">Add
-                    note</button></a>
-            <a class="card-link" href="{% url 'delete-note' note.pk %}"><button
-                    class="btn btn-danger">Delete</button></a>
             <a class="card-link" href="{% url 'edit-note' note.pk %}"><button class="btn btn-success">Edit
                     Note</button></a>
+            <a class="card-link" href="{% url 'delete-note' note.pk %}"><button
+                    class="btn btn-danger">Delete</button></a>
             {% endif %}
 
             {% empty %}
@@ -65,5 +63,7 @@
     <br>
 
     <a href="{% url 'details' client.id %}"><button class="btn btn-primary">Back</button></a>
+    <a href="{% url 'create-note' client.id %}"><button class="btn btn-warning">Add
+            note</button></a>
 </main>
 {% endblock content %}
