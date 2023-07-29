@@ -6,7 +6,6 @@
         <div class="row g-0 justify-content-center">
             <div class="col-sm-6 col-md-8">
                 <h5 class="call-list">Call log</h5>
-
                 <div>
                     <table class="table" style="width: 50rem;">
                         <thead>
@@ -37,15 +36,18 @@
                             {% endfor %}
                         </tbody>
                     </table>
+                    <a href="{% url 'dashboard' %}"> <button type="button" class="btn btn-warning">
+                            Dashboard
+                        </button></a>
+                    <a href="{% url 'call-log-form' %}"> <button type="button" class="btn btn-primary">
+                            Log Call
+                        </button></a>
                 </div>
-                {% block pagination %}
-                {% if show_pagination %}
                 <div class="pagination">
                     <span class="step-links">
                         {% if page_obj.has_previous %}
-                        <a href="?page=1"><button class="btn btn-primary">&laquo; first</button></a>
-                        <a href="?page={{ page_obj.previous_page_number }}"><button
-                                class="btn btn-primary">previous</button></a>
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
                         {% endif %}
 
                         <span class="current">
@@ -53,23 +55,31 @@
                         </span>
 
                         {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}"><button
-                                class="btn btn-primary">next</button></a>
-                        <a href="?page={{ page_obj.paginator.num_pages }}"><button class="btn btn-primary">last
-                                &raquo;</button></a>
+                        <a class="pagination-links" href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a class="pagination-links" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
                         {% endif %}
+
                     </span>
                 </div>
-                <br>
-                <a href="{% url 'dashboard' %}"> <button type="button" class="btn btn-primary">
-                        Dashboard
-                    </button></a>
-                {% endif %}
-                {% endblock pagination %}
-
             </div>
         </div>
     </div>
-
+    {% if messages %}
+    {% for message in messages %}
+    <div style="background-color: #E3F2C1">
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="#" class="rounded me-2" alt="">
+                <strong class="me-auto">Success</strong>
+                <small>just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                {{ message|safe }}
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock content %}

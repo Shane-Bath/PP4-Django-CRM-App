@@ -180,3 +180,12 @@ footer {
 .pagination-links {
     padding: 3px;
 }
+
+/* Bootstrap Toast */
+
+/* #toast-style {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+} */

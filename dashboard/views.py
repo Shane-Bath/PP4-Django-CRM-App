@@ -265,8 +265,8 @@ class CallLog(View):
         if form.is_valid():
             call_log = form.save(commit=False)
             call_log.save()
-            messages.success(self.request, 'Call logged')
-            return redirect('dashboard')
+            messages.success(request, 'Call logged')
+            return redirect('display-call')
         else:
             return render(request, 'call-log-form.html', {'form': form, })
 
@@ -295,20 +295,20 @@ class DisplayCallLog(ListView):
     model = PhoneLog
     form_class = CallLogForm
     template_name = 'display-call.html'
-    paginate_by = 10
-    success_url = reverse_lazy('dashboard')
     context_object_name = 'call_logs'
-    extra_context = {'is_paginated': True}
     ordering = ['-created_on']
-
+    paginate_by = 6
 
 # To do list
 
 # @method_decorator(login_required, name='dispatch')
-class TaskList(CreateView):
+
+
+class TaskList(SuccessMessageMixin, CreateView):
     model = ToDoList
     form_class = TaskForm
     template_name = 'task-list.html'
+    success_message = 'Task Created'
     success_url = reverse_lazy('task')
 
 
