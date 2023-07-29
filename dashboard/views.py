@@ -6,6 +6,7 @@ from django.views.generic.edit import FormView
 from django.views import generic, View
 from django.urls import reverse_lazy, reverse
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -13,8 +14,6 @@ from django.http import JsonResponse, HttpResponse
 from django.core.paginator import Paginator
 from django.contrib.auth.mixins import UserPassesTestMixin
 
-
-# homepage index
 
 '''
 Main landing page with login and signup links
@@ -128,11 +127,12 @@ Update Client details using updateview and crispy forms
 '''
 
 
-class EditClientDetails(UpdateView):
+class EditClientDetails(SuccessMessageMixin, UpdateView):
     model = Client
     form_class = EditClientForm
     template_name = 'edit-client.html'
     template_name_suffix = "_update_form"
+    success_message = "You have updated the clients details"
 
     def get_success_url(self):
         return reverse_lazy('details', kwargs={'id': self.object.id})

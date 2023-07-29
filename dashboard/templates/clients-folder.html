@@ -14,6 +14,13 @@
             {% endif %}
             {{ details.last_name }}</h2>
     </div>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="text-center alert alert-{{ message.tags }}">
+        {{ message|safe }}
+        {% endfor %}
+        {% endif %}
+    </div>
     <div class="parent-container d-flex content-2">
         <div class="container">
             <div class="row">
