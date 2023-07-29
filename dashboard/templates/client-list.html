@@ -33,9 +33,22 @@
 
                 </span>
             </div>
-
-
             <table class="table" style="width: 25rem;">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <img src="#" class="rounded me-2" alt="">
+                        <strong class="me-auto">Success</strong>
+                        <small>just now</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        {{ message|safe }}
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
                 <thead>
                     <tr>
                         <th scope="col">#</th>

@@ -36,7 +36,8 @@ The Dashbord the user can navigate to different apps. Center page of the project
 def dashboard(request):
     clients_list = Client.objects.all()
     call_logs = PhoneLog.objects.all().order_by('-created_on')
-    tasks = ToDoList.objects.all().order_by('-created_on')
+    # tasks = ToDoList.objects.all().order_by('-created_on')
+    tasks = DisplayTask()
     task_update = UpdateTask()
     delete_task = DeleteTask()
     call_delete = DeleteCall()
@@ -59,11 +60,12 @@ Create a new Client form
 
 
 @method_decorator(login_required, name='dispatch')
-class CreateClient(CreateView):
+class CreateClient(SuccessMessageMixin, CreateView):
     model = Client
     form_class = ClientForm
     template_name = 'new-client.html'
-    success_url = reverse_lazy('dashboard')
+    success_message = "New Client Created"
+    success_url = reverse_lazy('display-clients')
 
 
 '''
@@ -185,6 +187,7 @@ def display_note(request, id):
             note.client = client
             note.save()
             form = ClientNoteForm()
+            messages.success(request, 'You have created a new note')
             return redirect('details', id=id)
     else:
         form = ClientNoteForm()
@@ -229,19 +232,25 @@ Delete note all users can delete a note. Not restricted.
 '''
 
 
-class DeleteNote(DeleteView):
+class DeleteNote(SuccessMessageMixin, DeleteView):
     model = ClientNote
     template_name = 'delete-note.html'
+    success_message = "Note Deleted"
 
     def get_success_url(self):
         return reverse_lazy('note', kwargs={'id': self.object.client.id})
 
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super().delete(request, *args, **kwargs)
+
 
 # Edit Note
-class EditNote(UpdateView):
+class EditNote(SuccessMessageMixin, UpdateView):
     model = ClientNote
     form_class = EditClientNoteForm
     template_name = 'edit-note.html'
+    success_message = 'Note Updated'
     template_name_suffix = "_update_form"
 
     def get_success_url(self):
@@ -280,10 +289,15 @@ Delete calls from the call log
 '''
 
 
-class DeleteCall(DeleteView):
+class DeleteCall(SuccessMessageMixin, DeleteView):
     model = PhoneLog
     template_name = 'delete-call.html'
-    success_url = reverse_lazy('dashboard')
+    success_message = 'Call Deleted'
+    success_url = reverse_lazy('display-call')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super().delete(request, *args, **kwargs)
 
 
 '''
@@ -314,33 +328,47 @@ class TaskList(SuccessMessageMixin, CreateView):
 
 # Display to do list
 
-
-def display_task(request):
-    tasks = ToDoList.objects.all().order_by('-created_on')
-    paginator = Paginator(tasks, 5)
-    page_number = request.GET.get('page',)
-    page_obj = paginator.get_page(page_number)
-
-    return render(request, 'task.html', {'page_obj': page_obj})
+class DisplayTask(ListView):
+    '''
+    List all the task from the To do list model. List from lastest to oldest and
+    Paginate by 5. I changed it from a function view to Class ListView
+    '''
+    model = ToDoList
+    form_class = TaskForm
+    template_name = 'task.html'
+    context_object_name = 'TaskList'
+    ordering = ['-created_on']
+    complete = 'false'
+    paginate_by = 5
 
 # Task Update
 
 
-class UpdateTask(UpdateView):
+class UpdateTask(SuccessMessageMixin, UpdateView):
+    '''
+    Update task item and add a success message.
+    '''
     model = ToDoList
     fields = ["task"]
     template_name = 'task-update.html'
+    success_message = 'Task Updated'
     success_url = reverse_lazy('task')
 
 
 # task delete
 
 
-class DeleteTask(UserPassesTestMixin, DeleteView):
+class DeleteTask(SuccessMessageMixin, DeleteView):
+    '''
+    Delete Task item with warning. SuccessMessageMixin does work with DeleteView.
+    You will have to override the delete function and add a success message
+    '''
     model = ToDoList
     fields = ["task"]
     template_name = 'delete-task.html'
+    success_message = 'Task Deleted'
     success_url = reverse_lazy('task')
 
-    def test_func(self):
-        return self.request.user.is_superuser
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super().delete(request, *args, **kwargs)

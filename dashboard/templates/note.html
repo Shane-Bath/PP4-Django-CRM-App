@@ -3,6 +3,22 @@
 {% block content %}
 
 <main class="content-1">
+    {% if messages %}
+    {% for message in messages %}
+
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <img src="#" class="rounded me-2" alt="">
+            <strong class="me-auto">Success</strong>
+            <small>just now</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            {{ message|safe }}
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
     <h4>{{ client.first_name }} {% if client.middle_name %} {{client.middle_name }} {% else %}
         {% endif %} {{ client.last_name }}</h4>
 
@@ -13,9 +29,12 @@
             <h5 class="card-title">{{ note.title }}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{ note.created_on }}</h6>
             <p class="card-text">{{ note.content }}</p>
+            <a href="{% url 'create-note' client.id %}"><button class="btn btn-primary">Add
+                    note</button></a>
             <a class="card-link" href="{% url 'delete-note' note.pk %}"><button
                     class="btn btn-danger">Delete</button></a>
-            <a class="card-link" href="{% url 'edit-note' note.pk %}"><button class="btn btn-success">Edit</button></a>
+            <a class="card-link" href="{% url 'edit-note' note.pk %}"><button class="btn btn-success">Edit
+                    Note</button></a>
             {% endif %}
 
             {% empty %}

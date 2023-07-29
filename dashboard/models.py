@@ -56,7 +56,7 @@ class ClientNote(models.Model):
 
 
 class ToDoList(models.Model):
-    task = models.CharField(max_length=60, unique=False)
+    task = models.CharField(max_length=100, unique=False)
     complete = models.BooleanField(default=False)
     created_on = models.DateField(auto_now_add=True)
 
@@ -78,6 +78,7 @@ TIME_PERIODS = (
     ("4 PM", "4 PM"),
     ("5 PM", "5 PM"),
 )
+
 
 class Appointment(models.Model):
     first_name = first_name = models.CharField(max_length=50)

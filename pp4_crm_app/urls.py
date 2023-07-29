@@ -16,7 +16,7 @@ urlpatterns = [
     path('create-note/<int:id>/', views.display_note, name='create-note'),
     path('edit-client/<int:pk>/',
          views.EditClientDetails.as_view(), name='edit-client'),
-    path('task/', views.display_task, name='task'),
+    path('task/', views.DisplayTask.as_view(), name='task'),
     path('display-call/', views.DisplayCallLog.as_view(), name='display-call'),
     path('task-list/', views.TaskList.as_view(), name='task-list'),
     path('<int:id>/note/', views.display_client_note, name='note'),

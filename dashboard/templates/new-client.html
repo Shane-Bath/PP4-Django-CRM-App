@@ -23,17 +23,6 @@
                     <form method="post" class="my-class">
                         {% csrf_token %}
                         {% crispy form %}
-                        <!-- {{ form|crispy}} -->
-
-                        <!-- <button type="submit">Submit</button> -->
-
-                        <!-- {% if messages %}
-                    <div class="alert alert-success" role="alert">
-                        {% for message in messages %}
-                        <P> {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }}</P>
-                        {% endfor %}
-                    </div>
-                    {% endif %} -->
                     </form>
                 </div>
             </div>
