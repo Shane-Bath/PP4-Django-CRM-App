@@ -1,46 +1,198 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+## CRM Django App - Clientflow
+This is customer management system for a small business.
+This Django app is not designed for mobile devices.It is designed for use in an office on standard size screens only. 
 
-Welcome,
+### Features
+-   You can create a client file
+-   Log client details, addresses, phone number and email
+-   You can edit clients details
+-   Create, edit and delete notes for each client
+-   View the list of your clients
+-   Log phone call
+-   Edit and delete calls
+-   Create a task 
+-   Delete tasks
 
-This is the Code Institute student template for Codeanywhere. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+## Design
+This app first layed out in Balsamiq. It is has Dashboard from which you navigate to the other apps. 
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **May 11th, 2023**
+There is User registration and authentication, 
+A User registration form is used with fields like username, email, and password. With User login and logout functionality. I have used AllAuth for this functionality. 
 
-## Codeanywhere Reminders
+Once the user is registered, they can access the dashboard. From there they can create new clients, make nots on each client. Log calls and keep a task list. 
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
+The Dashboard is the central hub. 
 
-`python3 -m http.server`
+## Testing 
+I have manually navigated through different pages and functionalities. I have Verified that all elements (buttons, forms, links) are functioning as expected, and the user interface is rendering correctly.
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+## Validator Testing
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere with no-cache, you can use this alias for `python3 -m http.server`.
+[Pep8](https://pep8ci.herokuapp.com/) did not return an significant errors
 
-`http_server`
+## Credit
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+Thank you to Diasy Mcgirr for her guidance.
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+The following is list of resources I referred to.
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+model fields
+<https://docs.djangoproject.com/en/4.2/ref/models/fields/#textfield>
 
-To log into the Heroku toolbelt CLI:
+unique id- how to create a unique id for each client
+<https://stackoverflow.com/questions/16925129/generate-unique-id-in-django-from-a-model-field>
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+autocomplete
+<https://django-autocomplete-light.readthedocs.io/en/master/index.html>
+Sharing data bewteen models tables
+<https://stackoverflow.com/questions/58611631/django-how-i-can-populate-data-in-a-model-from-another-table-model-in-the-same>
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+testing
+<https://docs.djangoproject.com/en/4.2/topics/testing/overview/>
+<https://docs.djangoproject.com/en/4.2/intro/tutorial05/>
+<https://realpython.com/testing-in-django-part-1-best-practices-and-examples/>
 
----
+Function versus genric class views
+code instititude
+<https://docs.djangoproject.com/en/3.2/topics/class-based-views/generic-display/>
+<https://stackoverflow.com/questions/66411588/django-transforming-function-based-view-into-class-based-view>
 
-Happy coding!
+Displaying data
+<https://docs.djangoproject.com/en/4.2/ref/class-based-views/generic-display/>
 
-Source:
-Settiing up users-
-https://docs.djangoproject.com/en/4.2/topics/auth/default/
-https://docs.djangoproject.com/en/4.2/ref/contrib/auth/#django.contrib.auth.models.User
-Datepicker = https://bootstrap-datepicker.readthedocs.io/en/latest/
-authentication = https://django-allauth.readthedocs.io/en/latest/installation.html#django
+Djang CRM examples
+<https://github.com/MicroPyramid/Django-CRM/blob/master/leads/models.py>
+
+<https://stackoverflow.com/questions/72671197/how-to-make-a-select-field-using-django-model-forms-using-set-values>
+
+get_object 404
+<https://docs.djangoproject.com/en/4.2/topics/http/shortcuts/>
+
+phone number
+<https://stackoverflow.com/questions/19130942/whats-the-best-way-to-store-a-phone-number-in-django-models>
+
+AttributeError: 'function' object has no attribute 'as_view'
+<https://stackoverflow.com/questions/34217400/function-object-has-no-attribute-as-view>
+
+search table / data
+<https://stackoverflow.com/questions/66386490/making-search-bar-in-django>
+<https://django-filter.readthedocs.io/en/stable/>
+
+making queries
+<https://docs.djangoproject.com/en/4.2/topics/db/queries/>
+
+listing data alphabetically
+<https://stackoverflow.com/questions/16778819/django-how-to-sort-objects-alphabetically-by-first-letter-of-name-field>
+
+client urls
+<https://docs.djangoproject.com/en/4.1/ref/urlresolvers/>
+<https://docs.djangoproject.com/en/3.2/topics/http/urls/#how-django-processes-a-request>
+
+
+migration and edit fields
+<https://stackoverflow.com/questions/70970039/django-rename-field-and-create-new-one-with-the-same-name-returns-psycopg2-error>
+<https://www.w3schools.com/django/django_update_data.php>
+<https://docs.djangoproject.com/en/4.2/ref/migration-operations/>
+
+Check if user is authenticated
+<https://docs.djangoproject.com/en/4.2/topics/auth/default/>
+<https://docs.djangoproject.com/en/4.2/ref/utils/>
+<https://stackoverflow.com/questions/29673549/method-decorator-with-login-required-and-permission-required>
+<https://docs.djangoproject.com/en/4.2/topics/class-based-views/intro/>
+
+context -- fix error code line to long.
+<https://docs.djangoproject.com/en/dev/ref/templates/api/#module-django.template>
+
+redirect after submit button is pressed
+<https://stackoverflow.com/questions/60952187/how-to-redirect-to-another-page-that-contains-id-in-django>
+<https://docs.djangoproject.com/en/4.2/topics/http/shortcuts/>
+
+edit model
+<https://www.youtube.com/watch?v=jCM-m_3Ysqk>
+<https://docs.djangoproject.com/en/4.2/topics/forms/modelforms/>
+
+<https://docs.djangoproject.com/en/4.2/topics/http/views/#:~:text=A%20view%20function%2C%20or%20view>,.%20.%20or%20anything%2C%20really.
+
+debugging
+<https://www.mattlayman.com/understand-django/debugging-tips-techniques/>
+
+listing on date order
+<https://stackoverflow.com/questions/9834038/django-order-by-query-set-ascending-and-descending>
+
+edit task mark complete
+<https://stackoverflow.com/questions/68113852/how-to-check-whether-the-checkbox-is-checked-in-django>
+
+update view
+<https://docs.djangoproject.com/en/4.2/ref/class-based-views/generic-editing/>
+
+delete view
+<https://docs.djangoproject.com/en/4.2/ref/class-based-views/generic-editing/>
+
+add to user
+<https://stackoverflow.com/questions/63255598/django-how-to-link-to-specific-user>
+noreverse
+<https://docs.djangoproject.com/en/4.2/ref/class-based-views/generic-editing/>
+
+<https://stackoverflow.com/questions/38390177/what-is-a-noreversematch-error-and-how-do-i-fix-it>
+
+calander
+<https://stackoverflow.com/questions/75945489/django-python-calendar-module>
+<https://jqueryui.com/datepicker/>
+<https://stackoverflow.com/questions/18106454/how-to-use-a-jquery-datepicker-with-the-django-template-language>
+
+Template
+<https://docs.djangoproject.com/en/4.2/ref/templates/language/>
+
+SVG
+
+<https://www.svgbackgrounds.com/>
+
+Modal
+<https://stackoverflow.com/questions/23648761/how-to-build-django-ajax-modal-popup-forms-with-server-side-forms>
+<https://jquerymodal.com/>
+<https://django-bstrap-modals.readthedocs.io/en/latest/index.html>
+
+Styling forms
+<https://medium.com/swlh/how-to-style-your-django-forms-7e8463aae4fa>
+
+Cripsy forms
+<https://github.com/django-crispy-forms/crispy-bootstrap5>
+<https://ordinarycoders.com/blog/article/render-a-django-form-with-bootstrap>
+<https://stackoverflow.com/questions/13098954/use-crispy-form-with-modelform>
+<https://django-crispy-forms.readthedocs.io/en/latest/index.html>
+<https://stackoverflow.com/questions/12144475/displaying-multiple-rows-and-columns-in-django-crispy-forms>
+
+Soft delete
+<https://dev.to/bikramjeetsingh/soft-deletes-in-django-a9j>
+
+Success message
+<https://stackoverflow.com/questions/28723266/django-display-message-after-post-form-submit>
+
+Changing note fnction to class view
+<https://docs.djangoproject.com/en/4.2/topics/class-based-views/generic-editing/>
+
+Pagination
+Code institue
+<https://realpython.com/django-pagination/>
+<https://docs.djangoproject.com/en/4.2/topics/pagination/>
+<https://realpython.com/django-pagination/#combined-example>
+
+color
+<https://colorhunt.co/palette/f6ffdee3f2c1c9dbb2aac8a7>
+F6FFDE
+E3F2C1
+C9DBB2
+AAC8A7
+
+Calander
+<https://docs.python.org/3/library/calendar.html>
+
+Updateview / edit
+<https://docs.djangoproject.com/en/4.2/ref/class-based-views/generic-editing/#django.views.generic.edit.UpdateView>
+
+success message
+<https://getbootstrap.com/docs/5.0/components/toasts/>
+<https://dev.to/serhatteker/show-message-in-class-based-views-django-4a4d>
+<https://docs.djangoproject.com/en/4.2/ref/contrib/messages/>
+<https://docs.djangoproject.com/en/4.2/ref/contrib/messages/#adding-messages-in-class-based-views>
+<https://stackoverflow.com/questions/24822509/success-message-in-deleteview-not-shown>
