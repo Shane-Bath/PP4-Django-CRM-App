@@ -104,10 +104,10 @@
                             <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
                                 aria-labelledby="panelsStayOpen-headingThree">
                                 <div class="accordion-body">
-                                    <p>Client since :<i>{{ details.created_on }}</i></p>
+                                    <p>Client since : <em class="p-lighten">{{ details.created_on }} </em></p>
                                     <br>
                                     <a href="{% url 'edit-client' client.id %}">
-                                        <h6>Update</h6>
+                                        <button class="btn btn-warning">Update</button>
                                     </a>
                                 </div>
                             </div>
@@ -127,7 +127,10 @@
                         {% for note in notes %}
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                <h6>{{ note.title }}</h6>
+                                <div class="note-align">
+                                    <h6>{{ note.title }}</h6>
+                                    <p class="p-lighten"> <em>{{ note.created_on }}</em></p>
+                                </div>
                             </li>
                             <li class="list-group-item">{{ note.content }}</li>
                         </ul>

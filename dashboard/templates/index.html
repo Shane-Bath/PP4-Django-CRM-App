@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
+{% load static %}
 
 {% block content %}
 {% block navbar %}
 {% endblock %}
+
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary landing-nav main-nav">
     <div class="container-fluid">
@@ -33,20 +35,15 @@
     </div>
 </nav>
 
-<main>
-
-
-
-
-    <!-- <div class="card-body text-center hero"
-        style="background-color: #0f7dd640; filter: drop-shadow(2px 4px 6px rgb(11, 80, 192)); box-shadow: inset 0 0 0 200px rgba(15, 122, 216, 0.08); ">
+<main class="landing-page">
+    <div class="card-body text-center hero" style="">
         <div class=" row align-self-center">
             <div class="col">
                 <h1 class="landing-header">ClientFlow</h1>
                 <h3 class="landing-header">Client Management Made Easy for Small Businesses</h3>
             </div>
         </div>
-    </div> -->
+    </div>
 </main>
 
 {% endblock %}
