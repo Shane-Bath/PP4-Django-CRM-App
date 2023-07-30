@@ -1,6 +1,6 @@
 ## CRM Django App - Clientflow
-This is customer management system for a small business.
-This Django app is not designed for mobile devices.It is designed for use in an office on standard size screens only. 
+This is a customer management system for a small business.
+This Django app is not designed for mobile devices. It is designed for use in an office on standard size screens only. 
 
 ### Features
 -   You can create a client file
@@ -14,7 +14,7 @@ This Django app is not designed for mobile devices.It is designed for use in an 
 -   Delete tasks
 
 ## Design
-This app first layed out in Balsamiq. It is has Dashboard from which you navigate to the other apps. 
+This app was first layed out in Balsamiq. It is has Dashboard from which you navigate to the other apps. 
 
 There is User registration and authentication, 
 A User registration form is used with fields like username, email, and password. With User login and logout functionality. I have used AllAuth for this functionality. 
