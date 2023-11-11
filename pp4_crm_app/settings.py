@@ -17,6 +17,8 @@ import dj_database_url
 if os.path.isfile("env.py"):
     import env
 
+print("Database URL:", os.environ.get("DATABASE_URL"))
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
@@ -32,7 +34,8 @@ DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = [
     '8000-shane-bath-pp4-crm-app-gz6ye0xeex.us2.codeanyapp.com', 'pp4-crm-app-133e9d6a024c.herokuapp.com',
-    'localhost', '8000-shane-bath-pp4-crm-app-cysmkva040.us2.codeanyapp.com']
+    'localhost', '8000-shane-bath-pp4-crm-app-cysmkva040.us2.codeanyapp.com',
+    '8000-shane-bath-pp4-crm-app-k5zwrhuygj.us2.codeanyapp.com',]
 
 
 # Application definition
@@ -103,9 +106,10 @@ WSGI_APPLICATION = 'pp4_crm_app.wsgi.application'
 #     }
 # }
 
+print("Database URL:", os.environ.get("DATABASE_URL"))
+
 DATABASES = {
-    'default':
-    dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 # Password validation
