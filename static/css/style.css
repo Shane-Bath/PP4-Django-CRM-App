@@ -6,6 +6,9 @@ body {
     padding: 0;
 }
 
+a {
+    color: #000;
+}
 .content {
     flex-grow: 1;
     display: flex;
@@ -17,6 +20,7 @@ body {
     height: 10vh;
     width: 100%;
 }
+
 
 h1,
 h2,

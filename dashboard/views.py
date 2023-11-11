@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ClientForm, CallLogForm, ClientNoteForm, TaskForm, EditClientForm, EditClientNoteForm
+from .forms import ClientForm, CallLogForm, ClientNoteForm, TaskForm
+from .forms import EditClientForm, EditClientNoteForm
 from .models import Client, PhoneLog, ClientNote, ToDoList, Appointment
-from django.views.generic import CreateView, View, UpdateView, DeleteView, ListView
+from django.views.generic import CreateView, View, UpdateView, DeleteView
+from django.views.generic import ListView
 from django.views.generic.edit import FormView
 from django.views import generic, View
 from django.urls import reverse_lazy, reverse
@@ -28,7 +30,8 @@ def index(request):
 
 
 '''
-The Dashbord the user can navigate to different apps. Center page of the project
+The Dashbord the user can navigate to different apps.
+Center page of the project.
 '''
 
 
@@ -125,7 +128,7 @@ def display_clients(request):
 
 # Edit client details
 '''
-Update Client details using updateview and crispy forms 
+Update Client details using updateview and crispy forms
 '''
 
 
@@ -170,8 +173,8 @@ def client_search(request):
 # Client note
 # @method_decorator(login_required, name='dispatch')
 '''
-Create note and add to the clients folder. limit the number of notes displayed on the
-clientfile to 5. 
+Create note and add to the clients folder. limit the number of notes displayed
+on the clientfile to 5.
 '''
 
 
@@ -205,8 +208,8 @@ def display_note(request, id):
 
 # render the note assoicated with the client
 '''
-Show all the note associatd with the client, as the clientfolder itself is limited to 5. 
-This page will be paginated to 5. 
+Show all the note associatd with the client, as the clientfolder itself is
+limited to 5. This page will be paginated to 5.
 '''
 
 
@@ -230,8 +233,9 @@ def display_client_note(request, id):
 
 #  Delete note
 '''
-Delete note all users can delete a note. Not restricted. 
+Delete note all users can delete a note. Not restricted.
 '''
+
 
 @method_decorator(login_required, name='dispatch')
 class DeleteNote(SuccessMessageMixin, DeleteView):
@@ -320,6 +324,7 @@ class DisplayCallLog(ListView):
 
 # To do list
 
+
 @method_decorator(login_required, name='dispatch')
 class TaskList(SuccessMessageMixin, CreateView):
     model = ToDoList
@@ -330,11 +335,13 @@ class TaskList(SuccessMessageMixin, CreateView):
 
 
 # Display to do list
+
+
 @method_decorator(login_required, name='dispatch')
 class DisplayTask(ListView):
     '''
-    List all the task from the To do list model. List from lastest to oldest and
-    Paginate by 5. I changed it from a function view to Class ListView
+    List all the task from the To do list model. List from lastest to oldest
+    and Paginate by 5. I changed it from a function view to Class ListView
     '''
     model = ToDoList
     form_class = TaskForm
@@ -361,11 +368,13 @@ class UpdateTask(SuccessMessageMixin, UpdateView):
 
 # task delete
 
+
 @method_decorator(login_required, name='dispatch')
 class DeleteTask(SuccessMessageMixin, DeleteView):
     '''
-    Delete Task item with warning. SuccessMessageMixin does work with DeleteView.
-    You will have to override the delete function and add a success message
+    Delete Task item with warning. SuccessMessageMixin does work with
+    DeleteView. You will have to override the delete function and
+    add a success message.
     '''
     model = ToDoList
     fields = ["task"]

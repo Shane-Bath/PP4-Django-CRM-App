@@ -39,7 +39,8 @@ class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
         fields = ('first_name', 'middle_name', 'last_name',
-                  'phone_number', 'email_address', 'address', 'address_line_2', 'city', 'county', 'eircode')
+                  'phone_number', 'email_address', 'address', 'address_line_2',
+                  'city', 'county', 'eircode')
 
 # Cripy versions
 
@@ -69,7 +70,8 @@ class CallLogForm(forms.ModelForm):
         widgets = {
             'first_name': forms.TextInput(attrs={'placeholder': 'First Name'}),
             'last_name': forms.TextInput(attrs={'placeholder': 'Last Name'}),
-            'phone_number': forms.TextInput(attrs={'placeholder': 'Phone Number'}),
+            'phone_number': forms.TextInput(
+                attrs={'placeholder': 'Phone Number'}),
             'message': forms.Textarea(attrs={'placeholder': 'Message',
                                              'class': 'textarea-size'}),
         }

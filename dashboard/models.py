@@ -42,7 +42,8 @@ class PhoneLog(models.Model):
 class ClientNote(models.Model):
     title = models.CharField(max_length=200, unique=True)
     client = models.ForeignKey(
-        Client, on_delete=models.CASCADE, related_name='notes', blank=True, null=True)
+        Client, on_delete=models.CASCADE, related_name='notes', blank=True,
+        null=True)
     employee = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="blog_posts")
     content = models.TextField()
@@ -85,7 +86,8 @@ class Appointment(models.Model):
     last_name = models.CharField(max_length=50)
     is_a_client = models.BooleanField(default=False)
     client = models.ForeignKey(
-        Client, on_delete=models.CASCADE, related_name='appointments', blank=True, null=True)
+        Client, on_delete=models.CASCADE, related_name='appointments',
+        blank=True, null=True)
     day = models.DateField(default=datetime.now)
     time = models.CharField(max_length=5, choices=TIME_PERIODS, default="")
     phone_number = models.CharField(max_length=12)
