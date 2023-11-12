@@ -50,6 +50,14 @@ I have manually navigated through different pages and functionalities. I have Ve
 | Confirm that the New Client feature works and the new client is added to the database | Click on "ADD CLIENT" button. Complete the form. Submit the form |  The new client information is stored in the database and can be retrieved when searched for. | Passed |
 | Test the search functionality to locate existing clients. | Use the search bar. Enter the name of an existing client. Click on the "Search" button | The application returns a list of clients that match the search query | Passed |
 | Confirm Delete buttton works - clients | Click the delete button | The client is removed from the database | Passed |
+### Clients file
+
+| Objective | Test | Expected result | Passed |
+| :---:     | :---:|    :---:        | :---:  |
+| Verify that the client details can be updates | Click on "UPDATE" button, fill in the NEW details in the form, Submit the form | The update details is recorded in the database. | Passed |
+| Add note to clients file | Click on "ADD NOTE" button, fill in the details in the form, Submit the form | The note is added to the client file | Passed |
+| Edit note on client file | Click on "VIEW NOTE" button, click on "EDIT NOTE" button, update note with new details, submit the form | The note is has the updated information | Passed |
+| Confirm Delete buttton works - client's note | Click the delete button | The note is removed from the database | Passed |
 
 ### Other Test
 | Objective | Test | Expected result | Passed |

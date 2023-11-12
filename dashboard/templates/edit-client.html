@@ -3,16 +3,20 @@
 {% block content %}
 
 
-<div class="content-1">
-    {% load crispy_forms_tags %}
-    <h4>Update Clients Details</h4>
-    <br>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            {% load crispy_forms_tags %}
+            <h4>Update Clients Details</h4>
+            <br>
 
-    <form action="" method="POST">
-        {% csrf_token %}
-        {% crispy form %}
+            <form action="" method="POST">
+                {% csrf_token %}
+                {% crispy form %}
 
-    </form>
+            </form>
+        </div>
+    </div>
 </div>
 
 
