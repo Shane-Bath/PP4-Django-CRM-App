@@ -30,6 +30,32 @@ I have manually navigated through different pages and functionalities. I have Ve
 
 [Pep8](https://pep8ci.herokuapp.com/) did not return an significant errors
 
+## Manual Testing
+### Registration 
+
+| Objective | Test | Expected result | Passed |
+| :---:     | :---:|    :---:        | :---:  |
+| Check if registration works | Click on register link, complete the form and click on the Signup button. | Redirects to the homepage with dashboard link | Passed |
+| Check if login works | Click on login link, complete the form and click login | Redirects to the homepage with dashboard link | Passed |
+| Check if Logout works | Click on logout link, click on confirmation | Redirect to homepage with rgister and login links | Passed |
+
+### Dashboard Functionality 
+
+| Objective | Test | Expected result | Passed |
+| :---:     | :---:|    :---:        | :---:  |
+| Verify that the Log Call feature correctly records a call with details. | Click on "LOG CALL" button, Fill in the call details in the form, Submit the form | The call is recorded in the database, and the call log is updated with the new entry. | Passed |
+| Confirm Delete buttton works | Click the delete button | The call is removed from the database | Passed
+| Ensure that the Add Task feature allows users to add tasks to their to-do list | Click on "ADD TASK" button, Enter task details in the form, Submit the form | The task is added to the user’s to-do list and is visible in the Task List. | Passed |
+| Confirm that the New Client feature works and the new client is added to the database | Click on "ADD CLIENT" button. Complete the form. Submit the form |  The new client information is stored in the database and can be retrieved when searched for. | Passed |
+| Test the search functionality to locate existing clients. | Use the search bar. Enter the name of an existing client. Click on the "Search" button | The application returns a list of clients that match the search query | Passed |
+
+### Other Test
+| Objective | Test | Expected result | Passed |
+| :---:     | :---:|    :---:        | :---:  |
+| Verify that all forms have proper validation and do not accept invalid input. | Try to submit forms with invalid or incomplete data. Check for mandatory fields and input formats. | The form will not submit and provide error feedback | Passed |
+
+
+
 ## Credit
 
 Thank you to Diasy Mcgirr for her guidance.

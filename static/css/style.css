@@ -15,6 +15,13 @@ a {
     flex-direction: column;
 }
 
+.content-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 10vh;
+}
 
 .main-nav {
     height: 10vh;
