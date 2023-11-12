@@ -26,10 +26,6 @@ The Dashboard is the central hub.
 ## Testing 
 I have manually navigated through different pages and functionalities. I have Verified that all elements (buttons, forms, links) are functioning as expected, and the user interface is rendering correctly.
 
-## Validator Testing
-
-[Pep8](https://pep8ci.herokuapp.com/) did not return an significant errors
-
 ## Manual Testing
 ### Registration 
 
@@ -65,6 +61,49 @@ I have manually navigated through different pages and functionalities. I have Ve
 | Verify that all forms have proper validation and do not accept invalid input. | Try to submit forms with invalid or incomplete data. Check for mandatory fields and input formats. | The form will not submit and provide error feedback | Passed |
 |  Ensure that all navigation links and buttons work correctly. | Click on each menu item and button to navigate to different sections. Check that the URL matches the expected destination. | Each navigation element leads to the correct section without errors. | Passed |
 
+
+## Validator Testing
+
+### Pep8 Valdator
+[CI Python Linter](https://pep8ci.herokuapp.com/) was used to validate the Pyton code.
+
+### Results
+
+### Dashboard
+* [Admin.py](static/images/readme/dashboard_admin.png)
+* [Forms.py](static/images/readme/dashboard_forms.png)
+* [Models.py](static/images/readme/dashboard_models.png)
+* [Urls.py](static/images/readme/dashboard_urls.png)
+
+### pp4_crm_app
+* [settings.py](static/images/readme/pp4-settings.png)
+* [urls.py](static/images/readme/pp4-urls.png)
+
+## LightHouse 
+Lighthouse is a Google Dev tool to check permformace and accessibility. I changed the text font from blue to black to improve my accessiblity score. The blue font failed the contrast test againt the light green backgound. The black passed.
+
+* [Accessibility](static/images/readme/accessibility.png)
+
+The perfomance passed.
+* [lighthouse](static/images/readme/acc-improve.png)
+
+## W3C Validation
+No errors or warnings. I could not find the trailing slash discussed in the INFO meassage. It does not impact the site.
+### HTML
+* [Index](static/images/readme/html-index.png)
+* [Dashboard](static/images/readme/html-dashboard.png)
+* [New client](static/images/readme/html-new-client.png)
+* [Client list](static/images/readme/html-client-list.png)
+* [Dashboard](static/images/readme/html-dashboard.png)
+* [Display call](static/images/readme/html-display-call.png)
+* [Task](static/images/readme/html-task.png)
+* [Task-list](static/images/readme/html-task-list.png)
+
+### CSS
+No errors found
+* [Dashboard](static/images/readme/dashboard-css.png)
+* [task](static/images/readme/task-css.png)
+* [Call log](static/images/readme/call-log-css.png)
 
 ## Credit
 
