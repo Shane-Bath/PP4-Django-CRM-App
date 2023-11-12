@@ -1,6 +1,6 @@
 ## CRM Django App - Clientflow
 This is a customer management system for a small business.
-This Django app is not designed for mobile devices. It is designed for use in an office on standard size screens only. 
+This Django app is not designed for mobile devices. It is designed for use in an office on standard size screens only.
 
 ### Features
 -   You can create a client file
@@ -44,23 +44,25 @@ I have manually navigated through different pages and functionalities. I have Ve
 | Objective | Test | Expected result | Passed |
 | :---:     | :---:|    :---:        | :---:  |
 | Verify that the Log Call feature correctly records a call with details. | Click on "LOG CALL" button, Fill in the call details in the form, Submit the form | The call is recorded in the database, and the call log is updated with the new entry. | Passed |
-| Confirm Delete buttton works | Click the delete button | The call is removed from the database | Passed
+| Confirm Delete buttton works Display call | Click the delete button | The call is removed from the database | Passed |
 | Ensure that the Add Task feature allows users to add tasks to their to-do list | Click on "ADD TASK" button, Enter task details in the form, Submit the form | The task is added to the user’s to-do list and is visible in the Task List. | Passed |
+| Confirm Delete buttton works- Task | Click the delete button | The task is removed from the database | Passed |
 | Confirm that the New Client feature works and the new client is added to the database | Click on "ADD CLIENT" button. Complete the form. Submit the form |  The new client information is stored in the database and can be retrieved when searched for. | Passed |
 | Test the search functionality to locate existing clients. | Use the search bar. Enter the name of an existing client. Click on the "Search" button | The application returns a list of clients that match the search query | Passed |
+| Confirm Delete buttton works - clients | Click the delete button | The client is removed from the database | Passed |
 
 ### Other Test
 | Objective | Test | Expected result | Passed |
 | :---:     | :---:|    :---:        | :---:  |
 | Verify that all forms have proper validation and do not accept invalid input. | Try to submit forms with invalid or incomplete data. Check for mandatory fields and input formats. | The form will not submit and provide error feedback | Passed |
-
+|  Ensure that all navigation links and buttons work correctly. | Click on each menu item and button to navigate to different sections. Check that the URL matches the expected destination. | Each navigation element leads to the correct section without errors. | Passed |
 
 
 ## Credit
 
 Thank you to Diasy Mcgirr for her guidance.
-
-The following is list of resources I referred to.
+<details>
+<summary>The following is list of resources I referred to.</summary>
 
 model fields
 <https://docs.djangoproject.com/en/4.2/ref/models/fields/#textfield>
@@ -222,3 +224,6 @@ success message
 <https://docs.djangoproject.com/en/4.2/ref/contrib/messages/>
 <https://docs.djangoproject.com/en/4.2/ref/contrib/messages/#adding-messages-in-class-based-views>
 <https://stackoverflow.com/questions/24822509/success-message-in-deleteview-not-shown>
+
+
+</details>

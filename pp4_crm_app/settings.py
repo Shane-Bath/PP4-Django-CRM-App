@@ -5,8 +5,6 @@ import dj_database_url
 if os.path.isfile("env.py"):
     import env
 
-print("Database URL:", os.environ.get("DATABASE_URL"))
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
@@ -94,8 +92,6 @@ WSGI_APPLICATION = 'pp4_crm_app.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
-print("Database URL:", os.environ.get("DATABASE_URL"))
 
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))

@@ -4,14 +4,7 @@
 
 <div class="content-1">
     <div><h4>Task List</h4></div>
-    <div>
-        <a href="{% url 'task-list'  %}"><button type="button" class="btn btn-primary" style="margin-bottom: 5px;">Add
-                Task</button></a>
-        <a href="{% url 'dashboard' %}"> <button type="button" class="btn btn-warning"
-                style="margin-bottom: 5px;">Dashboard</button></a>
-    </div>
    
-
     <table class="table table-bordered border-primary" style="width: 35rem;">
         <thead>
             <tr class="table-primary">
@@ -33,6 +26,12 @@
             </tr>
         </tbody>
     </table>
+    <div>
+        <a href="{% url 'task-list'  %}"><button type="button" class="btn btn-primary" style="margin-bottom: 5px;">Add
+                Task</button></a>
+        <a href="{% url 'dashboard' %}"> <button type="button" class="btn btn-warning"
+                style="margin-bottom: 5px;">Dashboard</button></a>
+    </div>
     <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_previous %}
