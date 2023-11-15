@@ -2,7 +2,7 @@
 This is a customer management system for a small business.
 This Django app is not designed for mobile devices. It is designed for use in an office on standard size screens only.
 
-### Feature
+### Features
 
 <details>
 <summary>User Registration and Authentication</summary>
@@ -21,38 +21,69 @@ Create client: ![create customer](static/images/readme/feature-customers.png)
 client list: ![customer list](static/images/readme/feature-customer-list.png)
 
 Client details: ![cutsomer details](static/images/readme/feature-customer-details.png)
+</details>
+<details>
+<summary>Call Logging</summary>
+Log callsfrom to clients. Record information like date, time, and notes. Access call log from dashboard. You can associcate a call with the client as the databases are connected but it has not been implemented at the moment.
 
+Log calls: ![log calls](static/images/readme/feature-call-log.png)
+Call log : ![call log](static/images/readme/feature-call-list.png)
 </details>
 <details>
-<summary></summary>
-</details>
-<details>
-<summary></summary>
-</details>
-<details>
-<summary></summary>
-</details>
-<details>
-<summary></summary>
-</details>
-<details>
-<summary></summary>
-</details>
--   You can create a client file
--   Log client details, addresses, phone number and email
--   You can edit clients details
--   Create, edit and delete notes for each client
--   View the list of your clients
--   Log phone call
--   Edit and delete calls
--   Create a task 
--   Delete tasks
+<summary>To-Do List</summary>
+Allow users to create a to-do list for managing tasks.
 
+Task : ![Task](static/images/readme/feature-task.png)
+</details>
 
+<details>
+<summary>Notes Management</summary>
+Allow users to add notes to customer files. Edit notes Associate notes with the respective client. Display the notes in chronological order with timestamps
+
+Notes : ![note](static/images/readme/feature-note.png)
+Notes edit : ![note](static/images/readme/feature-note-edit.png)
+</details>
 
 ## Design
-This app was first layed out in Balsamiq. It is has Dashboard from which you navigate to the other apps. 
+This app was first layed out in Balsamiq. My design unfortunelty came up agianst the reality of my curent abilites when it came to implentation. However I will contine to work towards design in the future.
 
+<details>
+<summary>Landing page</summary>
+A simple landing page with a logo and login or register buttons
+
+Landing page : ![landing page](static/images/readme/landing-page.png)
+
+</details>
+
+<details>
+<summary>Registration Page</summary>
+A registration page that reqires users details, role and password.
+
+Registration page: ![regisration page](static/images/readme/register.png)
+</details>
+<details>
+<summary>Login</summary>
+A login page that requires a username and password.
+
+login page : ![login page](static/images/readme/login.png)
+</details>
+
+<details>
+<summary>Dashboard</summary>
+The Dashboard is the central hub. The user will be on this page for the majority of the time and will be able navigate to different features from the dashboard.
+
+Dashboard : ![dashboard](static/images/readme/dashboard.png)
+</details>
+
+<details>
+<summary>Client file</summary>
+All the client details, notes, and assocaited file will be displayed here.
+
+clients file : ![clients file](static/images/readme/clients.png)
+</details>
+<details>
+<summary></summary>
+</details>
 There is User registration and authentication, 
 A User registration form is used with fields like username, email, and password. With User login and logout functionality. I have used AllAuth for this functionality. 
 
