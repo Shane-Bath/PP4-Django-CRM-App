@@ -2,7 +2,42 @@
 This is a customer management system for a small business.
 This Django app is not designed for mobile devices. It is designed for use in an office on standard size screens only.
 
-### Features
+### Feature
+
+<details>
+<summary>User Registration and Authentication</summary>
+User login and logout functionality. User registration form with fields like username, email, and password.
+
+
+Login: ![login](static/images/readme/feature-login.png)
+</details>
+
+<details>
+<summary>Customer Management</summary>
+Create a new client with details such as name, email, phone number, and address. View a list of all client. Search for client. Edit client details (name, email, phone number, address).
+
+Create client: ![create customer](static/images/readme/feature-customers.png)
+
+client list: ![customer list](static/images/readme/feature-customer-list.png)
+
+Client details: ![cutsomer details](static/images/readme/feature-customer-details.png)
+
+</details>
+<details>
+<summary></summary>
+</details>
+<details>
+<summary></summary>
+</details>
+<details>
+<summary></summary>
+</details>
+<details>
+<summary></summary>
+</details>
+<details>
+<summary></summary>
+</details>
 -   You can create a client file
 -   Log client details, addresses, phone number and email
 -   You can edit clients details
@@ -12,6 +47,8 @@ This Django app is not designed for mobile devices. It is designed for use in an
 -   Edit and delete calls
 -   Create a task 
 -   Delete tasks
+
+
 
 ## Design
 This app was first layed out in Balsamiq. It is has Dashboard from which you navigate to the other apps. 
