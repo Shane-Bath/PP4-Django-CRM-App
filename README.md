@@ -81,6 +81,22 @@ All the client details, notes, and assocaited file will be displayed here.
 
 clients file : ![clients file](static/images/readme/clients.png)
 </details>
+
+<details>
+<summary>Call Log </summary>
+A call log to record the details of the call, the call log is link to the client database. You could link the call to the client but I have not implemented this feature yet. I had orginally wanted the call log to be modal, but I found that it was this was not stright forward to add this in Django. In the end I did not implement this. 
+
+Call log : ![call log](static/images/readme/call-log.png)
+</details>
+
+<details>
+<summary>Appointments and Calander</summary>
+I had wanted to add a calendar and appointment system to my client management system, but this turned out be beyond my abilties and the scope of the project. But is something I will be working on in the future.
+
+Calendar : ![calendar](static/images/readme/calendar.png)
+Appointments : ![appointments](static/images/readme/appointments.png)
+</details>
+
 <details>
 <summary></summary>
 </details>
@@ -132,28 +148,66 @@ I have manually navigated through different pages and functionalities. I have Ve
 
 ## Validator Testing
 
-### Pep8 Valdator
+## Pep8 Valdator
+### Results
 [CI Python Linter](https://pep8ci.herokuapp.com/) was used to validate the Pyton code.
 
-### Results
+#### Dashboard
 
-### Dashboard
-* [Admin.py](static/images/readme/dashboard_admin.png)
-* [Forms.py](static/images/readme/dashboard_forms.png)
-* [Models.py](static/images/readme/dashboard_models.png)
-* [Urls.py](static/images/readme/dashboard_urls.png)
+<details>
+<summary>Admin.py</summary>
 
-### pp4_crm_app
-* [settings.py](static/images/readme/pp4-settings.png)
-* [urls.py](static/images/readme/pp4-urls.png)
+Admin.py : ![admin](static/images/readme/dashboard_admin.png)
+</details>
+
+<details>
+<summary>Forms.py</summary>
+
+Forms.py : ![Forms](static/images/readme/dashboard_forms.png)
+</details>
+
+<details>
+<summary>Models.py</summary>
+
+Models.py : ![Models](static/images/readme/dashboard_models.png)
+</details>
+
+<details>
+<summary>Urls.py</summary>
+
+Urls.py : ![Urls](static/images/readme/dashboard_urls.png)
+</details>
+
+#### pp4_crm_app
+
+<details>
+<summary>Settings.py</summary>
+
+Settings.py : ![Settings](static/images/readme/pp4-settings.png)
+</details>
+
+<details>
+<summary>Urls.py</summary>
+
+Urls.py : ![Urls](static/images/readme/pp4-urls.png)
+</details>
 
 ## LightHouse 
 Lighthouse is a Google Dev tool to check permformace and accessibility. I changed the text font from blue to black to improve my accessiblity score. The blue font failed the contrast test againt the light green backgound. The black passed.
 
-* [Accessibility](static/images/readme/accessibility.png)
+<details>
+<summary>Accessibility</summary>
 
-The perfomance passed.
-* [lighthouse](static/images/readme/acc-improve.png)
+Accessibility : ![Accessibility](static/images/readme/accessibility.png)
+</details>
+
+The perfomance test passed.
+
+<details>
+<summary>Performace</summary>
+
+Performace : ![Performace](static/images/readme/acc-improve.png)
+</details>
 
 ## W3C Validation
 No errors or warnings. I could not find the trailing slash discussed in the INFO meassage. It does not impact the site.
