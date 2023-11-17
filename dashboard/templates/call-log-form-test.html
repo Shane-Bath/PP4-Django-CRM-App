@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% if user.is_authenticated %}
+<p>Authenticated user</p>
+
+{% else %}
+
+<p>PLease login</p>
+{% url 'account_login' %}
+{% endif %}
+
+<body>
+    {% block content %}
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                {% if user.is_authenticated %}
+                    {% load crispy_forms_tags %}
+                    <h3>Call log Test</h3>
+                    <br>
+                    <form method="post" class="">
+                        {% csrf_token %}
+                        {% crispy form %}
+                        
+                        <input type="text" id="client_search_input" placeholder="Search client..." autocomplete="off">
+                        <div id="client_search_suggestion"></div>
+                        <input type="hidden" name="client_id" id="client_id">
+                        <button type="submit" class="btn btn-primary">Log Call</button>
+                    </form>
+                {% else %}
+                    <p>Please login</p>
+                    <a href="{% url 'account_login' %}"></a>
+                {% endif %}            
+            </div>
+        </div>
+    </div>
+
+<script>
+    document.addEventListener('DOMContLoaded', function (
+        var clientSearchInput = document.getElementById('client_search_input');
+        var suggestionsBox = document.getElementById('client_search_suggestions');
+
+        clientSearchInput.addEventListener('input', function() {
+            var query = this.value;
+            if (query.lenght > 2) {
+                fetch('/')
+            }
+        })
+    ))
+</script>
+    {% endblock %}
+</body>
+
+</html>
