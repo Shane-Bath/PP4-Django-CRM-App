@@ -36,17 +36,30 @@
     </div>
 
 <script>
-    document.addEventListener('DOMContLoaded', function (
+    document.addEventListener('DOMContLoaded', function () {
         var clientSearchInput = document.getElementById('client_search_input');
-        var suggestionsBox = document.getElementById('client_search_suggestions');
+        var suggestionsBox = document.getElementById('client_search_suggestion');
 
         clientSearchInput.addEventListener('input', function() {
             var query = this.value;
             if (query.lenght > 2) {
-                fetch('/')
+                fetch('/client-search/?query=${encodeURIComponent(query)}')
+                    .then(response => response.json())
+                    .then(data => {
+                        suggestionsBox.innerHTML = '';
+                        data.forEach(client => {
+                            var suggestionDiv = document.createElement('div');
+                            suggestionDiv.innerText = `${client.first_name} ${client.middle_name} ${client.last_name}`;
+                            suggestionDiv.onclick = function() {
+                                document.getElementById('client_id').value = client_id;
+                                clientSearchInput.value = `${client.first_name} ${client_.middle_name} ${client.last_name}`;
+                            };
+                            suggestionsBox.appendChild(suggestionDiv);
+                        });
+                    });
             }
-        })
-    ))
+        });
+    });
 </script>
     {% endblock %}
 </body>

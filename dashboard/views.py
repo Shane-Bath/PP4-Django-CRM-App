@@ -154,7 +154,7 @@ address.
 
 @ login_required
 def client_search(request):
-    query = request.GET.get('query', '')
+    query = request.GET.get('query')
 
     if query:
         clients = Client.objects.filter(
@@ -164,11 +164,11 @@ def client_search(request):
             Q(phone_number__icontains=query) |
             Q(email_address__icontains=query) |
             Q(address__icontains=query)
-        ).distinct()[:10]
-        results = list(clients.values('id', 'first_name', 'middle_name', 'last_name', 'phone_number'))
+        )
     else:
-        results = []
-    return JsonResponse(results, safe=False)
+        clients = Client.objects.none()
+
+    return render(request, 'client-search-results.html', {'clients': clients})
 
 
 # Client note
@@ -275,7 +275,7 @@ To record phone calls.
 class CallLog(View):
     def get(self, request):
         form = CallLogForm()
-        return render(request, 'call-log-form-test.html', {'form': form})
+        return render(request, 'call-log-form.html', {'form': form})
 
     def post(self, request):
         form = CallLogForm(request.POST)
@@ -285,7 +285,7 @@ class CallLog(View):
             messages.success(request, 'Call logged')
             return redirect('display-call')
         else:
-            return render(request, 'call-log-form-test.html', {'form': form, })
+            return render(request, 'call-log-form.html', {'form': form, })
 
 
 # call log modal
