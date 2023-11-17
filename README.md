@@ -212,20 +212,71 @@ Performace : ![Performace](static/images/readme/acc-improve.png)
 ## W3C Validation
 No errors or warnings. I could not find the trailing slash discussed in the INFO meassage. It does not impact the site.
 ### HTML
-* [Index](static/images/readme/html-index.png)
-* [Dashboard](static/images/readme/html-dashboard.png)
-* [New client](static/images/readme/html-new-client.png)
-* [Client list](static/images/readme/html-client-list.png)
-* [Dashboard](static/images/readme/html-dashboard.png)
-* [Display call](static/images/readme/html-display-call.png)
-* [Task](static/images/readme/html-task.png)
-* [Task-list](static/images/readme/html-task-list.png)
+
+<details>
+<summary>Index</summary>
+
+Index : ![Index](static/images/readme/html-index.png)
+</details>
+
+<details>
+<summary>Dashboard</summary>
+
+Dashboard : ![Dashboard](static/images/readme/html-dashboard.png)
+</details>
+
+<details>
+<summary>New Client</summary>
+
+New Client : ![New Client](static/images/readme/html-new-client.png)
+</details>
+
+<details>
+<summary>Client list</summary>
+
+Client list : ![Client list](static/images/readme/html-client-list.png)
+</details>
+
+<details>
+<summary>Display call</summary>
+
+Display call : ![Display call](static/images/readme/html-display-call.png)
+</details>
+
+<details>
+<summary>Task</summary>
+
+Task : ![Task](static/images/readme/html-task.png)
+</details>
+
+<details>
+<summary>Task-list</summary>
+
+Task-list : ![Task-list](static/images/readme/html-task-list.png)
+</details>
+
 
 ### CSS
 No errors found
-* [Dashboard](static/images/readme/dashboard-css.png)
-* [task](static/images/readme/task-css.png)
-* [Call log](static/images/readme/call-log-css.png)
+
+<details>
+<summary>Dashboard</summary>
+
+Dashboard : ![Dashboard](static/images/readme/dashboard-css.png)
+</details>
+
+<details>
+<summary>Task</summary>
+
+Task : ![Task](static/images/readme/task-css.png)
+</details>
+
+<details>
+<summary>Call log</summary>
+
+ Call log: ![Call log](static/images/readme/task-css.png)
+</details>
+
 
 ## Credit
 
