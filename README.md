@@ -280,7 +280,9 @@ Task : ![Task](static/images/readme/task-css.png)
 
 ## Databases
 
-Our Django client management system uses a database schema hosted on ElephantSQL. The schema comprises essential tables like 'dashboard_appointments', ' dashboard_client' and dashboard_cleintnote' and 'dashboard_phonelog', each with fields to capture client interactions, notes and appointments. However in the finsihed version of the project I have only implment a link between a client and a client note. 
+Our Django client management system uses a database schema hosted on ElephantSQL. The schema comprises essential tables like 'dashboard_appointments', ' dashboard_client' and dashboard_cleintnote' and 'dashboard_phonelog', each with fields to capture client interactions, notes and appointments. However in the finsihed version of the project I have only implement a link between a client and a client note. Task and 
+
+Database : ![database](static/images/readme/client-database.png)
 
 ## Credit
 
