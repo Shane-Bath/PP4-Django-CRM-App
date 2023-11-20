@@ -296,21 +296,35 @@ Task : ![Task](static/images/readme/task-css.png)
 ## Databases
 
 The Django client management system uses a database schema hosted on ElephantSQL. The schema comprises essential tables like 'dashboard_appointments', ' dashboard_client' and dashboard_cleintnote' and 'dashboard_phonelog', each with fields to capture client interactions, notes and appointments. However in the finsihed version of the project I have only implement a link between a client and a client note. In the future I plan to add appointmets, link call log with clients and add calander to track deadlines for clients.
+<details>
+<summary>Database</summary>
 
 Database : ![database](static/images/readme/database.png)
+</details>
 
 ## Deployment
-This project was deployed to Heroku, Install the following to the Django project to deploy the project.
+This project was deployed to Heroku, install the following programs to the Django project.
 - Gunicorn  - pip3 install django gunicorn
 - Pyscopg2 - pip3 install dj_database_url pysopg2
 - Cloudainary - pip3 install dj3-Cloudainary-Storage
 - Create an env.py file in the root directory of the project. 
 
-You will need to update your settings.py with code below.
+### Gunicorn
+When deploying a Django application to Heroku, Gunicorn serves as the WSGI HTTP server that interfaces between your Django application and the web.
+
+### Pyscopg2
+Pyscopg2 is used for connecting Python applications to a PostgreSQL database. In my case ElephantSQL
+
+### Cloudinary 
+Cloudainary is the server that manages the images in the project.
+
+Include the above in the requirements.txt file. 
+
+Once you have installed the above programs you will need to update your settings.py with code below.
 
 In settings.py add **import os** and **import dj_database_url** to the top of the file. Under the imports add the following:
 
-    if os.path.isfile(‘env.py’): 
+    if os.path.isfile('env.py'): 
         import env 
 
 Replace the SECRET_KEY with the following:
@@ -350,13 +364,13 @@ In settings.py add the cloudinary liberies to the installed apps section as foll
 
     'cloudinary_storage',
     'django.contrib.staticfiles',
-    'cloudinary’,
+    'cloudinary',
     
 Note the order as it is important.
 
 Tell Django to use cloudinary to store media file add the following below:
 
-    STATIC_URL = ’/static/’
+    STATIC_URL = '/static/'
     STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -364,6 +378,51 @@ Tell Django to use cloudinary to store media file add the following below:
     MEDIA_URL = '/media/'
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
+### ElephantSQL
+
+Create an account, and once the account has been created, click Create New Instance. Name the plan and select the Tiny Turtle plan. This is a free plan. Select region, by selecting a datacentre near you. My datacentre is EU-West-1 (Ireland). Click review. Once the details are correct click create plan.
+
+On the ElephantSQL dashboard click on the database and copy the ElephantSQL database URL. Paste the URL in the env.py file. 
+
+    os.environ['DATABASE_URL'] = 'elephantsql database url'
+
+You will also have to **import os** at the top of the env.py file.
+
+    import os
+
+In the env.py file you should include your secret key:
+
+     os.environ['SECRET_KEY'] = "randomSecretKey"
+
+### Heroku
+In my Heroku app, I create a new app. In the config vars section of my app, and added the Cloudinary and ElephantSQL settings, along with the SECRET_KEY.  Add DISABLE_COLLECTSTATIC and 1 to the config var section.
+
+To link the django template files to the Heroku app, in settings.py file add:
+
+    TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+    
+And change the template directory to
+
+    TEMPLATES = [
+        {
+            …,
+            'DIRS': [TEMPLATES_DIR],
+        …,
+                ],
+            },
+        },
+    ]
+
+In settiings.py Add the Heroku host name to the ALLOWED_HOST:
+
+    ALLOWED_HOSTS = ["PROJ_NAME.herokuapp.com", "YOUR_HOSTNAME"]
+
+In the root directory of the project add a **Profile**, in the **Profile** add:
+
+    web: gunicorn ADD_YOUR_PROJECT_NAME.wsgi
+
+
+Finally I connected Github to my Heroku app. Open the deploy tab in Heroku, select github as deployment method. You may have to login into you github account if this is a first time. Select the project from the github list. Select automatic deployment from main. After the build is complete you can open the app.
 
 ## Credit
 
