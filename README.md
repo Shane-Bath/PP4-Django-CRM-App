@@ -1,15 +1,30 @@
 ## CRM Django App - Clientflow
-This is a customer management system for a small business.
-This Django app is not designed for mobile devices. It is designed for use in an office on standard size screens only.
+This is a customer management system for a small business. This Django app does not support mobile devices. It is designed for use in an office on standard-size screens only.
+
+Our system uses Django's built-in user authentication mechanism to ensure secure access. Users can manage client information, knowing their data is protected.
+
+At the heart of our system is the ability to create detailed client profiles. Each profile has information, including the client's name, address, phone number, and email. Allowing a record of the client to be maintained and updated if necessary.
+
+The user can attach notes to client profiles, which is a feature designed for personalised client management. These notes can be edited, updated, or deleted, providing a flexible way to track client interactions and important details.
+
+Users can log calls from clients, ensuring that every interaction is recorded and accessible for future reference.
 
 ### Features
 
 <details>
 <summary>User Registration and Authentication</summary>
-User login and logout functionality. User registration form with fields like username, email, and password.
+The Django application Django-Allauth is flexible and created to handle user login, registration, and account management. I used this method to manage registration and authentication for its ease of integration, flexibility, and support for social authentication. For this type of application, you would not use the social authentication system, and control of user access would have to be completed via the admin panel, where access is limited to a superuser.
+
+Django-Allauth provides a full suite of account management features, including password reset, account email management, and more.
+
+I use the following:
+- User registration form with fields username, email, and password.
+- User login and logout functionality.
+
 
 
 Login: ![login](static/images/readme/feature-login.png)
+Signup: ![signup](static/images/readme/sign-up.png)
 </details>
 
 <details>
@@ -280,9 +295,75 @@ Task : ![Task](static/images/readme/task-css.png)
 
 ## Databases
 
-Our Django client management system uses a database schema hosted on ElephantSQL. The schema comprises essential tables like 'dashboard_appointments', ' dashboard_client' and dashboard_cleintnote' and 'dashboard_phonelog', each with fields to capture client interactions, notes and appointments. However in the finsihed version of the project I have only implement a link between a client and a client note. Task and 
+The Django client management system uses a database schema hosted on ElephantSQL. The schema comprises essential tables like 'dashboard_appointments', ' dashboard_client' and dashboard_cleintnote' and 'dashboard_phonelog', each with fields to capture client interactions, notes and appointments. However in the finsihed version of the project I have only implement a link between a client and a client note. In the future I plan to add appointmets, link call log with clients and add calander to track deadlines for clients.
 
-Database : ![database](static/images/readme/client-database.png)
+Database : ![database](static/images/readme/database.png)
+
+## Deployment
+This project was deployed to Heroku, Install the following to the Django project to deploy the project.
+- Gunicorn  - pip3 install django gunicorn
+- Pyscopg2 - pip3 install dj_database_url pysopg2
+- Cloudainary - pip3 install dj3-Cloudainary-Storage
+- Create an env.py file in the root directory of the project. 
+
+You will need to update your settings.py with code below.
+
+In settings.py add **import os** and **import dj_database_url** to the top of the file. Under the imports add the following:
+
+    if os.path.isfile(‘env.py’): 
+        import env 
+
+Replace the SECRET_KEY with the following:
+
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+
+In the database section of the settings.py file replace DATABASE default:
+
+     'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3'
+
+
+With the following:
+
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    }
+
+Add env.py to the gitignore.py.  Save and migrate all the changes.
+
+In the root directory add the following folders: 
+- media
+- static
+- templates
+
+These files will hold you HTML templates, CSS , JS and images.
+
+### Cloudinary
+I created an account on using by linking my Github account.
+Once you have an account you will have to connect cloudinary to the project.
+
+From the Cloudinary dashboard copy the CLOUDINARY_URL  from the API environment variable and add Cloudinary URL to env.py file.
+
+    os.environ["CLOUDINARY_URL"] = "cloudinary://************************"
+
+In settings.py add the cloudinary liberies to the installed apps section as follows:
+
+    'cloudinary_storage',
+    'django.contrib.staticfiles',
+    'cloudinary’,
+    
+Note the order as it is important.
+
+Tell Django to use cloudinary to store media file add the following below:
+
+    STATIC_URL = ’/static/’
+    STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+    MEDIA_URL = '/media/'
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 ## Credit
 
