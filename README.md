@@ -5,9 +5,7 @@ This is a client management system for a small business. This Django app is inte
 
 <details>
 <summary>User Registration and Authentication</summary>
-Django-Allauth handles user login, registration, and account management. I used this method to manage registration and authentication for its ease of integration, flexibility, and support for social authentication. In this type of application, the social authentication system is not used, and user access control is completed through the admin panel, which is limited to a superuser.
-
-Django-Allauth provides a full suite of account management features, including password reset, account email management, and more
+Django-Allauth handles user login, registration, and account management.
 
 I use the following:
 - User registration form with fields username, email, and password.
@@ -123,8 +121,8 @@ colorhunt : ![colour palette](static/images/readme/color.png)
 
 I used the agile method to help me build out this project. With Epics, Task and User stories, all of which help track the progress of my project. I used Github project for Agile, see the links below:
 
-[Github projects](https://github.com/users/Shane-Bath/projects/4)
-[Github issues](https://github.com/Shane-Bath/pp4_crm_app/issues)
+- [Github projects](https://github.com/users/Shane-Bath/projects/4)
+- [Github issues](https://github.com/Shane-Bath/pp4_crm_app/issues)
 
 <details>
 <summary>Agile</summary>
@@ -308,7 +306,7 @@ Task : ![Task](static/images/readme/task-css.png)
 
 
 ## Databases
-The client management system uses a database schema in production hosted on ElephantSQL, a PostgreSQL server. The schema comprises tables like 'dashboard_appointments', 'dashboard_client', dashboard_cleintnote', and 'dashboard_phonelog', each with fields to capture client interactions, notes, and appointments. However, in the finished version of the project, I have only implemented a link between a client and a client note. In the future, I plan to add appointments, link call logs with clients, and add calendars to track deadlines.
+The client management system uses a database hosted on ElephantSQL, a PostgreSQL server. The schema comprises tables like 'dashboard_appointments', 'dashboard_client', dashboard_cleintnote', and 'dashboard_phonelog', each with fields to capture client interactions, notes, and appointments. However, in the finished version of the project, I have only implemented a link between a client and a client note. In the future, I plan to add appointments, link call logs with clients, and add calendars to track deadlines.
 
 <details>
 <summary>Database</summary>
@@ -322,7 +320,7 @@ This project was deployed to Heroku, install the following programs to the Djang
 - Gunicorn  - pip3 install django gunicorn
 - Pyscopg2 - pip3 install dj_database_url pysopg2
 - Cloudainary - pip3 install dj3-Cloudainary-Storage
-- Create an env.py file in the root directory of the project.\
+- Create an env.py file in the root directory of the project.
 
 ### Gunicorn
 When deploying a Django application to Heroku, Gunicorn serves as the WSGI HTTP server that interfaces between your Django application and the web.
@@ -445,7 +443,7 @@ In the root directory of the project add a **Profile**, in the **Profile** add:
 
 Finally, I connected Github to my Heroku app. Open the deploy tab in Heroku and select github as the deployment method. You may have to login to your GitHub account if this is the first time. Select the project from the GitHub list. Select automatic deployment from the main branch. I set to atomatically deploy after each push. After the build is complete, you can open the app.
 
-## Tools and Libraries
+## Tools, Libraries and languages
 - Python
 - Django
 - CSS
@@ -461,6 +459,13 @@ Finally, I connected Github to my Heroku app. Open the deploy tab in Heroku and 
 - Google fonts
 - Balsamiq
 
+## Bugs
+
+The TOAST messages experience a delay, appear grouped together, and are not displayed correctly.  It appears to be a random issue. I will have to resolve this in the future.
+
+
+## Final thoughts
+I had grander plans for this project; I wanted to have an appointment system with a calendar, link call log, and task to clients.  Add  the ability to upload PDFs and word documents to the client folder and finally display emails in the dashboard. This was well beyond the scope of this project and had to be abandoned once I realised the complexity involved in implementing some of these features. I do intend to continue working on this project, as it has provided me with a good understanding of the Django framework and its possibilities.
 
 ## Credit
 
