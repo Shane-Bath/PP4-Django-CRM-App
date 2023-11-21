@@ -102,6 +102,40 @@ Calendar : ![calendar](static/images/readme/calendar.png)
 Appointments : ![appointments](static/images/readme/appointments.png)
 </details>
 
+## UI/UX
+
+My colour palette as follows:
+
+- rgb(246, 255, 222)
+- rgb(227, 242, 193)
+- rgb(227, 242, 193)
+- rgb(170, 200, 167)
+
+I used black as the font colour for maximum contrast, which helped my accessibility score.
+
+<details>
+<summary>Colour palette</summary>
+
+colorhunt : ![colour palette](static/images/readme/color.png)
+</details >
+
+## Agile
+
+I used the agile method to help me build out this project. With Epics, Task and User stories, all of which help track the progress of my project. I used Github project for Agile, see the links below:
+
+[Github projects](https://github.com/users/Shane-Bath/projects/4)
+[Github issues](https://github.com/Shane-Bath/pp4_crm_app/issues)
+
+<details>
+<summary>Agile</summary>
+
+Agile : ![colour palette](static/images/readme/agile.png)
+User stoires : ![user stories](static/images/readme/agile_2.png)
+
+</details >
+
+
+
 ## Testing 
 I have manually navigated through different pages and functionalities. I have verified that all elements (buttons, forms, and links) are functioning as expected, and the user interface is rendering correctly.
 
@@ -426,9 +460,6 @@ Finally, I connected Github to my Heroku app. Open the deploy tab in Heroku and 
 - Fontawesome
 - Google fonts
 - Balsamiq
-
-
-## Agile
 
 
 ## Credit
