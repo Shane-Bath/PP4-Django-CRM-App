@@ -412,7 +412,7 @@ In the env.py file you should include your secret key:
      os.environ['SECRET_KEY'] = "randomSecretKey"
 
 ### Heroku
-Create a new Heroku app with a using your project name. In the config vars section of my app, and added the Cloudinary and ElephantSQL settings, along with the SECRET_KEY.  Add DISABLE_COLLECTSTATIC and 1 to the config var section.
+Create a new Heroku app with a using your project name. In the config vars section of my app, and added the Cloudinary and ElephantSQL settings, along with the SECRET_KEY.
 
 Config vars: ![config vars](static/images/readme/config_vars.png)
 
@@ -432,7 +432,7 @@ And change the template directory to
         },
     ]
 
-In settiings.py Add the Heroku host name to the ALLOWED_HOST:
+In settings.py Add the Heroku host name to the ALLOWED_HOST:
 
     ALLOWED_HOSTS = ["PROJ_NAME.herokuapp.com", "YOUR_HOSTNAME"]
 
@@ -465,7 +465,7 @@ The TOAST messages experience a delay, appear grouped together, and are not disp
 
 
 ## Final thoughts
-I had grander plans for this project; I wanted to have an appointment system with a calendar, link call log, and task to clients.  Add  the ability to upload PDFs and word documents to the client folder and finally display emails in the dashboard. This was well beyond the scope of this project and had to be abandoned once I realised the complexity involved in implementing some of these features. I do intend to continue working on this project, as it has provided me with a good understanding of the Django framework and its possibilities.
+I had grander plans for this project; I wanted to have an appointment system with a calendar, link call log, and tasks to clients.  Add  the ability to upload PDFs and word documents to the client folder and finally display emails in the dashboard. This was well beyond the scope of this project and had to be abandoned once I realised the complexity involved in implementing some of these features. I do intend to continue working on this project, as it has provided me with a good understanding of the Django framework and its possibilities.
 
 ## Credit
 
