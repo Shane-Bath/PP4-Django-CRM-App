@@ -1,27 +1,17 @@
 ## CRM Django App - Clientflow
-This is a customer management system for a small business. This Django app does not support mobile devices. It is designed for use in an office on standard-size screens only.
-
-Our system uses Django's built-in user authentication mechanism to ensure secure access. Users can manage client information, knowing their data is protected.
-
-At the heart of our system is the ability to create detailed client profiles. Each profile has information, including the client's name, address, phone number, and email. Allowing a record of the client to be maintained and updated if necessary.
-
-The user can attach notes to client profiles, which is a feature designed for personalised client management. These notes can be edited, updated, or deleted, providing a flexible way to track client interactions and important details.
-
-Users can log calls from clients, ensuring that every interaction is recorded and accessible for future reference.
+This is a client management system for a small business. This Django app is intended for use in an office environment on standard-size screens only and does not support mobile devices. At the heart of the CRM system is the ability to create detailed client profiles. You can record information on each client, including the client's name, address, phone number, and email. Users can update the client record with new information. The user can attach notes to client profiles. Users can edit, update, or delete these notes, allowing for tracking of client interactions and important details. Users can log calls from clients and create tasks.
 
 ### Features
 
 <details>
 <summary>User Registration and Authentication</summary>
-The Django application Django-Allauth is flexible and created to handle user login, registration, and account management. I used this method to manage registration and authentication for its ease of integration, flexibility, and support for social authentication. For this type of application, you would not use the social authentication system, and control of user access would have to be completed via the admin panel, where access is limited to a superuser.
+Django-Allauth handles user login, registration, and account management. I used this method to manage registration and authentication for its ease of integration, flexibility, and support for social authentication. In this type of application, the social authentication system is not used, and user access control is completed through the admin panel, which is limited to a superuser.
 
-Django-Allauth provides a full suite of account management features, including password reset, account email management, and more.
+Django-Allauth provides a full suite of account management features, including password reset, account email management, and more
 
 I use the following:
 - User registration form with fields username, email, and password.
 - User login and logout functionality.
-
-
 
 Login: ![login](static/images/readme/feature-login.png)
 Signup: ![signup](static/images/readme/sign-up.png)
@@ -29,7 +19,7 @@ Signup: ![signup](static/images/readme/sign-up.png)
 
 <details>
 <summary>Customer Management</summary>
-Create a new client with details such as name, email, phone number, and address. View a list of all client. Search for client. Edit client details (name, email, phone number, address).
+Create a new client with details such as name, email, phone number, and address. View a list of all clients. Search for a client. Edit client details (name, email, phone number, and address).
 
 Create client: ![create customer](static/images/readme/feature-customers.png)
 
@@ -53,14 +43,14 @@ Task : ![Task](static/images/readme/feature-task.png)
 
 <details>
 <summary>Notes Management</summary>
-Allow users to add notes to customer files. Edit notes Associate notes with the respective client. Display the notes in chronological order with timestamps
+Allow users to add notes to customer files. Edit notes. Associate notes with the respective client. Display the notes in chronological order with timestamps.
 
 Notes : ![note](static/images/readme/feature-note.png)
 Notes edit : ![note](static/images/readme/feature-note-edit.png)
 </details>
 
 ## Design
-This app was first layed out in Balsamiq. My design unfortunelty came up agianst the reality of my curent abilites when it came to implentation. However I will contine to work towards design in the future.
+I initially laid out this app in Balsamiq. My design unfortunately came up against the reality of my current abilities when it came to implementation. However, I will continue to work towards design in the future.
 
 <details>
 <summary>Landing page</summary>
@@ -85,52 +75,42 @@ login page : ![login page](static/images/readme/login.png)
 
 <details>
 <summary>Dashboard</summary>
-The Dashboard is the central hub. The user will be on this page for the majority of the time and will be able navigate to different features from the dashboard.
+The dashboard is the central hub. The user will be on this page for the majority of the time and will be able to navigate to different features from the dashboard.
 
 Dashboard : ![dashboard](static/images/readme/dashboard.png)
 </details>
 
 <details>
 <summary>Client file</summary>
-All the client details, notes, and assocaited file will be displayed here.
+All the client details, notes, and associated files will be displayed here.
 
 clients file : ![clients file](static/images/readme/clients.png)
 </details>
 
 <details>
 <summary>Call Log </summary>
-A call log to record the details of the call, the call log is link to the client database. You could link the call to the client but I have not implemented this feature yet. I had orginally wanted the call log to be modal, but I found that it was this was not stright forward to add this in Django. In the end I did not implement this. 
+The call log records and links the details of the call to the client database. I had originally wanted the call log to be modal, but I found that it was not straight forward to add this in Django. In the end, I did not implement this.
 
 Call log : ![call log](static/images/readme/call-log.png)
 </details>
 
 <details>
 <summary>Appointments and Calander</summary>
-I had wanted to add a calendar and appointment system to my client management system, but this turned out be beyond my abilties and the scope of the project. But is something I will be working on in the future.
+I had wanted to add a calendar and appointment system to my client management system, but this turned out to be beyond my abilities and the scope of the project. But this is something I will be working on in the future.
 
 Calendar : ![calendar](static/images/readme/calendar.png)
 Appointments : ![appointments](static/images/readme/appointments.png)
 </details>
 
-<details>
-<summary></summary>
-</details>
-There is User registration and authentication, 
-A User registration form is used with fields like username, email, and password. With User login and logout functionality. I have used AllAuth for this functionality. 
-
-Once the user is registered, they can access the dashboard. From there they can create new clients, make nots on each client. Log calls and keep a task list. 
-
-The Dashboard is the central hub. 
-
 ## Testing 
-I have manually navigated through different pages and functionalities. I have Verified that all elements (buttons, forms, links) are functioning as expected, and the user interface is rendering correctly.
+I have manually navigated through different pages and functionalities. I have verified that all elements (buttons, forms, and links) are functioning as expected, and the user interface is rendering correctly.
 
 ## Manual Testing
 ### Registration 
 
 | Objective | Test | Expected result | Passed |
 | :---:     | :---:|    :---:        | :---:  |
-| Check if registration works | Click on register link, complete the form and click on the Signup button. | Redirects to the homepage with dashboard link | Passed |
+| Check if registration works | Click on register link, complete the form and click on the signup button. | Redirects to the homepage with dashboard link | Passed |
 | Check if login works | Click on login link, complete the form and click login | Redirects to the homepage with dashboard link | Passed |
 | Check if Logout works | Click on logout link, click on confirmation | Redirect to homepage with rgister and login links | Passed |
 
@@ -138,11 +118,11 @@ I have manually navigated through different pages and functionalities. I have Ve
 
 | Objective | Test | Expected result | Passed |
 | :---:     | :---:|    :---:        | :---:  |
-| Verify that the Log Call feature correctly records a call with details. | Click on "LOG CALL" button, Fill in the call details in the form, Submit the form | The call is recorded in the database, and the call log is updated with the new entry. | Passed |
-| Confirm Delete buttton works Display call | Click the delete button | The call is removed from the database | Passed |
-| Ensure that the Add Task feature allows users to add tasks to their to-do list | Click on "ADD TASK" button, Enter task details in the form, Submit the form | The task is added to the user’s to-do list and is visible in the Task List. | Passed |
+| Verify that the Log Call feature correctly records a call with details. | Click on "LOG CALL" button, fill in the call details in the form, submit the form | The call is recorded in the database, and the call log is updated with the new entry. | Passed |
+| Confirm delete buttton works in display call | Click the delete button | The call is removed from the database | Passed |
+| Ensure that the Add Task feature allows users to add tasks to their to-do list | Click on "ADD TASK" button, Enter task details in the form, Submit the form | The task is added to the user's to-do list and is visible in the Task List. | Passed |
 | Confirm Delete buttton works- Task | Click the delete button | The task is removed from the database | Passed |
-| Confirm that the New Client feature works and the new client is added to the database | Click on "ADD CLIENT" button. Complete the form. Submit the form |  The new client information is stored in the database and can be retrieved when searched for. | Passed |
+| Confirm that the New Client feature works and the new client is added to the database | Click on "ADD CLIENT" button. Complete the form with clients details. Submit the form |  The new client information is stored in the database and can be retrieved when searched for. | Passed |
 | Test the search functionality to locate existing clients. | Use the search bar. Enter the name of an existing client. Click on the "Search" button | The application returns a list of clients that match the search query | Passed |
 | Confirm Delete buttton works - clients | Click the delete button | The client is removed from the database | Passed |
 ### Clients file
@@ -172,25 +152,25 @@ I have manually navigated through different pages and functionalities. I have Ve
 <details>
 <summary>Admin.py</summary>
 
-Admin.py : ![admin](static/images/readme/dashboard_admin.png)
+Admin.py No errors: ![admin](static/images/readme/dashboard_admin.png)
 </details>
 
 <details>
 <summary>Forms.py</summary>
 
-Forms.py : ![Forms](static/images/readme/dashboard_forms.png)
+Forms.py No errors : ![Forms](static/images/readme/dashboard_forms.png)
 </details>
 
 <details>
 <summary>Models.py</summary>
 
-Models.py : ![Models](static/images/readme/dashboard_models.png)
+Models.py No errors: ![Models](static/images/readme/dashboard_models.png)
 </details>
 
 <details>
 <summary>Urls.py</summary>
 
-Urls.py : ![Urls](static/images/readme/dashboard_urls.png)
+Urls.py No errors: ![Urls](static/images/readme/dashboard_urls.png)
 </details>
 
 #### pp4_crm_app
@@ -208,7 +188,7 @@ Urls.py : ![Urls](static/images/readme/pp4-urls.png)
 </details>
 
 ## LightHouse 
-Lighthouse is a Google Dev tool to check permformace and accessibility. I changed the text font from blue to black to improve my accessiblity score. The blue font failed the contrast test againt the light green backgound. The black passed.
+Lighthouse is a Google Dev tool to check performance and accessibility. My font colour failed the accessibility test, as the blue font failed the contrast test against the light green background. I changed the text font from blue to black to improve my accessibility score. The black font passed the test.
 
 <details>
 <summary>Accessibility</summary>
@@ -294,8 +274,8 @@ Task : ![Task](static/images/readme/task-css.png)
 
 
 ## Databases
+The client management system uses a database schema in production hosted on ElephantSQL, a PostgreSQL server. The schema comprises tables like 'dashboard_appointments', 'dashboard_client', dashboard_cleintnote', and 'dashboard_phonelog', each with fields to capture client interactions, notes, and appointments. However, in the finished version of the project, I have only implemented a link between a client and a client note. In the future, I plan to add appointments, link call logs with clients, and add calendars to track deadlines.
 
-The Django client management system uses a database schema hosted on ElephantSQL. The schema comprises essential tables like 'dashboard_appointments', ' dashboard_client' and dashboard_cleintnote' and 'dashboard_phonelog', each with fields to capture client interactions, notes and appointments. However in the finsihed version of the project I have only implement a link between a client and a client note. In the future I plan to add appointmets, link call log with clients and add calander to track deadlines for clients.
 <details>
 <summary>Database</summary>
 
@@ -303,11 +283,12 @@ Database : ![database](static/images/readme/database.png)
 </details>
 
 ## Deployment
-This project was deployed to Heroku, install the following programs to the Django project.
+I would recommend deploying your app at the begining of the project.
+This project was deployed to Heroku, install the following programs to the Django project. 
 - Gunicorn  - pip3 install django gunicorn
 - Pyscopg2 - pip3 install dj_database_url pysopg2
 - Cloudainary - pip3 install dj3-Cloudainary-Storage
-- Create an env.py file in the root directory of the project. 
+- Create an env.py file in the root directory of the project.\
 
 ### Gunicorn
 When deploying a Django application to Heroku, Gunicorn serves as the WSGI HTTP server that interfaces between your Django application and the web.
@@ -322,7 +303,12 @@ Include the above in the requirements.txt file.
 
 Once you have installed the above programs you will need to update your settings.py with code below.
 
-In settings.py add **import os** and **import dj_database_url** to the top of the file. Under the imports add the following:
+In settings.py add **import os** and **import dj_database_url** to the top of the file. 
+
+    import os
+    import dj_database_url
+    
+Under the imports add the following:
 
     if os.path.isfile('env.py'): 
         import env 
@@ -379,8 +365,7 @@ Tell Django to use cloudinary to store media file add the following below:
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 ### ElephantSQL
-
-Create an account, and once the account has been created, click Create New Instance. Name the plan and select the Tiny Turtle plan. This is a free plan. Select region, by selecting a datacentre near you. My datacentre is EU-West-1 (Ireland). Click review. Once the details are correct click create plan.
+I used ElephantSQL in production. Create an account, and once the account has been created, click Create New Instance. Name the plan and select the Tiny Turtle plan. This is a free plan. Select region, by selecting a datacentre near you. My datacentre is EU-West-1 (Ireland). Click review. Once the details are correct click create plan.
 
 On the ElephantSQL dashboard click on the database and copy the ElephantSQL database URL. Paste the URL in the env.py file. 
 
@@ -395,7 +380,9 @@ In the env.py file you should include your secret key:
      os.environ['SECRET_KEY'] = "randomSecretKey"
 
 ### Heroku
-In my Heroku app, I create a new app. In the config vars section of my app, and added the Cloudinary and ElephantSQL settings, along with the SECRET_KEY.  Add DISABLE_COLLECTSTATIC and 1 to the config var section.
+Create a new Heroku app with a using your project name. In the config vars section of my app, and added the Cloudinary and ElephantSQL settings, along with the SECRET_KEY.  Add DISABLE_COLLECTSTATIC and 1 to the config var section.
+
+Config vars: ![config vars](static/images/readme/config_vars.png)
 
 To link the django template files to the Heroku app, in settings.py file add:
 
@@ -422,7 +409,27 @@ In the root directory of the project add a **Profile**, in the **Profile** add:
     web: gunicorn ADD_YOUR_PROJECT_NAME.wsgi
 
 
-Finally I connected Github to my Heroku app. Open the deploy tab in Heroku, select github as deployment method. You may have to login into you github account if this is a first time. Select the project from the github list. Select automatic deployment from main. After the build is complete you can open the app.
+Finally, I connected Github to my Heroku app. Open the deploy tab in Heroku and select github as the deployment method. You may have to login to your GitHub account if this is the first time. Select the project from the GitHub list. Select automatic deployment from the main branch. I set to atomatically deploy after each push. After the build is complete, you can open the app.
+
+## Tools and Libraries
+- Python
+- Django
+- CSS
+- HTML
+- Bootstrap 4.6
+- Cloudinary
+- ElephantSQL
+- Heroku
+- Django-allauth
+- Crispy forms
+- Github
+- Fontawesome
+- Google fonts
+- Balsamiq
+
+
+## Agile
+
 
 ## Credit
 
